@@ -1,17 +1,30 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <v-container>
+    <v-layout>
+    <v-app-bar
+        color="info"
+        density="default"
+        location='top'
+      >
+        <template v-slot:prepend>
+          <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        </template>
+
+        <v-app-bar-title>QRSchool</v-app-bar-title>
+
+        <template v-slot:append>
+          <v-btn icon>
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+  </v-app-bar>
+      <v-main>
+        <v-container fluid>
+          
+        </v-container>
+      </v-main>
+    </v-layout>
+  </v-container>
 </template>
 
 <style scoped>
