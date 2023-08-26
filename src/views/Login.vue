@@ -1,7 +1,7 @@
 <template>
     <v-container fluid full-height class="d-flex justify-center">
         <v-card clas="bg-blue" 
-        width="350"
+        width="330"
         max-width="384"
         variant="outlined">
             <v-img
