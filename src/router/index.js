@@ -37,7 +37,7 @@ const routes = [
         component: () => import("../views/Config.vue"),
     },
     {
-        path: "/modulo",
+        path: "/modulos",
         name: "modulos",
         component: () => import("../views/Modulos.vue"),
         children: [
@@ -87,9 +87,19 @@ const routes = [
         component: () => import("../views/Dashboard.vue"),
     },
     {
+        path: "/ausencia",
+        name: "ausencia",
+        component: () => import("../views/Ausencia.vue"),
+    },
+    {
         path: "/ausencia/registro/:grado",
         name: "ausenciaregistro",
         component: () => import("../views/AusenciaRegistro.vue"),
+    },
+    {
+        path: "/soporte",
+        name: "soporte",
+        component: () => import("../views/Soporte.vue"),
     },
 ];
 

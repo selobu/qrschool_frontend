@@ -1,3 +1,3 @@
 <template>
-    Asistencia
+    Ausencia
 </template>

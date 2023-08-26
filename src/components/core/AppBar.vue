@@ -28,7 +28,9 @@
           :key="icon"
           :prepend-icon="item.icon"
           :title="item.title"
-          :value="item.value"></v-list-item>
+          :value="item.value"
+          :href="item.href"
+          ></v-list-item>
         </v-list>
     </v-navigation-drawer>
     <v-navigation-drawer
@@ -39,11 +41,12 @@
       >
         <v-list nav>
           My data
-          <v-list-item v-for="item in items"
+          <v-list-item v-for="item in useritems"
           :key="icon"
           :prepend-icon="item.icon"
           :title="item.title"
-          :value="item.value"></v-list-item>
+          :value="item.value"
+          ></v-list-item>
         </v-list>
     </v-navigation-drawer>
 
@@ -57,46 +60,56 @@
       group: null,
       items: [
         {
+          title: 'Home',
+          value: 'home',
+          href: '/',
+          icon:  'mdi-home'
+        },
+        {
           title: 'Login',
           value: 'login',
+          href: 'login',
           icon:  'mdi-login-variant'
         },
         {
           title: 'Logout',
           value: 'logout',
+          href: 'logout',
           icon:  'mdi-logout-variant'
-        },
-        {
-          title: 'Home',
-          value: 'home',
-          icon:  'mdi-home'
-        },
-        {
-          title: 'About',
-          value: 'about',
-          icon: 'mdi-information'
         },
         {
           title: 'Modulos',
           value: 'modulos',
+          href: 'modulos',
           icon: 'mdi-view-dashboard'
         },
         {
           title: 'Dashboard',
           value: 'dashboard',
-          icon: 'mdi-elevation-rise'
+          href: 'dashboard',
+          icon: 'mdi-elvation-rise'
         },
         {
           title: 'Ausencia',
           value: 'ausencia',
+          href: 'ausencia',
           icon: 'mdi-account-minus'
         },
+      ],
+      useritems:[
         {
           title: 'Soporte',
           value: 'soporte',
+          href: 'soporte',
           icon: 'mdi-help-circle-outline'
         },
-      ],
+        {
+          title: 'About',
+          value: 'about',
+          href: 'about',
+          icon: 'mdi-information'
+        },
+      ]
     }),
 
     watch: {

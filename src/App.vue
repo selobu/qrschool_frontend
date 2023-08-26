@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavBar />
-    <v-main class="container fluid full-height">
+    <v-main>
       <router-view></router-view>
     </v-main>
   <FooterItem />
