@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-main> <!--class="bg-light-green"-->
+    <v-main > <!--class="bg-light-green"-->
       <NavBar />
-      <router-view></router-view>
+      <router-view ></router-view>
       <FooterItem />
     </v-main>
   </v-app>
@@ -23,5 +23,10 @@ import FooterItem from './components/core/Footer.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+#app {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
 }
 </style>
