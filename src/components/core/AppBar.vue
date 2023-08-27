@@ -94,7 +94,7 @@
           title: 'Dashboard',
           value: 'dashboard',
           href: 'dashboard',
-          icon: 'mdi-elvation-rise'
+          icon: 'mdi-elevation-rise'
         },
         {
           title: 'Ausencia',
