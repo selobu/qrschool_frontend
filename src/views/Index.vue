@@ -1,12 +1,28 @@
 <template>
-  <v-container id="background">
-    Hello how are you?
-    <v-card>
-      dsads
-      sdasd
-      
-    </v-card>
+  <v-container>
+    <v-row>
+      <v-parallax
+        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      >
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+          <h1 class="text-h4 font-weight-thin mb-4">
+            QRSchool
+          </h1>
+          <h4 class="subheading">
+            Asistance by reading the QR code!
+          </h4>
+        </div>
+      </v-parallax>
+    </v-row>
+    <v-row>
+      Second row
+    </v-row>
+    <v-row>
+    </v-row>
+    <v-row>
+    </v-row>
   </v-container>
+    
 </template>
 <script>
 export default {

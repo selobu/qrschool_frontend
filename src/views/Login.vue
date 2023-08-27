@@ -9,13 +9,18 @@
             height="120px"
             cover
             >
+            <v-avatar
+              color="grey"
+              size="48"
+            >
+              <v-icon>mdi-account</v-icon>
+            </v-avatar>
+            <v-list-item
+              class="text-white"
+              title="Login"
+              subtitle="Ingrese sus credenciales"
+            ></v-list-item>
             </v-img>
-            <v-card-title>
-                Login
-            </v-card-title>
-            <v-card-subtitle>
-                Ingrese sus credenciales
-            </v-card-subtitle>
             <v-card-text>
                 <v-form v-model="valid"
                 lazy-validation>

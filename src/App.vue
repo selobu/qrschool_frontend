@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <NavBar />
-    <v-main>
+    <v-main> <!--class="bg-light-green"-->
+      <NavBar />
       <router-view></router-view>
+      <FooterItem />
     </v-main>
-  <FooterItem />
-</v-app>
+  </v-app>
 </template>
 <script setup>
 import NavBar from './components/core/AppBar.vue'
