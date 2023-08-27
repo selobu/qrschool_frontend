@@ -5,7 +5,7 @@
         max-width="384"
         variant="outlined">
             <v-img
-            src="src/assets/logincardHEADER.jpg"
+            :src="imgurl"
             height="120px"
             cover
             >
@@ -51,7 +51,7 @@
     </v-container>
 </template>
 <script>
-
+  const imgUrl = new URL('../assets/logincardHEADER.jpg', import.meta.url).href
   export default {
     data: () => ({
       valid: false,
@@ -66,6 +66,7 @@
         v => !!v || 'E-mail obligatorio',
         v => /.+@.+/.test(v) || 'E-mail debe ser válido'
       ],
+      imgurl: imgUrl
     })
   }
 </script>

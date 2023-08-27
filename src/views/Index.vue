@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid class="px-0 py-0">
     <v-row>
       <v-parallax
         src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"

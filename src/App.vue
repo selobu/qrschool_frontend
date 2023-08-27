@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main > <!--class="bg-light-green"-->
+    <v-main>
       <NavBar />
       <router-view ></router-view>
       <FooterItem />
