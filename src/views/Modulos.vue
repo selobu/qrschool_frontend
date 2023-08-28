@@ -1,5 +1,6 @@
 <template>
     <v-container>
+      <router-view></router-view>
         <v-row>
           <v-col
             v-for="n in 24"

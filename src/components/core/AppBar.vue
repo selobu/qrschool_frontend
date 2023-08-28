@@ -30,7 +30,7 @@
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.value"
-          :href="item.href"
+          :href="this.$router.resolve({ name: item.href }).href"
           ></v-list-item>
         </v-list>
     </v-navigation-drawer>
@@ -55,6 +55,7 @@
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.value"
+          :href="this.$router.resolve({ name: item.href }).href"
           ></v-list-item>
         </v-list>
     </v-navigation-drawer>
@@ -69,7 +70,7 @@
         {
           title: 'Home',
           value: 'home',
-          href: '/',
+          href: 'index',
           icon:  'mdi-home'
         },
         {
@@ -104,6 +105,12 @@
         },
       ],
       useritems:[
+        {
+          title: 'MiQR',
+          value: 'qr',
+          href: 'qr',
+          icon: 'mdi-qrcode'
+        },
         {
           title: 'Soporte',
           value: 'soporte',
