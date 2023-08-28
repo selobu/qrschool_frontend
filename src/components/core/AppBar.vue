@@ -9,9 +9,9 @@
             <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           
         </template>
-
-        <v-app-bar-title>QRSchool</v-app-bar-title>
-
+        <v-app-bar-title>
+          <v-btn rounded href="/"><v-icon>mdi-home</v-icon></v-btn>
+          QRSchool</v-app-bar-title>
         <template v-slot:append>
           <v-btn icon @click.stop="drawerRight = !drawerRight">
             <v-icon>mdi-dots-vertical</v-icon>

@@ -9,8 +9,22 @@
             QRSchool
           </h1>
           <h4 class="subheading">
-            Asistance by reading the QR code!
+            Attendace by reading QR codes!
           </h4>
+          <br/>
+          <v-btn prepend-icon="mdi-account" elevation="4" href="/registrarse" > 
+            <template v-slot:prepend>
+             <v-icon color="warning"></v-icon>
+            </template>
+            Registrarse</v-btn>
+          <br/>
+          <v-btn prepend-icon="mdi-account" elevation="4" href="/login"> 
+            <template v-slot:prepend>
+             <v-icon color="success"></v-icon>
+            </template>
+            Ingresar
+          </v-btn>
+          <br/>
         </div>
       </v-parallax>
     </v-row>
