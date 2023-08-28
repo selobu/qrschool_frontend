@@ -12,7 +12,7 @@
             Attendace by reading QR codes!
           </h4>
           <br/>
-          <v-btn prepend-icon="mdi-account" elevation="4" href="/registrarse" > 
+          <v-btn prepend-icon="mdi-account" elevation="4" href="/register" > 
             <template v-slot:prepend>
              <v-icon color="warning"></v-icon>
             </template>

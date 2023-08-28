@@ -1,57 +1,36 @@
 <template>
     <v-container fluid full-height class="d-flex justify-center">
-        <v-card clas="bg-blue" 
-        width="330"
-        max-width="384"
-        variant="outlined">
-            <v-img
-            :src="imgurl"
-            height="120px"
-            cover
-            >
-            <v-avatar
-              color="grey"
-              size="48"
-            >
-              <v-icon>mdi-account</v-icon>
-            </v-avatar>
-            <v-list-item
-              class="text-white"
-              title="Login"
-              subtitle="Ingrese sus credenciales"
-            ></v-list-item>
-            </v-img>
-            <v-card-text>
-                <v-form v-model="valid"
-                lazy-validation>
-                <v-text-field
-                v-model="correo"
-                :rules="emailRules"
-                label="Correo"
-                required
-                ></v-text-field>
+      <LoginRegister 
+        title="Ingresar"
+        subtitle="Ingrese sus credenciales">
+        <template v-slot:form>
+          <v-text-field
+              v-model="correo"
+              :rules="emailRules"
+              label="Correo"
+              required
+              ></v-text-field>
 
-                <v-text-field
-                v-model="password"
-                :counter="30"
-                :rules="passwordRules"
-                label="Contraseña"
-                required
-                ></v-text-field>
-
-                </v-form>
-            </v-card-text>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn variant="outlined" color="success">
-                    Ingresar
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+              <v-text-field
+              v-model="password"
+              :counter="30"
+              :rules="passwordRules"
+              label="Contraseña"
+              required
+              ></v-text-field>
+        </template>
+        <template v-slot:actions>
+          <v-btn variant="outlined" color="warning" href="/register"> Registrarse</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn variant="outlined" color="success" action="POST">
+                  Ingresar
+          </v-btn>
+        </template>
+      </LoginRegister>
     </v-container>
 </template>
-<script>
-  const imgUrl = new URL('../assets/logincardHEADER.jpg', import.meta.url).href
+<script >
+  import LoginRegister from '../components/core/LoginRegister.vue'
   export default {
     data: () => ({
       valid: false,
@@ -65,8 +44,10 @@
       emailRules: [
         v => !!v || 'E-mail obligatorio',
         v => /.+@.+/.test(v) || 'E-mail debe ser válido'
-      ],
-      imgurl: imgUrl
-    })
+      ]
+    }),
+    components:{
+      LoginRegister
+    }
   }
 </script>
