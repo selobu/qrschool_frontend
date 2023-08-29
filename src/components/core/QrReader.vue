@@ -11,7 +11,10 @@
                 </option>
             </select>
             </p>
-            <qrcode-stream @detect="onDetect" id="qrcodestream"></qrcode-stream>
+            <qrcode-stream 
+            @detect="onDetect" id="qrcodestream"
+            :track="selected.value" >
+            </qrcode-stream>
         </v-card-text>
         <v-card-actions>
             <v-btn variant="outlined" color="red">Cancelar</v-btn>
@@ -35,14 +38,15 @@ export default {
             { text: 'centered text', value: this.paintCenterText },
             { text: 'bounding box', value: this.paintBoundingBox }
         ]
-
         const selected = options[1]
 
         return { selected, options, detected }
     },
     methods: {
-        detect (detectedCodes) {
-            console.log(detectedCodes)
+        onDetect (detectedCodes) {
+            for(const code of detectedCodes){
+                console.log(code.rawValue)
+            }
         },
         paintOutline(detectedCodes, ctx) {
         for (const detectedCode of detectedCodes) {
