@@ -3,7 +3,102 @@
         <LoginRegister 
         title="Registrarme"
         subtitle="Registrarse como un usuario nuevo"
-        >
+        maxwidth="700px"
+        width="650px"
+        ><template v-slot:form>
+          <v-row>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+                v-model="nombres"
+                label="Nombres"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+                v-model="apellidos"
+                label="Apellidos"
+                required
+              ></v-text-field>
+          </v-col> 
+        </v-row>
+        <v-row>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+                v-model="numeroidentificacion"
+                label="Número de identifiacion"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+              v-model="fechaNacimiento"
+              label="Fecha de nacimiento"
+              required
+            ></v-text-field>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="xs-4 md-2">
+              <v-text-field
+              v-model="rh"
+              label="Factor RH"
+              required
+            ></v-text-field>
+            </v-col>
+            <v-col cols="xs-4 md-4">
+              <v-text-field
+              v-model="telefonoContacto"
+              label="Teléfono de contacto"
+              required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="xs-4 md-4">
+              <v-text-field
+                v-model="correo"
+                :rules="emailRules"
+                label="Correo"
+                required
+              ></v-text-field>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+                v-model="direccion"
+                label="Direccion"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+                v-model="telefono"
+                label="Teléfono"
+                required
+              ></v-text-field>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="xs-12 md-6">
+              <v-text-field
+              v-model="password"
+              :counter="30"
+              :rules="passwordRules"
+              label="Contraseña"
+              required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="xs-12 md-6">
+            </v-col>
+        </v-row>
+        <v-row>
+            
+            
+            
+            
+            
+          </v-row>
+        </template>
         <template v-slot:actions>
             <v-btn variant="outlined" color="warning" href="/login"> Ingresar</v-btn>
             <v-spacer></v-spacer>

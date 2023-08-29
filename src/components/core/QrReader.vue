@@ -3,17 +3,25 @@
         <v-card-title class="bg-blue">QrCode Readers</v-card-title>
         <v-card-subtitle>Lee múltiples códigos QR</v-card-subtitle>
         <v-card-text>
-            <p>
+            <v-container fluid class="px-0 py-2">
             Track function:
-            <select v-model="selected">
-                <option v-for="option in options" :key="option.text" :value="option">
-                {{ option.text }}
-                </option>
-            </select>
-            </p>
+            <!--
+             <v-select v-model="selected" :items="options"
+                 item-title="text"
+                 item-value="value">
+            </v-select>
+            -->
+            <v-btn rounded>
+                <select v-model="selected">
+                    <option v-for="option in options" :key="option.text" :value="option">
+                    {{ option.text }}
+                    </option>
+                </select>
+            </v-btn>
+            </v-container>
             <qrcode-stream 
             @detect="onDetect" id="qrcodestream"
-            :track="selected.value" >
+            :track="selected.value">
             </qrcode-stream>
         </v-card-text>
         <v-card-actions>

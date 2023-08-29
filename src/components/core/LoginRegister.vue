@@ -1,7 +1,7 @@
 <template>
     <v-card clas="bg-blue" 
-    width="330"
-    max-width="384"
+    :width="width"
+    :max-width="maxwidth"
     variant="outlined">
         <v-img
         :src="imgurl"
@@ -55,6 +55,8 @@
     props:{
       title:{required:false, type:String, default:'Login'},
       subtitle: {required:false, type:String, default:''},
+      maxwidth: {required:false, type:String, default:'384px'},
+      width: {required:false, type:String, default:'330px'}
     }
   }
 </script>
