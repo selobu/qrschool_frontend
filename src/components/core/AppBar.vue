@@ -87,8 +87,8 @@
         },
         {
           title: 'Modulos',
-          value: 'modulos',
-          href: 'modulos',
+          value: 'modulosindex',
+          href: 'modulosindex',
           icon: 'mdi-view-dashboard'
         },
         {

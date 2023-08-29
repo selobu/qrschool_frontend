@@ -47,6 +47,11 @@ const routes = [
         component: () => import("../views/Modulos.vue"),
         children: [
             {
+                path: "/index/",
+                name: "modulosindex",
+                component: () => import("../views/ModIndex.vue"),
+            },
+            {
                 path: "/asistencia/",
                 name: "asitencia",
                 component: () => import("../views/Asistencia.vue"),

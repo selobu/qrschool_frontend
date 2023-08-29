@@ -10,12 +10,10 @@
 <script>
     import QrcodeVue from 'qrcode.vue'
     export default {
-    data() {
-      return {
+    data:() =>({
         value: 'https://gestionhseq.com',
         size: 300,
-      }
-    },
+    }),
     components: {
       QrcodeVue,
     },
