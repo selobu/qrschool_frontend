@@ -12,6 +12,18 @@
               <v-card-text>{{ module.description  }}
                 <div> {{ index }} </div>
               </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <template v-for="action in module.actions">
+                  <v-btn 
+                    variant="outlined"
+                    :class="action.color"
+                    :href="this.$router.resolve(action.href).href"
+                  >{{ action.title }}
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                </template>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -25,29 +37,35 @@ export default {
       title:'Asitencia',
       subtitle: 'subtitle',
       icon: 'mdi-check',
+      actions: [],
       description: 'Module description'
     },
     {
       title:'Ausentismo',
       subtitle: 'subtitle',
       icon: 'mdi-hospital',
+      actions:[],
       description: 'Module description'
     },
     {
       title:'Gestion Qr',
       subtitle: 'subtitle',
+      actions: [{title:'Leer', href:'qr/leerqrs', color:'green'},
+        {title:'Mostrar Qr', href:'qr/mostrarmiqr', color:'blue'}],
       icon: 'mdi-qrcode',
       description: 'Module description'
     },
     {
       title:'Matricula',
       subtitle: 'subtitle',
+      actions: [],
       icon: 'mdi-format-list-bulleted',
       description: 'Module description'
     },
     {
       title:'Usuarios',
       subtitle: 'subtitle',
+      actions: [],
       icon: 'mdi-account-multiple',
       description: 'Module description'
     }]

@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "qrcode.vue": "^3.4.1",
     "vue": "^3.3.4",
+    "vue-qrcode-reader": "^5.3.3",
     "vue-router": "^4.2.4",
     "vuetify": "^3.3.14"
   },
