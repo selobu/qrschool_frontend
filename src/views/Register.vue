@@ -7,14 +7,14 @@
         width="650px"
         ><template v-slot:form>
           <v-row>
-            <v-col xs="12" md="6">
+            <v-col cols="12" xs="12" md="6">
               <v-text-field
                 v-model="nombres"
                 label="Nombres"
                 required
               ></v-text-field>
             </v-col>
-            <v-col xs="12" md="6">
+            <v-col cols="12" xs="12" md="6">
               <v-text-field
                 v-model="apellidos"
                 label="Apellidos"
@@ -23,14 +23,14 @@
           </v-col> 
         </v-row>
         <v-row>
-            <v-col xs="12" md="6">
+            <v-col cols="12" xs="12" md="6">
               <v-text-field
                 v-model="numeroidentificacion"
                 label="Número de identifiacion"
                 required
               ></v-text-field>
             </v-col>
-            <v-col xs="12" md="6">
+            <v-col cols="12" xs="12" md="6">
               <v-text-field
               v-model="fechaNacimiento"
               label="Fecha de nacimiento"
@@ -39,21 +39,21 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col xs="4" md="2">
+            <v-col cols="12" xs="4" md="2">
               <v-text-field
               v-model="rh"
               label="Factor RH"
               required
             ></v-text-field>
             </v-col>
-            <v-col xs="4" md="4">
+            <v-col cols="12" xs="4" md="4">
               <v-text-field
               v-model="telefonoContacto"
               label="Teléfono de contacto"
               required
               ></v-text-field>
             </v-col>
-            <v-col xs="4" md="6">
+            <v-col cols="12"  xs="4" md="6">
               <v-text-field
                 v-model="correo"
                 :rules="emailRules"
