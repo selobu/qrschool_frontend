@@ -108,7 +108,7 @@
         {
           title: 'MiQR',
           value: 'qr',
-          href: 'qr',
+          href: 'modulos/qr/mostrarmiqr',
           icon: 'mdi-qrcode'
         },
         {
