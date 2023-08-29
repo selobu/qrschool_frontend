@@ -18,7 +18,7 @@
                   <v-btn 
                     variant="outlined"
                     :class="action.color"
-                    :href="this.$router.resolve(action.href).href"
+                    :href="this.$router.resolve({name: action.href}).href"
                   >{{ action.title }}
                   </v-btn>
                   <v-spacer></v-spacer>
@@ -50,8 +50,8 @@ export default {
     {
       title:'Gestion Qr',
       subtitle: 'subtitle',
-      actions: [{title:'Leer', href:'qr/leerqrs', color:'green'},
-        {title:'Mostrar Qr', href:'qr/mostrarmiqr', color:'blue'}],
+      actions: [{title:'Leer', href:'leerqrs', color:'green'},
+        {title:'Mostrar Qr', href:'mostrarmiqr', color:'blue'}],
       icon: 'mdi-qrcode',
       description: 'Module description'
     },
