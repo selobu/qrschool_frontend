@@ -5,7 +5,7 @@
         <v-card-text>
             <v-container fluid class="px-0 py-2">
             Track function:
-            <!--
+            <!-- check if is possible to transform this
              <v-select v-model="selected" :items="options"
                  item-title="text"
                  item-value="value">
