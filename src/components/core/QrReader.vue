@@ -100,7 +100,7 @@ export default {
 </script>
 <style scoped>
 #qrcodestream {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 250px;
+    max-height: 250px;
 }
 </style>
