@@ -47,37 +47,37 @@ const routes = [
         component: () => import("../views/Modulos.vue"),
         children: [
             {
-                path: "/index/",
+                path: "/modulos/index/",
                 name: "modulosindex",
                 component: () => import("../views/ModIndex.vue"),
             },
             {
-                path: "/asistencia/",
+                path: "/modulos/asistencia/",
                 name: "asitencia",
                 component: () => import("../views/Asistencia.vue"),
             },
             {
-                path: "/matricula/",
+                path: "/modulos/matricula/",
                 name: "matricula",
                 component: () => import("../views/Matricula.vue"),
             },
             {
-                path: "/grado/",
+                path: "/modulos/grado/",
                 name: "grado",
                 component: () => import("../views/Grado.vue"),
             },
             {
-                path: "/qr",
+                path: "/modulos/qr",
                 name: "qr",
                 component: () => import("../views/Qr.vue"),
                 children:[
                     {
-                        path: "/mostrarmiqr",
+                        path: "/modulos/qr/mostrarmiqr",
                         name: "mostrarmiqr",
                         component: () => import("../views/MostrarMiQr.vue"),
                     },
                     {
-                        path: "/leerqrs",
+                        path: "/modulos/qr/leerqrs",
                         name: "leerqrs",
                         component: () => import("../views/LeerQrs.vue"),
                     },
