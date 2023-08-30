@@ -7,6 +7,8 @@
         <div class="d-flex flex-column justify-center align-center">
           <br/>
           <br/>
+          <br/>
+
           <v-btn rounded label class="ma-2" color="primary" size="x-large">
             <h1 class="text-h4 font-weight-bold">
               QRSchool
@@ -21,38 +23,107 @@
           </v-chip>
           <br/>
           <div>
-          <v-row>
-            <v-col cols="6">
-              <v-btn prepend-icon="mdi-account" class="bg-blue mr-4" @click="this.$router.push({ name: 'register'})"> 
-              <template v-slot:prepend>
-              <v-icon color="warning"></v-icon>
-              </template>
-              Registrarse
-              </v-btn>
-            </v-col>
-            <v-col cols="6">
-              <v-btn prepend-icon="mdi-account"  @click="this.$router.push({ name: 'login' })"> 
+            <v-row>
+              <v-col cols="6">
+                <v-btn prepend-icon="mdi-account" class="bg-blue mr-4" @click="this.$router.push({ name: 'register'})"> 
                 <template v-slot:prepend>
                 <v-icon color="warning"></v-icon>
                 </template>
-                Ingresar
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
+                Registrarse
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn prepend-icon="mdi-account"  @click="this.$router.push({ name: 'login' })"> 
+                  <template v-slot:prepend>
+                  <v-icon color="warning"></v-icon>
+                  </template>
+                  Ingresar
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
         </div>
       </v-parallax>
     </v-row>
       <v-parallax
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      :src="background[1]"
       >
-      <div class="d-flex flex-column fill-height justify-center align-center text-white">
-        HEllo
-      </div>
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="8" md="6">
+                  <v-card  elevation="7">
+                    <v-card-title class="bg-primary">
+                      Generar listado de asistencia
+                    </v-card-title>
+                    <v-card-subtitle class="primary">
+                      En solo unos pocos segundos**
+                    </v-card-subtitle>
+                    <v-card-text>
+                      <p> lorem ipsum</p>
+                    </v-card-text>
+                  </v-card>
+              </v-col>
+              <v-col cols="12" sm="4" md="6">
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>
       </v-parallax>
     <v-row>
+      <v-parallax
+      :src="background[2]"
+      >
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="8" md="6">
+              </v-col>
+              <v-col cols="12" md="6">
+                  <v-card elevation="7">
+                    <v-card-title class="bg-success">
+                      Multiplataforma
+                    </v-card-title>
+                    <v-card-subtitle>
+                      Utilice el sistema desde cualquier dispositivo *
+                    </v-card-subtitle>
+                    <v-card-text class="primary">
+                      <p> lorem ipsum</p>
+                    </v-card-text>
+                  </v-card>
+              </v-col>
+              
+            </v-row>
+          </v-container>
+        </div>
+      </v-parallax>
     </v-row>
     <v-row>
+      <v-parallax
+      :src="background[3]"
+      >
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="8" md="6">
+                  <v-card elevation="7">
+                    <v-card-title class="bg-primary">
+                      Genera reportes
+                    </v-card-title>
+                    <v-card-subtitle>
+                      Estadísticas de asistencia
+                    </v-card-subtitle>
+                    <v-card-text class="primary">
+                      lorem ipsum
+                    </v-card-text>
+                  </v-card>
+              </v-col>
+              <v-col cols="12" md="6">
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>
+      </v-parallax>
     </v-row>
     <v-row>
     </v-row>
@@ -61,6 +132,10 @@
 </template>
 <script>
 const bg1= new URL('../assets/creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg', import.meta.url).href
+const bg2= new URL('../assets/How-To-Use-The-Native-QR-Code-Reader-On-iOS-Devices.webp', import.meta.url).href
+const bg3= new URL('../assets/multiplatform.webp', import.meta.url).href
+const bg4= new URL('../assets/statistics.webp', import.meta.url).href
+
 export default {
   name: "DashboardIndex",
   beforeCreate: function () {
@@ -68,7 +143,7 @@ export default {
   },  
   data: () => ({
     expandOnHover: false,
-    background:[bg1]
+    background:[bg1, bg2, bg3, bg4]
   }),
 };
 </script>
