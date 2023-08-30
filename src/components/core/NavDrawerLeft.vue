@@ -20,7 +20,7 @@
       </v-sheet>
 
     <v-divider></v-divider>
-    <v-list nav class="text-left"> 
+    <v-list class="text-left"> 
         <v-list-item v-for="item in items" @click="$router.push({ path: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
