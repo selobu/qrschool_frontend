@@ -4,119 +4,117 @@ const routes = [
     {
         path: "/",
         name: "index",
-        component: () => import("../views/Index.vue"),
-        children:[
+        component: () => import("../views/Home.vue"),
+    },
+    {
+        path: "/home",
+        name: "home",
+        component: () => import("../views/Home.vue"),
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: () => import("../views/Login.vue"),
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: () => import("../views/Register.vue"),
+    },
+    {
+        path: "/logout",
+        name: "logout",
+        component: () => import("../views/Logout.vue"),
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: () => import("../views/Register.vue"),
+    },
+    {
+        path: "/recover",
+        name: "recover",
+        component: () => import("../views/Recover.vue"),
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: () => import("../views/About.vue"),
+    },
+    {
+        path: "/config",
+        name: "config",
+        component: () => import("../views/Config.vue"),
+    },
+    {
+        path: "/modulos",
+        name: "modulos",
+        component: () => import("../views/Modulos.vue"),
+        children: [
             {
-                path: "/home",
-                name: "home",
-                component: () => import("../views/Home.vue"),
+                path: "/modulos/",
+                name: "modulosindex",
+                component: () => import("../views/ModIndex.vue"),
             },
             {
-                path: "/login",
-                name: "login",
-                component: () => import("../views/Login.vue"),
+                path: "/modulos/asistencia/",
+                name: "asitencia",
+                component: () => import("../views/Asistencia.vue"),
             },
             {
-                path: "/register",
-                name: "register",
-                component: () => import("../views/Register.vue"),
+                path: "/modulos/matricula/",
+                name: "matricula",
+                component: () => import("../views/Matricula.vue"),
             },
             {
-                path: "/logout",
-                name: "logout",
-                component: () => import("../views/Logout.vue"),
+                path: "/modulos/grado/",
+                name: "grado",
+                component: () => import("../views/Grado.vue"),
             },
             {
-                path: "/register",
-                name: "register",
-                component: () => import("../views/Register.vue"),
-            },
-            {
-                path: "/recover",
-                name: "recover",
-                component: () => import("../views/Recover.vue"),
-            },
-            {
-                path: "/about",
-                name: "about",
-                component: () => import("../views/About.vue"),
-            },
-            {
-                path: "/config",
-                name: "config",
-                component: () => import("../views/Config.vue"),
-            },
-            {
-                path: "/modulos",
-                name: "modulos",
-                component: () => import("../views/Modulos.vue"),
-                children: [
+                path: "/modulos/qr",
+                name: "qr",
+                component: () => import("../views/Qr.vue"),
+                children:[
                     {
-                        path: "/modulos/",
-                        name: "modulosindex",
-                        component: () => import("../views/ModIndex.vue"),
+                        path: "/modulos/qr/mostrarmiqr",
+                        name: "mostrarmiqr",
+                        component: () => import("../views/MostrarMiQr.vue"),
                     },
                     {
-                        path: "/modulos/asistencia/",
-                        name: "asitencia",
-                        component: () => import("../views/Asistencia.vue"),
+                        path: "/modulos/qr/leerqrs",
+                        name: "leerqrs",
+                        component: () => import("../views/LeerQrs.vue"),
                     },
-                    {
-                        path: "/modulos/matricula/",
-                        name: "matricula",
-                        component: () => import("../views/Matricula.vue"),
-                    },
-                    {
-                        path: "/modulos/grado/",
-                        name: "grado",
-                        component: () => import("../views/Grado.vue"),
-                    },
-                    {
-                        path: "/modulos/qr",
-                        name: "qr",
-                        component: () => import("../views/Qr.vue"),
-                        children:[
-                            {
-                                path: "/modulos/qr/mostrarmiqr",
-                                name: "mostrarmiqr",
-                                component: () => import("../views/MostrarMiQr.vue"),
-                            },
-                            {
-                                path: "/modulos/qr/leerqrs",
-                                name: "leerqrs",
-                                component: () => import("../views/LeerQrs.vue"),
-                            },
-                        ]
-                    },
-                    {
-                        path: "/modulos/usuarios",
-                        name: "usuarios",
-                        component: () => import("../views/UsuariosGestion.vue"),
-                    },
-        
                 ]
             },
             {
-                path: "/dashboard/",
-                name: "dashboard",
-                component: () => import("../views/Dashboard.vue"),
+                path: "/modulos/usuarios",
+                name: "usuarios",
+                component: () => import("../views/UsuariosGestion.vue"),
             },
-            {
-                path: "/ausencia",
-                name: "ausencia",
-                component: () => import("../views/Ausencia.vue"),
-            },
-            {
-                path: "/ausencia/registro/:grado",
-                name: "ausenciaregistro",
-                component: () => import("../views/AusenciaRegistro.vue"),
-            },
-            {
-                path: "/soporte",
-                name: "soporte",
-                component: () => import("../views/Soporte.vue"),
-            },
+
         ]
+    },
+    {
+        path: "/dashboard/",
+        name: "dashboard",
+        component: () => import("../views/Dashboard.vue"),
+    },
+    {
+        path: "/ausencia",
+        name: "ausencia",
+        component: () => import("../views/Ausencia.vue"),
+    },
+    {
+        path: "/ausencia/registro/:grado",
+        name: "ausenciaregistro",
+        component: () => import("../views/AusenciaRegistro.vue"),
+    },
+    {
+        path: "/soporte",
+        name: "soporte",
+        component: () => import("../views/Soporte.vue"),
     },
     
 ];

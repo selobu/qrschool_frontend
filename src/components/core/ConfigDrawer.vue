@@ -3,6 +3,7 @@
         v-model="drawer"
         location="right"
         temporary
+        class="bg-grey-lighten-4"
       >
       <v-sheet
         color="blue-lighten-1"
@@ -20,7 +21,6 @@
         </v-avatar>
         <p class="font-weight-bold">Configuration</p>
       </v-sheet>
-
     <v-divider></v-divider>
     <v-list nav class="text-left"> 
         <v-list-item v-for="item in items" @click="$router.push({ name: item.href })"
@@ -28,6 +28,7 @@
         :prepend-icon="item.icon"
         :title="item.title"
         :value="item.value"
+        color="primary"
         ></v-list-item>
     </v-list>
     <template v-slot:append>

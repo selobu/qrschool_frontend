@@ -7,7 +7,7 @@ import * as directives from 'vuetify/directives'
 const myCustomLightTheme = {
   dark: false, 
   colors: {
-    background: '#FFFFFF',
+    background: '#EEEEEE',
     surface: '#FFFFFF',
     primary: '#6200EE',
     'primary-darken-1': '#3700B3',

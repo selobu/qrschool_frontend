@@ -1,10 +1,10 @@
 <template>
     <v-navigation-drawer
-        image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
         v-model="drawer"
         theme="dark"
         location="right"
         temporary
+        class="bg-grey-lighten-4"
       >
       <v-sheet
         color="blue-lighten-1"
@@ -28,6 +28,7 @@
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.value"
+          color="primary"
           ></v-list-item>
         </v-list>
     </v-navigation-drawer>

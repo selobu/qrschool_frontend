@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer
+    <v-navigation-drawer class="bg-grey-lighten-4"
         v-model="drawer"
       >
       <v-sheet
@@ -26,6 +26,7 @@
         :prepend-icon="item.icon"
         :title="item.title"
         :value="item.value"
+        color="primary"
         >
       </v-list-item>
     </v-list>

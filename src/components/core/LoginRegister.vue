@@ -1,8 +1,8 @@
 <template>
-    <v-card clas="bg-blue" 
+    <v-card 
     :width="width"
     :max-width="maxwidth"
-    variant="outlined">
+    elevation="4">
         <v-img
         :src="imgurl"
         height="120px"
