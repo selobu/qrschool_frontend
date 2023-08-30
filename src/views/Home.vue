@@ -12,13 +12,13 @@
             Attendace by reading QR codes!
           </h4>
           <br/>
-          <v-btn prepend-icon="mdi-account" elevation="4"  @click="$router.push({ name: 'register'})" > 
+          <v-btn prepend-icon="mdi-account" elevation="4"  @click="this.$router.push({ name: 'register'})" > 
             <template v-slot:prepend>
              <v-icon color="warning"></v-icon>
             </template>
             Registrarse</v-btn>
           <br/>
-          <v-btn prepend-icon="mdi-account" elevation="4"  @click="$router.push({ name: 'login' })"> 
+          <v-btn prepend-icon="mdi-account" elevation="4"  @click="this.$router.push({ name: 'login' })"> 
             <template v-slot:prepend>
              <v-icon color="success"></v-icon>
             </template>
