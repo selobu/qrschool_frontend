@@ -21,7 +21,7 @@
 
     <v-divider></v-divider>
     <v-list class="text-left"> 
-        <v-list-item v-for="item in items" @click="$router.push({ path: item.href })"
+        <v-list-item v-for="item in items" @click="$router.push({ name: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
         :title="item.title"
