@@ -4,27 +4,34 @@
       <v-parallax
         :src="background[0]"
       >
-        <div class="d-flex flex-column fill-height justify-center align-center text-white">
-          <h1 class="text-h4 font-weight-thin mb-4">
+        <div class="d-flex flex-column fill-height justify-center align-center">
+          <v-card class="bg-grey-lighten-3">
+            <v-card-title class="bg-success">
+          <h1 class="text-h4 font-weight-bold ">
             QRSchool
-          </h1>
+            </h1>
+          </v-card-title>
+          <v-card-subtitle>
           <h4 class="subheading">
             Attendace by reading QR codes!
           </h4>
-          <br/>
-          <v-btn prepend-icon="mdi-account" elevation="4"  @click="this.$router.push({ name: 'register'})" > 
+        </v-card-subtitle>
+        <v-divider></v-divider>
+        <v-card-text>
+          <v-btn prepend-icon="mdi-account" class="bg-blue ma-4" @click="this.$router.push({ name: 'register'})"> 
             <template v-slot:prepend>
              <v-icon color="warning"></v-icon>
             </template>
             Registrarse</v-btn>
           <br/>
-          <v-btn prepend-icon="mdi-account" elevation="4"  @click="this.$router.push({ name: 'login' })"> 
+          <v-btn prepend-icon="mdi-account" class="bg-success"  @click="this.$router.push({ name: 'login' })"> 
             <template v-slot:prepend>
-             <v-icon color="success"></v-icon>
+             <v-icon color="warning"></v-icon>
             </template>
             Ingresar
           </v-btn>
-          <br/>
+        </v-card-text>
+        </v-card>
         </div>
       </v-parallax>
     </v-row>
