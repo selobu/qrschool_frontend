@@ -79,7 +79,7 @@
             <v-row>
               <v-col cols="12" sm="8" md="6">
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12" sm="8" md="6">
                   <v-card elevation="7">
                     <v-card-title class="bg-success">
                       Multiplataforma
