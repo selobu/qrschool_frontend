@@ -16,11 +16,11 @@
             alt="QRSchool"
         ></v-img>
         </v-avatar>
-        <div>QRSchool</div>
+        <p class="font-weight-bold">QRSchool</p>
       </v-sheet>
 
     <v-divider></v-divider>
-    <v-list nav> 
+    <v-list nav class="text-left"> 
         <v-list-item v-for="item in items"
         :key="item.title"
         :prepend-icon="item.icon"
