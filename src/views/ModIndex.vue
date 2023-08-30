@@ -7,10 +7,9 @@
             cols="xs-12 md-6 lg-4"
           >
             <v-card height="200" elevation="4">
-              <v-card-title :class="getindex(index)"> <v-icon> {{ module.icon }} </v-icon>{{ module.title }}</v-card-title>
+              <v-card-title :class="module.color"> <v-icon> {{ module.icon }} </v-icon>{{ module.title }}</v-card-title>
               <v-card-subtitle>{{ module.subtitle }}</v-card-subtitle>
               <v-card-text>{{ module.description  }}
-                <div> {{ index }} </div>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -38,14 +37,16 @@ export default {
       subtitle: 'subtitle',
       icon: 'mdi-check',
       actions: [],
-      description: 'Module description'
+      description: 'Module description',
+      color:'bg-primary'
     },
     {
       title:'Ausentismo',
       subtitle: 'subtitle',
       icon: 'mdi-hospital',
       actions:[],
-      description: 'Module description'
+      description: 'Module description',
+      color: 'bg-warning'
     },
     {
       title:'Gestion Qr',
@@ -53,27 +54,34 @@ export default {
       actions: [{title:'Leer', href:'leerqrs', color:'green'},
         {title:'Mostrar Qr', href:'mostrarmiqr', color:'blue'}],
       icon: 'mdi-qrcode',
-      description: 'Module description'
+      description: 'Module description',
+      color : 'bg-info'
     },
     {
       title:'Matricula',
       subtitle: 'subtitle',
       actions: [],
       icon: 'mdi-format-list-bulleted',
-      description: 'Module description'
+      description: 'Module description',
+      color: 'bg-success'
     },
     {
       title:'Usuarios',
       subtitle: 'subtitle',
       actions: [],
       icon: 'mdi-account-multiple',
-      description: 'Module description'
+      description: 'Module description',
+      color: 'bg-primary-darken-1',
     }]
   }),
   methods:{
     getindex(indice){
-      const colors = ['bg-primary', 'bg-secondary', 'bg-blue','bg-orange'];
-      const index = Math.floor(indice%4) == 0 ? 3: Math.floor(indice%3) == 0 ? 0 : Math.floor(indice%2) == 0 ? 2 : 1;
+      console.log(indice)
+      const colors = ['bg-primary', 'bg-primary-darken-1','bg-success','bg-warning', 'bg-info'];
+      const index = Math.floor(indice%5) == 0 ? 0 : 
+                    Math.floor(indice%4) == 0 ? 1 :
+                    Math.floor(indice%3) == 0 ? 2 :
+                    Math.floor(indice%2) == 0 ? 3 : 4;
       return colors[index]
     }
   }
