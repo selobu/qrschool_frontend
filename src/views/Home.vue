@@ -4,34 +4,42 @@
       <v-parallax
         :src="background[0]"
       >
-        <div class="d-flex flex-column fill-height justify-center align-center">
-          <v-card class="bg-grey-lighten-3">
-            <v-card-title class="bg-success">
-          <h1 class="text-h4 font-weight-bold ">
-            QRSchool
-            </h1>
-          </v-card-title>
-          <v-card-subtitle>
-          <h4 class="subheading">
-            Attendace by reading QR codes!
-          </h4>
-        </v-card-subtitle>
-        <v-divider></v-divider>
-        <v-card-text>
-          <v-btn prepend-icon="mdi-account" class="bg-blue ma-4" @click="this.$router.push({ name: 'register'})"> 
-            <template v-slot:prepend>
-             <v-icon color="warning"></v-icon>
-            </template>
-            Registrarse</v-btn>
+        <div class="d-flex flex-column justify-center align-center">
           <br/>
-          <v-btn prepend-icon="mdi-account" class="bg-success"  @click="this.$router.push({ name: 'login' })"> 
-            <template v-slot:prepend>
-             <v-icon color="warning"></v-icon>
-            </template>
-            Ingresar
+          <br/>
+          <v-btn rounded label class="ma-2" color="primary" size="x-large">
+            <h1 class="text-h4 font-weight-bold">
+              QRSchool
+            </h1>
           </v-btn>
-        </v-card-text>
-        </v-card>
+          <v-chip label color="" size="x-large">
+            <v-btn>
+              <h2 class="subheading">
+                Listado de asistencia presencial!
+              </h2>
+            </v-btn>
+          </v-chip>
+          <br/>
+          <div>
+          <v-row>
+            <v-col cols="6">
+              <v-btn prepend-icon="mdi-account" class="bg-blue mr-4" @click="this.$router.push({ name: 'register'})"> 
+              <template v-slot:prepend>
+              <v-icon color="warning"></v-icon>
+              </template>
+              Registrarse
+              </v-btn>
+            </v-col>
+            <v-col cols="6">
+              <v-btn prepend-icon="mdi-account"  @click="this.$router.push({ name: 'login' })"> 
+                <template v-slot:prepend>
+                <v-icon color="warning"></v-icon>
+                </template>
+                Ingresar
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
         </div>
       </v-parallax>
     </v-row>
