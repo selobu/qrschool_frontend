@@ -23,12 +23,11 @@
         <p class="font-weight-bold">Mi nombre</p>
       </v-sheet>
         <v-list nav>
-          <v-list-item v-for="item in useritems"
+          <v-list-item v-for="item in useritems" @click="$router.push({ name: item.href})"
           :key="icon"
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.value"
-          :href="this.$router.resolve({ name: item.href }).href"
           ></v-list-item>
         </v-list>
     </v-navigation-drawer>

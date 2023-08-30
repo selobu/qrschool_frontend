@@ -93,7 +93,7 @@
         </v-row>
         </template>
         <template v-slot:actions>
-            <v-btn variant="outlined" color="warning" href="/login"> Ingresar</v-btn>
+            <v-btn variant="outlined" color="warning" @click="this.$router.push({name:'login'})"> Ingresar</v-btn>
             <v-spacer></v-spacer>
             <v-btn variant="outlined" color="success" action="POST">
                 Registrarme

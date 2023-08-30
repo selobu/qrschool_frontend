@@ -23,17 +23,16 @@
 
     <v-divider></v-divider>
     <v-list nav class="text-left"> 
-        <v-list-item v-for="item in items"
+        <v-list-item v-for="item in items" @click="$router.push({ name: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
         :title="item.title"
         :value="item.value"
-        :href="this.$router.resolve({ name: item.href }).href"
         ></v-list-item>
     </v-list>
     <template v-slot:append>
         <div class="pa-2 bg-primary">
-            <v-btn block :href="this.$router.resolve({ name: 'logout' }).href">
+            <v-btn block @click="this.$router.push({ name: 'logout' })">
               Salir
             </v-btn>
           </div>

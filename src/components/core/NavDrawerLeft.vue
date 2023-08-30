@@ -31,7 +31,7 @@
     </v-list>
     <template v-slot:append>
         <div class="pa-2 bg-primary">
-            <v-btn block :href="this.$router.resolve({ name: 'logout' }).href">
+            <v-btn block @click="this.$router.push({ name: 'logout' })">
               Salir
             </v-btn>
           </div>
