@@ -14,7 +14,7 @@
               QRSchool
             </h1>
           </v-btn>
-          <v-chip label color="" size="x-large">
+          <v-chip label size="x-large">
             <v-btn>
               <h2 class="subheading">
                 Listado de asistencia fácil!
