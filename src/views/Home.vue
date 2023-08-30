@@ -15,7 +15,7 @@
           <v-chip label color="" size="x-large">
             <v-btn>
               <h2 class="subheading">
-                Listado de asistencia presencial!
+                Listado de asistencia fácil!
               </h2>
             </v-btn>
           </v-chip>
