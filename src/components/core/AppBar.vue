@@ -9,7 +9,7 @@
         </template>
         <v-app-bar-title>
           <v-btn rounded href="/"><v-icon>mdi-home</v-icon></v-btn>
-          QRSchool {{ drawer }} 
+          QRSchool
         </v-app-bar-title>
         <template v-slot:append>
           <v-btn icon @click.stop="drawerRight = !drawerRight">
