@@ -4,6 +4,7 @@
         v-model="drawer"
         theme="dark"
         location="right"
+        temporary
       >
       <v-sheet
         color="blue-lighten-1"
