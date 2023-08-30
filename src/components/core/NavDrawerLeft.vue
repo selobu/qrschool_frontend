@@ -30,8 +30,8 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-        <div class="pa-2 bg-primary">
-            <v-btn block @click="this.$router.push({ name: 'logout' })">
+        <div class="pa-2">
+            <v-btn block @click="this.$router.push({ name: 'logout' })" class="bg-warning">
               Salir
             </v-btn>
           </div>
