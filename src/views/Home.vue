@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="px-0 py-0">
     <v-row>
-      <v-parallax
+      <v-parallax class="hight-at-least"
         :src="background[0]"
       >
         <div class="d-flex flex-column justify-center align-center">
@@ -45,10 +45,11 @@
         </div>
       </v-parallax>
     </v-row>
-      <v-parallax
+    <v-row>
+      <v-parallax class="hight-at-least"
       :src="background[1]"
       >
-        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+        <div class="d-flex flex-column fill-height justify-center align-center">
           <v-container>
             <v-row>
               <v-col cols="12" sm="8" md="6">
@@ -70,11 +71,12 @@
           </v-container>
         </div>
       </v-parallax>
+    </v-row>
     <v-row>
-      <v-parallax
+      <v-parallax class="hight-at-least"
       :src="background[2]"
       >
-        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+        <div class="d-flex flex-column fill-height justify-center align-center">
           <v-container>
             <v-row>
               <v-col cols="12" sm="8" md="6">
@@ -99,10 +101,10 @@
       </v-parallax>
     </v-row>
     <v-row>
-      <v-parallax
+      <v-parallax class="hight-at-least"
       :src="background[3]"
       >
-        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+        <div class="d-flex flex-column fill-height justify-center align-center">
           <v-container>
             <v-row>
               <v-col cols="12" sm="8" md="6">
@@ -126,6 +128,7 @@
       </v-parallax>
     </v-row>
     <v-row>
+      <br/>
     </v-row>
   </v-container>
     
@@ -156,5 +159,8 @@ export default {
 .full-height {
   min-height: 100vh;
   height: 100%;
+}
+.hight-at-least {
+  min-height: 70vh;
 }
 </style>
