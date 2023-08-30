@@ -79,13 +79,7 @@
           value: 'dashboard',
           href: 'dashboard',
           icon: 'mdi-elevation-rise'
-        },
-        {
-          title: 'Ausencia',
-          value: 'ausencia',
-          href: 'ausencia',
-          icon: 'mdi-account-minus'
-        },
+        }
       ],
     })
   }
