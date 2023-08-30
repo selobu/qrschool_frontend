@@ -8,7 +8,7 @@
             <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
         <v-app-bar-title>
-          <v-btn rounded @click="$router.push({ name: 'home'})"><v-icon>mdi-home</v-icon></v-btn>
+          <v-btn rounded @click="$router.push({ name: 'index'})"><v-icon>mdi-home</v-icon></v-btn>
           QRSchool
         </v-app-bar-title>
         <template v-slot:append>

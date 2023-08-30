@@ -2,7 +2,7 @@
   <v-container fluid class="px-0 py-0">
     <v-row>
       <v-parallax
-        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        :src="background[0]"
       >
         <div class="d-flex flex-column fill-height justify-center align-center text-white">
           <h1 class="text-h4 font-weight-thin mb-4">
@@ -28,8 +28,14 @@
         </div>
       </v-parallax>
     </v-row>
+      <v-parallax
+      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      >
+      <div class="d-flex flex-column fill-height justify-center align-center text-white">
+        HEllo
+      </div>
+      </v-parallax>
     <v-row>
-      Second row
     </v-row>
     <v-row>
     </v-row>
@@ -39,6 +45,7 @@
     
 </template>
 <script>
+const bg1= new URL('../assets/creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg', import.meta.url).href
 export default {
   name: "DashboardIndex",
   beforeCreate: function () {
@@ -46,6 +53,7 @@ export default {
   },  
   data: () => ({
     expandOnHover: false,
+    background:[bg1]
   }),
 };
 </script>

@@ -9,16 +9,6 @@
         color="blue-lighten-1"
         class="pa-4"
       > 
-        <v-avatar
-          class="mb-4"
-          color="grey-lighten-2"
-          size="64"
-        >
-        <v-img
-            :src="logoUrl"
-            alt="QRSchool"
-        ></v-img>
-        </v-avatar>
         <p class="font-weight-bold">Configuration</p>
       </v-sheet>
     <v-divider></v-divider>
@@ -31,13 +21,6 @@
         color="primary"
         ></v-list-item>
     </v-list>
-    <template v-slot:append>
-        <div class="pa-2 bg-primary">
-            <v-btn block @click="this.$router.push({ name: 'logout' })">
-              Salir
-            </v-btn>
-          </div>
-        </template>
     </v-navigation-drawer>
 </template>
 <script>
