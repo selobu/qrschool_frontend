@@ -21,13 +21,13 @@
 
     <v-divider></v-divider>
     <v-list nav class="text-left"> 
-        <v-list-item v-for="item in items"
+        <v-list-item v-for="item in items" @click="$router.push({ path: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
         :title="item.title"
         :value="item.value"
-        :href="this.$router.resolve({ name: item.href }).href"
-        ></v-list-item>
+        >
+      </v-list-item>
     </v-list>
     <template v-slot:append>
         <div class="pa-2 bg-primary">
@@ -59,7 +59,7 @@
         {
           title: 'Inicio',
           value: 'home',
-          href: 'index',
+          href: 'home',
           icon:  'mdi-home'
         },
         {
