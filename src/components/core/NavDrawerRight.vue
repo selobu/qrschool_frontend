@@ -5,16 +5,23 @@
         theme="dark"
         location="right"
       >
+      <v-sheet
+        color="blue-lighten-1"
+        class="pa-4"
+      > 
+        <v-avatar
+          class="mb-4"
+          color="grey-lighten-2"
+          size="64"
+        >
+        <v-img
+            :src="getGravatar(logoUrl)"
+            alt="Mi nombre"
+        ></v-img>
+        </v-avatar>
+        <p class="font-weight-bold">Mi nombre</p>
+      </v-sheet>
         <v-list nav>
-          <v-avatar>
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/john.jpg"
-              alt="John"
-            ></v-img>
-          </v-avatar>
-          <div>Mi nombre</div>
-          <br/>
-          <v-divider></v-divider>
           <v-list-item v-for="item in useritems"
           :key="icon"
           :prepend-icon="item.icon"
@@ -26,6 +33,7 @@
     </v-navigation-drawer>
 </template>
 <script> 
+  import {getGravatar} from '../../tools'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -40,6 +48,7 @@
         }
     },
     data: () => ({
+      logoUrl: 'selobu@gmail.com',
       useritems:[
         {
           title: 'MiQR',
@@ -66,5 +75,8 @@
         this.drawer = false
       },
     },
+    methods:{
+      getGravatar
+    }
   }
 </script>

@@ -39,7 +39,7 @@
     </v-navigation-drawer>
 </template>
 <script>
-    const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href
+  const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
