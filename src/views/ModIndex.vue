@@ -43,7 +43,7 @@ export default {
     {
       title:'Ausentismo',
       subtitle: 'subtitle',
-      icon: 'mdi-hospital',
+      icon: 'mdi-account-minus',
       actions:[],
       description: 'Module description',
       color: 'bg-warning'
