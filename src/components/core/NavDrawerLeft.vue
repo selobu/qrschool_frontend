@@ -1,11 +1,26 @@
 <template>
     <v-navigation-drawer
-        image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-        theme="dark"
         v-model="drawer"
       >
+      <v-sheet
+        color="blue-lighten-1"
+        class="pa-4"
+      > 
+        <v-avatar
+          class="mb-4"
+          color="grey-lighten-2"
+          size="64"
+        >
+        <v-img
+            :src="logoUrl"
+            alt="QRSchool"
+        ></v-img>
+        </v-avatar>
+        <div>QRSchool</div>
+      </v-sheet>
+
+    <v-divider></v-divider>
     <v-list nav> 
-        QRSchool
         <v-list-item v-for="item in items"
         :key="item.title"
         :prepend-icon="item.icon"
@@ -14,9 +29,17 @@
         :href="this.$router.resolve({ name: item.href }).href"
         ></v-list-item>
     </v-list>
+    <template v-slot:append>
+        <div class="pa-2 bg-primary">
+            <v-btn block :href="this.$router.resolve({ name: 'logout' }).href">
+              Salir
+            </v-btn>
+          </div>
+        </template>
     </v-navigation-drawer>
 </template>
 <script>
+    const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -31,24 +54,19 @@
         }
     },
     data: () => ({
+      logoUrl,
       items: [
         {
-          title: 'Home',
+          title: 'Inicio',
           value: 'home',
           href: 'index',
           icon:  'mdi-home'
         },
         {
-          title: 'Login',
+          title: 'Ingresar',
           value: 'login',
           href: 'login',
           icon:  'mdi-login-variant'
-        },
-        {
-          title: 'Logout',
-          value: 'logout',
-          href: 'logout',
-          icon:  'mdi-logout-variant'
         },
         {
           title: 'Modulos',
