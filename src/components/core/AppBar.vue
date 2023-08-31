@@ -2,6 +2,7 @@
     <v-toolbar
         color="info"
         location='top'
+        density="comfortable"
         fixed
       >
         <template v-slot:prepend>
@@ -30,8 +31,8 @@
           </v-btn>
         </template>
         <template v-else v-slot:append>
-          <v-btn  class="px-1" @click="this.$router.push({name: 'register'})">Registrarse</v-btn>
-          <v-btn  class="px-1" @click="this.$router.push({name: 'login'})">Ingresar</v-btn>
+          <v-btn  class="px-1" @click="this.$router.push({name: 'register'})">Registro</v-btn>
+          <v-btn  class="px-1" @click="this.$router.push({name: 'login'})">Ingreso</v-btn>
           <v-btn icon @click.stop="drawerRight = !drawerRight">
             <v-avatar
               color="grey-lighten-2"
