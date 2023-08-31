@@ -20,10 +20,12 @@
               ></v-text-field>
         </template>
         <template v-slot:actions>
-          <v-btn variant="outlined" color="warning" @click="this.$router.push({name:'register'})"> Registrarse</v-btn>
-              <v-spacer></v-spacer>
-              <v-btn variant="outlined" color="success" action="POST">
-                  Ingresar
+          <v-btn block  height="48" color="indigo"
+            class="text-none text-white"
+            rounded="0"
+            variant="flat"
+            >
+            Continuar
           </v-btn>
         </template>
       </LoginRegister>
