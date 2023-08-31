@@ -64,12 +64,6 @@
           icon:  'mdi-home'
         },
         {
-          title: 'Ingresar',
-          value: 'login',
-          href: 'login',
-          icon:  'mdi-login-variant'
-        },
-        {
           title: 'Modulos',
           value: 'modulosindex',
           href: 'modulosindex',
