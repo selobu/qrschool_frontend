@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <NavBar />
-      <router-view ></router-view>
+      <router-view class="hight-at-least"></router-view>
       <FooterItem />
     </v-main>
   </v-app>
@@ -28,5 +28,8 @@ import FooterItem from './components/core/Footer.vue'
   margin: 0px;
   border: 0px;
   padding: 0px;
+}
+.hight-at-least {
+  min-height: 80vh;
 }
 </style>

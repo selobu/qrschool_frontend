@@ -17,7 +17,7 @@
                   <v-btn 
                     variant="outlined"
                     :class="action.color"
-                    :href="this.$router.push({name: action.href}).href"
+                    @click="this.$router.push({name: action.href})"
                   >{{ action.title }}
                   </v-btn>
                   <v-spacer></v-spacer>

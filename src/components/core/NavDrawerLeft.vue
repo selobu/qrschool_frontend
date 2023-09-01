@@ -25,7 +25,7 @@
         :key="item.title"
         :prepend-icon="item.icon"
         :title="item.title"
-        :value="item.value"
+        :value="item.title"
         color="primary"
         >
       </v-list-item>

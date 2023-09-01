@@ -4,11 +4,7 @@
       <v-parallax class="hight-at-least"
         :src="background[0]"
       >
-        <div class="d-flex flex-column justify-center align-center">
-          <br/>
-          <br/>
-          <br/>
-
+        <div class="d-flex flex-column fill-height justify-center align-center">
           <v-btn rounded label class="ma-2" color="primary" size="x-large">
             <h1 class="text-h4 font-weight-bold">
               QRSchool
@@ -16,18 +12,18 @@
           </v-btn>
           <v-chip label size="x-large">
             <v-btn>
-              <h2 class="subheading">
+              <h3 class="subheading">
                 Listado de asistencia fácil!
-              </h2>
+              </h3>
             </v-btn>
           </v-chip>
           <br/>
-          <div>
+          <div v-if="!authstore.auth.authenticated">
             <v-row>
               <v-col cols="6">
                 <v-btn prepend-icon="mdi-account" class="bg-blue mr-4" @click="this.$router.push({ name: 'register'})"> 
                 <template v-slot:prepend>
-                <v-icon color="warning"></v-icon>
+                  <v-icon color="warning"></v-icon>
                 </template>
                 Registrarse
                 </v-btn>
@@ -41,6 +37,11 @@
                 </v-btn>
               </v-col>
             </v-row>
+          </div>
+          <div v-else>
+            <v-btn rounded class="">
+              Bienvenido {{  authstore.user.name }}
+            </v-btn>
           </div>
         </div>
       </v-parallax>
@@ -131,13 +132,15 @@
       <br/>
     </v-row>
   </v-container>
-    
 </template>
 <script>
-const bg1= new URL('../assets/creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg', import.meta.url).href
-const bg2= new URL('../assets/How-To-Use-The-Native-QR-Code-Reader-On-iOS-Devices.webp', import.meta.url).href
-const bg3= new URL('../assets/multiplatform.webp', import.meta.url).href
-const bg4= new URL('../assets/statistics.webp', import.meta.url).href
+const images = [
+  'creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg',
+  'How-To-Use-The-Native-QR-Code-Reader-On-iOS-Devices.webp',
+  'multiplatform.webp',
+  'statistics.webp']
+
+import { authStore } from '../stores/authStore'
 
 export default {
   name: "DashboardIndex",
@@ -146,8 +149,15 @@ export default {
   },  
   data: () => ({
     expandOnHover: false,
-    background:[bg1, bg2, bg3, bg4]
+    background: [],
+    authstore: authStore()
   }),
+  beforeMount(){
+    images.forEach(function(image, index, array){
+        array[index] =  new URL(`../assets/${image}`, import.meta.url).href
+      })
+    this.background = images
+  }
 };
 </script>
 <style scoped>
