@@ -134,12 +134,6 @@
   </v-container>
 </template>
 <script>
-const images = [
-  'creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg',
-  'How-To-Use-The-Native-QR-Code-Reader-On-iOS-Devices.webp',
-  'multiplatform.webp',
-  'statistics.webp']
-
 import { authStore } from '../stores/authStore'
 
 export default {
@@ -147,16 +141,20 @@ export default {
   beforeCreate: function () {
     this.db;
   },  
-  data: () => ({
-    expandOnHover: false,
-    background: [],
-    authstore: authStore()
-  }),
-  beforeMount(){
-    images.forEach(function(image, index, array){
+  data: () => {
+    const background = [
+        'creative-discussion-diverse-diversity-employee-english-1431643-pxhere.jpg',
+        'How-To-Use-The-Native-QR-Code-Reader-On-iOS-Devices.webp',
+        'multiplatform.webp',
+        'statistics.webp']
+    background.forEach(function(image, index, array){
         array[index] =  new URL(`../assets/${image}`, import.meta.url).href
       })
-    this.background = images
+    return {
+      expandOnHover: false,
+      authstore: authStore(),
+      background 
+    }
   }
 };
 </script>

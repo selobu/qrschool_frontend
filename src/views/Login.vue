@@ -4,7 +4,7 @@
           <v-row>
             <v-col :cols="6" :sm="12" :md="6">
               <LoginRegister 
-              :width="290"
+              width="290px"
               title="Ingresar"
               subtitle="Ingrese sus credenciales">
               <template v-slot:form>
