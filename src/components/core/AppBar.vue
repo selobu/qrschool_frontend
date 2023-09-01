@@ -11,7 +11,7 @@
         <v-app-bar-title class="text-left">
           <v-btn  @click="$router.push({ name: 'index'})" class="px-0"> QRSchool</v-btn>
         </v-app-bar-title>
-        <template v-if="auth" v-slot:append >
+        <template v-if="authstore.auth.authenticated" v-slot:append >
           <v-btn icon href="https://gestionhseq.com" target="_blank">
             <v-icon icon="mdi-help-circle-outline" ></v-icon>
           </v-btn>

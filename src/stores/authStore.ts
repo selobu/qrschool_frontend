@@ -40,7 +40,6 @@ export const authStore = defineStore('auth', {
           isAdmin: true,
           bearerKey: '',
           bearerRefresh: ''}
-        console.log('login exitoso')
         return true
         //showTooltip(`Welcome back ${this.userData.name}!`)
       } catch (error) {

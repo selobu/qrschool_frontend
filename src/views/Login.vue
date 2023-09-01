@@ -36,16 +36,14 @@
   import LoginRegister from '../components/core/LoginRegister.vue'
   // pinnia working
   import { authStore } from '../stores/authStore'
-  import { storeToRefs } from 'pinia'
-  const authstore = authStore()
-  const { auth, user, modules } = storeToRefs(authstore)
+  // import { storeToRefs } from 'pinia'
+  // const authstore= authStore()
+  // const { auth, user, modules } = storeToRefs(authstore)
   // --- pinnia
   export default {
     data: () => ({
-      auth,
-      user, 
-      modules,
-      authstore,
+      // auth, user, modules,
+      authstore: authStore(),
       valid: false,
       firstname: '',
       lastname: '',
@@ -65,10 +63,7 @@
     },
     methods:{
       async authuser(){
-        console.log(this.email)
-        await this.authstore.login(this.email, '****').then(
-          console.log(this.user.email | 'sin email')
-        )
+        this.authstore.login(this.email, '****')
       }
     }
   }

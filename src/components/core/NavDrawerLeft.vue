@@ -20,7 +20,7 @@
       </v-sheet>
 
     <v-divider></v-divider>
-    <v-list class="text-left"> 
+    <v-list v-if="authstore.auth.authenticated" class="text-left"> 
         <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
@@ -30,7 +30,7 @@
         >
       </v-list-item>
     </v-list>
-    <template v-slot:append>
+    <template v-slot:append v-if="authstore.auth.authenticated" >
         <div class="pa-2">
             <v-btn block 
               @click="authstore.logout() ? this.$router.push({ name: 'logout' }) : 'No se pudo salir'"

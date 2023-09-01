@@ -22,7 +22,7 @@
         </v-avatar>
         <p class="font-weight-bold">{{ authstore.user.email == '0' ? 'no autenticado': authstore.user.email}}</p>
       </v-sheet>
-        <v-list nav>
+        <v-list nav v-if="authstore.auth.authenticated">
           <v-list-item v-for="item in useritems" @click="$router.push({ name: item.href})"
           :key="item.title"
           :prepend-icon="item.icon"
