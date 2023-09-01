@@ -30,15 +30,6 @@
         >
       </v-list-item>
     </v-list>
-    <template v-slot:append v-if="authstore.auth.authenticated" >
-        <div class="pa-2">
-            <v-btn block 
-              @click="authstore.logout() ? this.$router.push({ name: 'logout' }) : 'No se pudo salir'"
-              class="bg-warning">
-              Salir
-            </v-btn>
-          </div>
-        </template>
     </v-navigation-drawer>
 </template>
 <script>
@@ -62,23 +53,17 @@
       authstore: authStore(),
       items: [
         {
-          title: 'Inicio',
-          value: 'home',
-          href: 'home',
-          icon:  'mdi-home'
-        },
+          title: 'Dashboard',
+          value: 'dashboard',
+          href: 'dashboard',
+          icon: 'mdi-elevation-rise'
+          },
         {
           title: 'Modulos',
           value: 'modulosindex',
           href: 'modulosindex',
           icon: 'mdi-view-dashboard'
         },
-        {
-          title: 'Dashboard',
-          value: 'dashboard',
-          href: 'dashboard',
-          icon: 'mdi-elevation-rise'
-        }
       ],
     })
   }

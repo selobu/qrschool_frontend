@@ -64,6 +64,7 @@
     methods:{
       async authuser(){
         this.authstore.login(this.email, '****')
+        this.$router.push({name: 'modulosindex'})
       }
     }
   }

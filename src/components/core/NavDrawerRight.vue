@@ -31,6 +31,15 @@
           color="primary"
           ></v-list-item>
         </v-list>
+      <template v-slot:append v-if="authstore.auth.authenticated" >
+        <div class="pa-2">
+          <v-btn block 
+            @click="authstore.logout() ? this.$router.push({ name: 'index' }) : 'No se pudo salir'"
+            class="bg-warning">
+            Salir
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
 </template>
 <script> 
