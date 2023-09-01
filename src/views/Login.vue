@@ -5,7 +5,7 @@
         subtitle="Ingrese sus credenciales">
         <template v-slot:form>
           <v-text-field
-              v-model="correo"
+              v-model="email"
               :rules="emailRules"
               label="Correo"
               required
@@ -22,6 +22,7 @@
         <template v-slot:actions>
           <v-btn block  height="48" color="indigo"
             class="text-none text-white"
+            @click="authuser"
             rounded="0"
             variant="flat"
             >
@@ -33,11 +34,22 @@
 </template>
 <script >
   import LoginRegister from '../components/core/LoginRegister.vue'
+  // pinnia working
+  import { authStore } from '../stores/authStore'
+  import { storeToRefs } from 'pinia'
+  const authstore = authStore()
+  const { auth, user, modules } = storeToRefs(authstore)
+  // --- pinnia
   export default {
     data: () => ({
+      auth,
+      user, 
+      modules,
+      authstore,
       valid: false,
       firstname: '',
       lastname: '',
+      password:'',
       passwordRules: [
         v => !!v || 'Contraseña obligatoria',
         v => v.length >= 9 || 'Name must be less than 10 characters'
@@ -50,6 +62,14 @@
     }),
     components:{
       LoginRegister
+    },
+    methods:{
+      async authuser(){
+        console.log(this.email)
+        await this.authstore.login(this.email, '****').then(
+          console.log(this.user.email | 'sin email')
+        )
+      }
     }
   }
 </script>

@@ -24,7 +24,7 @@
               size="32"
             >
             <v-img
-                :src="getGravatar('selobu@gmail.com',32)"
+                :src="authstore.user.avatar"
                 alt="QRSchool"
             ></v-img>
             </v-avatar>
@@ -39,7 +39,7 @@
               size="32"
             >
             <v-img
-                :src="getGravatar('selobu@gmail.com',32)"
+                :src="authstore.user.avatar"
                 alt="QRSchool"
             ></v-img>
             </v-avatar>
@@ -55,7 +55,7 @@
   import NavDrawerLeft from './NavDrawerLeft.vue'
   import NavDrawerRight from './NavDrawerRight.vue'
   import ConfigDrawer from './ConfigDrawer.vue'
-  import {getGravatar} from '../../tools'
+  import { authStore } from '../../stores/authStore'
   export default {
     data: () => ({
       drawer: false,
@@ -63,6 +63,7 @@
       configDrawer: false,
       group: null,
       auth: false,
+      authstore: authStore(),
     }),
     components: {
       'navigation-drawer':()=> import('./NavDrawerLeft.vue'),
@@ -76,9 +77,6 @@
         this.drawerRight = false
         this.configDrawer = false
       },
-    },
-    methods:{
-      getGravatar
     }
   }
 </script>

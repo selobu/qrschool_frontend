@@ -16,15 +16,15 @@
           size="64"
         >
         <v-img
-            :src="getGravatar(logoUrl)"
-            alt="Mi nombre"
+          :src="authstore.user.avatar"
+          :alt="authstore.user.email == 0 ? 'no autenticado' : authstore.user.email"
         ></v-img>
         </v-avatar>
-        <p class="font-weight-bold">Mi nombre</p>
+        <p class="font-weight-bold">{{ authstore.user.email == '0' ? 'no autenticado': authstore.user.email}}</p>
       </v-sheet>
         <v-list nav>
           <v-list-item v-for="item in useritems" @click="$router.push({ name: item.href})"
-          :key="icon"
+          :key="item.title"
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.value"
@@ -34,7 +34,7 @@
     </v-navigation-drawer>
 </template>
 <script> 
-  import {getGravatar} from '../../tools'
+  import { authStore } from '../../stores/authStore'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -50,6 +50,7 @@
     },
     data: () => ({
       logoUrl: 'selobu@gmail.com',
+      authstore: authStore(),
       useritems:[
         {
           title: 'MiQR',
@@ -75,9 +76,6 @@
       group () {
         this.drawer = false
       },
-    },
-    methods:{
-      getGravatar
     }
   }
 </script>

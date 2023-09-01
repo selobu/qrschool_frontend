@@ -21,7 +21,7 @@
 
     <v-divider></v-divider>
     <v-list class="text-left"> 
-        <v-list-item v-for="item in items" @click="$router.push({ name: item.href })"
+        <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
         :title="item.title"
@@ -32,7 +32,9 @@
     </v-list>
     <template v-slot:append>
         <div class="pa-2">
-            <v-btn block @click="this.$router.push({ name: 'logout' })" class="bg-warning">
+            <v-btn block 
+              @click="authstore.logout() ? this.$router.push({ name: 'logout' }) : 'No se pudo salir'"
+              class="bg-warning">
               Salir
             </v-btn>
           </div>
@@ -41,6 +43,7 @@
 </template>
 <script>
   const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href
+  import { authStore } from '../../stores/authStore'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -56,6 +59,7 @@
     },
     data: () => ({
       logoUrl,
+      authstore: authStore(),
       items: [
         {
           title: 'Inicio',
