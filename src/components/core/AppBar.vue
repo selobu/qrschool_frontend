@@ -33,17 +33,6 @@
         <template v-else v-slot:append>
           <v-btn  class="px-1" @click="this.$router.push({name: 'register'})">Registro</v-btn>
           <v-btn  class="px-1" @click="this.$router.push({name: 'login'})">Ingreso</v-btn>
-          <v-btn icon @click.stop="drawerRight = !drawerRight">
-            <v-avatar
-              color="grey-lighten-2"
-              size="32"
-            >
-            <v-img
-                :src="authstore.user.avatar"
-                alt="QRSchool"
-            ></v-img>
-            </v-avatar>
-          </v-btn>
         </template>
     </v-toolbar>
     <NavDrawerLeft v-model="drawer"></NavDrawerLeft>
