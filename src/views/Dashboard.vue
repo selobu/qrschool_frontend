@@ -30,7 +30,7 @@
                     <v-card-title class="py-1 text-left bg-warning">Estudiantes ausentes</v-card-title>
                     <v-card-text>
                         <v-data-table
-                            height="260px"
+                            height="300px"
                             v-model:items-per-page="itemsPerPage"
                             :headers="headersausentes"
                             :items="estudiantes"
@@ -45,13 +45,19 @@
                     <v-card-title class="py-1 bg-info "> Asistencia por grado</v-card-title>
                     <v-card-text>
                         <v-data-table
-                            height="260px"
+                            height="300px"
                             v-model:items-per-page="itemsPerPage"
                             :headers="headers"
                             :items="asistencia"
                             item-value="grado"
                             class="elevation-2"
-                        ></v-data-table>
+                        >
+                        <template v-slot:item.calories="{ item }">
+                            <v-chip :color="getColor(item.columns.asistencia)">
+                                {{ item.columns.asistencia }}
+                            </v-chip>
+                        </template>
+                        </v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -96,6 +102,11 @@ export default {
     components:{
         BarChart,
         VDataTable
+    },
+    methods:{
+        getColor(value){
+            
+        }
     }
 }
 </script>
