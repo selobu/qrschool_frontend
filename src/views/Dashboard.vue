@@ -27,53 +27,31 @@
             </v-col>
             <v-col cols="12" lg="6" >
                 <v-card height="400">
-                    <v-card-title class="py-0 text-left bg-warning">Estudiantes ausentes</v-card-title>
-                    <v-card-text class="py-0">
-                        <v-table>
-                            <thead>
-                            <tr>
-                                <th class="text-left">
-                                Name
-                                </th>
-                                <th class="text-left">
-                                Grado
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr
-                                v-for="item in estudiantes"
-                                :key="item.name"
-                            >
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.grado }}</td>
-                            </tr>
-                            </tbody>
-                        </v-table>
+                    <v-card-title class="py-1 text-left bg-warning">Estudiantes ausentes</v-card-title>
+                    <v-card-text>
+                        <v-data-table
+                            height="260px"
+                            v-model:items-per-page="itemsPerPage"
+                            :headers="headersausentes"
+                            :items="estudiantes"
+                            item-value="grado"
+                            class="elevation-2"
+                        ></v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
             <v-col cols="12" lg="6">
                 <v-card height="400">
-                    <v-card-title class="bg-info py-0"> Asistencia por grado</v-card-title>
+                    <v-card-title class="py-1 bg-info "> Asistencia por grado</v-card-title>
                     <v-card-text>
-                        <v-table>
-                            <thead>
-                                <tr>
-                                    <td>Grado</td>
-                                    <td>% Asistencia</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr
-                                v-for="item in asistencia"
-                                :key="item.grado"
-                            >
-                                <td>{{ item.grado }}</td>
-                                <td>{{ item.asistencia }}</td>
-                            </tr>
-                            </tbody>
-                        </v-table>
+                        <v-data-table
+                            height="260px"
+                            v-model:items-per-page="itemsPerPage"
+                            :headers="headers"
+                            :items="asistencia"
+                            item-value="grado"
+                            class="elevation-2"
+                        ></v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -82,8 +60,18 @@
 </template>
 <script>
 import BarChart from '../components/charts/barchart.vue'
+import { VDataTable } from "vuetify/labs/VDataTable";
+
 export default {
     data:()=>({
+        itemsPerPage:15,
+        headersausentes: [{ title: 'Nombre', align: 'center', key: 'name', sortable: true, },
+          { title: 'grado', align: 'center', key: 'grado', sortable: true, }
+        ],
+        headers: [
+          { title: 'grado', align: 'end', key: 'grado', sortable: true, },
+          { title: 'asistencia', align: 'end', key: 'asistencia', sortable: true, }
+        ],
         asistencia:[
             {grado:8, asistencia: 80},
             {grado:9, asistencia: 85},
@@ -96,17 +84,18 @@ export default {
         estudiantes:[
             {name:'Sebastian', grado:9},
             {name:'Maria', grado:9},
-            {name:'Pedro', grado:9},
-            {name:'Pablo', grado:9},
-            {name:'Pepito', grado:9},
-            {name:'Lucas', grado:9},
-            {name:'Eduardo', grado:9},
+            {name:'Pedro', grado:11},
+            {name:'Pablo', grado:10},
+            {name:'Pepito', grado:6},
+            {name:'Lucas', grado:7},
+            {name:'Eduardo', grado:8},
             {name:'Cristian', grado:9},
             {name:'Andrea', grado:9},
         ]
     }),
     components:{
-        BarChart
+        BarChart,
+        VDataTable
     }
 }
 </script>
