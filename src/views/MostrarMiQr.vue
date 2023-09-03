@@ -1,8 +1,8 @@
 <template>
   <v-container fluid full-height class="d-flex justify-center">
       <v-card>
-          <v-card-title class="bg-light-blue">Mi QR </v-card-title>
-          <v-card-text>
+          <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3': 'bg-light-blue'">Mi QR </v-card-title>
+          <v-card-text :class="$vuetify.theme.name == 'dark' ? 'bg-white': 'bg-light-blue'">
               <br/>
               <v-img>
                   <qrcode-vue :value="value" :size="getmaxwidth() > 300? 300:getmaxwidth() " level="H" />

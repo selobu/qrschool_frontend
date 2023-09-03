@@ -7,7 +7,7 @@
             cols="xs-12 md-6 lg-4"
           >
             <v-card height="200" elevation="4">
-              <v-card-title :class="module.color"> <v-icon> {{ module.icon }} </v-icon>{{ module.title }}</v-card-title>
+              <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3' : module.color"> <v-icon> {{ module.icon }} </v-icon>{{ module.title }}</v-card-title>
               <v-card-subtitle>{{ module.subtitle }}</v-card-subtitle>
               <v-card-text>{{ module.description  }}
               </v-card-text>

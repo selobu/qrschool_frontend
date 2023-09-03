@@ -17,7 +17,6 @@
         ></v-img>
         </v-avatar>
         <p class="font-weight-bold">QRSchool
-          darktheme {{ $vuetify.theme.name }}
         </p>
       </v-sheet>
 

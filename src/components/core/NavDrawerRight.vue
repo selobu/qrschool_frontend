@@ -34,7 +34,7 @@
         <div class="pa-2">
           <v-btn block 
             @click="authstore.logout() ? this.$router.push({ name: 'index' }) : 'No se pudo salir'"
-            class="bg-warning">
+            :class="$vuetify.theme.name == 'dark' ? 'bg-grey' : 'bg-warning'">
             Salir
           </v-btn>
         </div>

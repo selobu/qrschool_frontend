@@ -52,31 +52,7 @@
           value: 'home',
           href: 'index',
           icon:  'mdi-home'
-        },
-        {
-          title: 'Ingresar',
-          value: 'login',
-          href: 'login',
-          icon:  'mdi-login-variant'
-        },
-        {
-          title: 'Modulos',
-          value: 'modulosindex',
-          href: 'modulosindex',
-          icon: 'mdi-view-dashboard'
-        },
-        {
-          title: 'Dashboard',
-          value: 'dashboard',
-          href: 'dashboard',
-          icon: 'mdi-elevation-rise'
-        },
-        {
-          title: 'Ausencia',
-          value: 'ausencia',
-          href: 'ausencia',
-          icon: 'mdi-account-minus'
-        },
+        }
       ],
     }),
     watch:{

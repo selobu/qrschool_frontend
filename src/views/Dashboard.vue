@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12" lg="4">
                 <v-card>
-                    <v-card-title class="bg-primary py-0">Estudiantes</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'bg-primary py-0'">Estudiantes</v-card-title>
                     <v-card-text class="py-0">
                         <BarChart />
                     </v-card-text>
@@ -11,7 +11,7 @@
             </v-col>
             <v-col cols="12" lg="4">
                 <v-card>
-                    <v-card-title class="bg-info  py-0">Asentismo</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0' : 'bg-info  py-0'">Asentismo</v-card-title>
                     <v-card-text class="py-0">
                         <BarChart />
                     </v-card-text>
@@ -19,7 +19,7 @@
             </v-col>
             <v-col cols="12" lg="4">
                 <v-card>
-                    <v-card-title class="bg-primary  py-0">Desempeño</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'bg-primary  py-0'">Desempeño</v-card-title>
                     <v-card-text class="py-0">
                         <BarChart />
                     </v-card-text>
@@ -27,7 +27,7 @@
             </v-col>
             <v-col cols="12" lg="6" >
                 <v-card height="400">
-                    <v-card-title class="py-1 text-left bg-warning">Estudiantes ausentes</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 text-left py-0':'py-0 text-left bg-warning'">Estudiantes ausentes</v-card-title>
                     <v-card-text>
                         <v-data-table
                             height="300px"
@@ -42,7 +42,7 @@
             </v-col>
             <v-col cols="12" lg="6">
                 <v-card height="400">
-                    <v-card-title class="py-1 bg-info "> Asistencia por grado</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'py-0 bg-info'"> Asistencia por grado</v-card-title>
                     <v-card-text>
                         <v-data-table
                             height="300px"
