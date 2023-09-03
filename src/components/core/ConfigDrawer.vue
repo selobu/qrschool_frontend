@@ -3,16 +3,19 @@
         v-model="drawer"
         location="right"
         temporary
-        class="bg-grey-lighten-4"
+        :class="$vuetify.theme.name == 'dark' ? 'black' : 'bg-grey-lighten-4'"
       >
       <v-sheet
-        color="blue-lighten-1"
+        :color="$vuetify.theme.name == 'dark' ? 'black' : 'blue-lighten-1'"
         class="pa-4"
       > 
         <p class="font-weight-bold">Configuration</p>
       </v-sheet>
     <v-divider></v-divider>
     <v-list nav class="text-left"> 
+        <v-list-item>
+          <v-switch label="Darkmode" inset v-model="darkmode"></v-switch>
+        </v-list-item>
         <v-list-item v-for="item in items" @click="$router.push({ name: item.href })"
         :key="item.title"
         :prepend-icon="item.icon"
@@ -25,6 +28,7 @@
 </template>
 <script>
   const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href
+  import { configStore } from '../../stores/configStore'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -39,7 +43,9 @@
         }
     },
     data: () => ({
+      darkmode:false,
       logoUrl,
+      configstore: configStore(),
       items: [
         {
           title: 'Inicio',
@@ -72,6 +78,11 @@
           icon: 'mdi-account-minus'
         },
       ],
-    })
+    }),
+    watch:{
+      darkmode(newvalue){
+        this.configstore.switchDarkTheme(newvalue)
+      }
+    }
   }
 </script>

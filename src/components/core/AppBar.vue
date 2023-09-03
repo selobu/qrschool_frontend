@@ -1,6 +1,6 @@
 <template>
     <v-toolbar
-        color="info"
+        :color="$vuetify.theme.name == 'dark' ? 'black' : 'info'"
         location='top'
         density="comfortable"
         fixed

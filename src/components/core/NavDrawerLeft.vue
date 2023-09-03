@@ -1,9 +1,9 @@
 <template>
-    <v-navigation-drawer class="bg-grey-lighten-4"
+    <v-navigation-drawer :class="$vuetify.theme.name == 'dark' ? 'black' : 'bg-grey-lighten-4'"
         v-model="drawer"
       >
       <v-sheet
-        color="blue-lighten-1"
+      :color="$vuetify.theme.name == 'dark' ? 'black' : 'blue-lighten-1'"
         class="pa-4"
       > 
         <v-avatar
@@ -16,7 +16,9 @@
             alt="QRSchool"
         ></v-img>
         </v-avatar>
-        <p class="font-weight-bold">QRSchool</p>
+        <p class="font-weight-bold">QRSchool
+          darktheme {{ $vuetify.theme.name }}
+        </p>
       </v-sheet>
 
     <v-divider></v-divider>

@@ -1,13 +1,12 @@
 <template>
     <v-navigation-drawer
         v-model="drawer"
-        theme="dark"
         location="right"
         temporary
-        class="bg-grey-lighten-4"
+        :class="$vuetify.theme.name == 'dark' ? 'black' : 'bg-grey-lighten-4'"
       >
       <v-sheet
-        color="blue-lighten-1"
+       :color="$vuetify.theme.name == 'dark' ? 'black' : 'blue-lighten-1'"
         class="pa-4"
       > 
         <v-avatar
