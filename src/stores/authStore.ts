@@ -25,13 +25,7 @@ export const authStore = defineStore('auth', {
   },
   actions:{
     async logout(){
-      this.auth= {
-          authenticated: false,
-          isAdmin: false,
-          bearerKey: null,
-          bearerRefresh: null}
-      this.user={name:null, email:null, avatar:''}
-      await db['config'].where('id')
+      await db['user'].where('id')
         .equals(1)
         .modify({username: '',
         qrcode: '',
@@ -41,6 +35,15 @@ export const authStore = defineStore('auth', {
         bearerRefresh:'',
         bearerkey: '',
         isauth: false})
+      this.auth = {
+          authenticated: false,
+          isAdmin: false,
+          bearerKey: null,
+          bearerRefresh: null}
+      this.user ={name:null, email:null, avatar:''}
+      this.modules = []
+      this.updating = false
+      console.log('loggin out')
       return true
     },
     async savetoIndexDb(){
@@ -74,8 +77,9 @@ export const authStore = defineStore('auth', {
         } else {
           // se consulta el primer registro
           const response = await db['user'].toCollection().first()
+          console.log('Reading data from database')
           this.auth= {
-            authenticated: true,
+            authenticated: response.isauth,
             isAdmin: false,
             bearerKey: response.bearerkey,
             bearerRefresh: response.bearerRefresh}
