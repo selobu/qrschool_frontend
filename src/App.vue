@@ -15,6 +15,9 @@ import FooterItem from './components/core/Footer.vue'
 import {configStore} from './stores/configStore'
 const configstore = configStore()
 configstore.readFromIndexDb()
+import {authStore} from './stores/authStore'
+const authstore = authStore()
+authstore.initRead()
 // ---
 
 </script>

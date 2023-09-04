@@ -16,7 +16,9 @@ export const configStore = defineStore('config', {
         try {
           const currentTheme = await this.readFromIndexDb()
           this.theme.global.name =  currentTheme === 'dark' ? 'light' : 'dark'
-          this.savetoIndexDb(this.theme.global.name)
+          if (currentTheme !== this.theme.global.name){
+            this.savetoIndexDb(this.theme.global.name)
+          }
           return true
           //showTooltip(`Welcome back ${this.userData.name}!`)
         } catch (error) {

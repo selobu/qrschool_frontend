@@ -15,7 +15,7 @@
           size="64"
         >
         <v-img
-          :src="authstore.user.avatar"
+          :src="getGravatar(authstore.user.email)"
           :alt="authstore.user.email == 0 ? 'no autenticado' : authstore.user.email"
         ></v-img>
         </v-avatar>
@@ -43,6 +43,7 @@
 </template>
 <script> 
   import { authStore } from '../../stores/authStore'
+  import {getGravatar} from '../../tools'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -84,6 +85,9 @@
       group () {
         this.drawer = false
       },
+    },
+    methods:{
+      getGravatar
     }
   }
 </script>

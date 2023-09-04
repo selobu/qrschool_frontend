@@ -8,3 +8,8 @@ db.version(1).stores({
   config: '++id, theme, languaje',
   auth: '++id, bearerRefresh, bearerKey'
 });
+
+db.version(2).stores({
+  user: '++id, isauth, username, qrcode, email, profile, modules, bearerRefresh, bearerKey',
+  config: '++id, theme, languaje',
+});

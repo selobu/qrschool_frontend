@@ -15,7 +15,7 @@
           <v-btn icon href="https://gestionhseq.com" target="_blank">
             <v-icon icon="mdi-help-circle-outline" ></v-icon>
           </v-btn>
-          <v-btn icon @click.stop="configDrawer = !configDrawer">
+          <v-btn icon @click.stop="drawerConfig = !drawerConfig">
             <v-icon icon="mdi-cog-outline" ></v-icon>
           </v-btn>
           <v-btn icon @click.stop="drawerRight = !drawerRight">
@@ -24,7 +24,7 @@
               size="32"
             >
             <v-img
-                :src="authstore.user.avatar"
+                :src="getGravatar(authstore.user.email)"
                 alt="QRSchool"
             ></v-img>
             </v-avatar>
@@ -37,7 +37,7 @@
     </v-toolbar>
     <NavDrawerLeft v-model="drawer"></NavDrawerLeft>
     <NavDrawerRight v-model="drawerRight"></NavDrawerRight>
-    <ConfigDrawer v-model="configDrawer"></ConfigDrawer>
+    <ConfigDrawer v-model="drawerConfig"></ConfigDrawer>
 
 </template>
 <script> 
@@ -45,13 +45,13 @@
   import NavDrawerRight from './NavDrawerRight.vue'
   import ConfigDrawer from './ConfigDrawer.vue'
   import { authStore } from '../../stores/authStore'
+  import {getGravatar} from '../../tools'
   export default {
     data: () => ({
       drawer: false,
       drawerRight: false,
-      configDrawer: false,
+      drawerConfig: false,
       group: null,
-      auth: false,
       authstore: authStore(),
     }),
     components: {
@@ -64,8 +64,11 @@
       group () {
         this.drawer = false
         this.drawerRight = false
-        this.configDrawer = false
+        this.drawerConfig = false
       },
+    },
+    methods:{
+      getGravatar
     }
   }
 </script>
