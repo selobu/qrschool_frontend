@@ -53,5 +53,8 @@ export function now() {
   return today;
 }
 export function getGravatar(email, size = 80) {
+  if (email === null){
+    email=''
+  } 
   return `https://www.gravatar.com/avatar/${md5(email)}?s=${size}`;
 }
