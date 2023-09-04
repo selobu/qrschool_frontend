@@ -76,7 +76,6 @@ export default {
   }),
   methods:{
     getindex(indice){
-      console.log(indice)
       const colors = ['bg-primary', 'bg-primary-darken-1','bg-success','bg-warning', 'bg-info'];
       const index = Math.floor(indice%5) == 0 ? 0 : 
                     Math.floor(indice%4) == 0 ? 1 :
