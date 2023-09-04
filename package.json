@@ -12,6 +12,7 @@
     "@mdi/font": "^7.2.96",
     "axios": "^1.4.0",
     "chart.js": "^4.4.0",
+    "dexie": "^3.2.4",
     "md5": "^2.3.0",
     "pinia": "^2.1.6",
     "pwa-asset-generator": "^6.3.1",
