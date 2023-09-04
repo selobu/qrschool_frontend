@@ -1,5 +1,7 @@
 import { VitePWA } from 'vite-plugin-pwa'
 
+const icon1 = new URL('../../assets/pwa-192x192.png', import.meta.url).href
+const icon2 = new URL('../../assets/pwa-512x512.png', import.meta.url).href
 function vitePWA(){
     return VitePWA({ registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
@@ -10,12 +12,12 @@ function vitePWA(){
         theme_color: '#ffffff',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: icon1,
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: icon2,
             sizes: '512x512',
             type: 'image/png'
           }
