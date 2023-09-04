@@ -42,8 +42,9 @@
             }
         }
     },
-    data: () => ({
-      darkmode:false,
+    data: function(){
+      return {
+      darkmode: false,
       logoUrl,
       configstore: configStore(),
       items: [
@@ -54,7 +55,7 @@
           icon:  'mdi-home'
         }
       ],
-    }),
+    }},
     watch:{
       darkmode(newvalue){
         this.configstore.switchDarkTheme(newvalue)

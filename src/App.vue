@@ -10,6 +10,13 @@
 <script setup>
 import NavBar from './components/core/AppBar.vue'
 import FooterItem from './components/core/Footer.vue'
+
+// Reading intial values
+import {configStore} from './stores/configStore'
+const configstore = configStore()
+configstore.readFromIndexDb()
+// ---
+
 </script>
 <style scoped>
 .logo {
