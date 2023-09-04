@@ -5,6 +5,7 @@
     elevation="4">
         <v-img
         :src="imgurl"
+        alt="Login"
         height="120px"
         cover
         >
