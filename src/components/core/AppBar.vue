@@ -24,7 +24,7 @@
               size="32"
             >
             <v-img
-                :src="getGravatar(authstore.user.email)"
+                :src="getGravatar(authstore.user.email | '')"
                 alt="QRSchool"
             ></v-img>
             </v-avatar>
