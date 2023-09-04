@@ -6,7 +6,7 @@
         fixed
       >
         <template v-slot:prepend>
-            <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon alt="menu" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
         <v-app-bar-title class="text-left">
           <v-btn  @click="$router.push({ name: 'index'})" class="px-0"> QRSchool</v-btn>
