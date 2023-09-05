@@ -52,15 +52,23 @@ const routes = [
         component: () => import("../views/Modulos.vue"),
         children: [
             {
-                path: "/modulos/",
-                name: "modulosindex",
-                component: () => import("../views/ModIndex.vue"),
-            },
-            {
                 path: "/modulos/asistencia/",
-                name: "asitencia",
+                name: "asistencia",
                 component: () => import("../views/Asistencia.vue"),
+                children:[
+                    {
+                        path: "/modulos/asistencia/registrar/",
+                        name: "registrarasistencia",
+                        component: () => import("../views/RegistrarAsistencia.vue"),
+                    },
+                    {
+                        path: "/modulos/asistencia/ausencia/",
+                        name: "registrarausencia",
+                        component: () => import("../views/Ausencia.vue"),
+                    },
+                ]
             },
+            
             {
                 path: "/modulos/matricula/",
                 name: "matricula",
@@ -100,11 +108,6 @@ const routes = [
         path: "/dashboard/",
         name: "dashboard",
         component: () => import("../views/Dashboard.vue"),
-    },
-    {
-        path: "/ausencia",
-        name: "ausencia",
-        component: () => import("../views/Ausencia.vue"),
     },
     {
         path: "/ausencia/registro/:grado",

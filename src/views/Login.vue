@@ -81,7 +81,7 @@
     methods:{
       async authuser(){
         this.authstore.login(this.email, '****').then(
-         this.$router.push({name: 'modulosindex'})
+         this.$router.push({name: 'mostrarmiqr'})
         )
       }
     }

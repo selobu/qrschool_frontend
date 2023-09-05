@@ -19,7 +19,6 @@
         <p class="font-weight-bold">QRSchool
         </p>
       </v-sheet>
-
     <v-divider></v-divider>
     <v-list v-if="authstore.auth.authenticated" class="text-left"> 
         <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
@@ -52,20 +51,53 @@
     data: () => ({
       logoUrl,
       authstore: authStore(),
-      items: [
+      items: [],
+    }),
+    beforeMount(){
+      this.items = [
         {
           title: 'Dashboard',
           value: 'dashboard',
           href: 'dashboard',
           icon: 'mdi-elevation-rise'
           },
-        {
-          title: 'Modulos',
-          value: 'modulosindex',
-          href: 'modulosindex',
-          icon: 'mdi-view-dashboard'
+          ...this.readmodules()
+      ]
+    },
+    methods:{
+      readmodules(){
+        return [{
+          title: 'Asistencia',
+          value: 'asistencia',
+          href: 'asistencia',
+          icon: 'mdi-check'
         },
-      ],
-    })
+        {
+          title: 'Ausentismo',
+          value: 'ausentismo',
+          href: 'ausentismi',
+          icon: 'mdi-account-minus'
+        },
+        {
+          title: 'Gestion Qr',
+          value: 'gestionqr',
+          href: 'gestionqr',
+          icon: 'mdi-qrcode'
+        },
+        {
+          title: 'Matricula',
+          value: 'matricula',
+          href: 'matricula',
+          icon: 'mdi-format-list-bulleted'
+        },
+        {
+          title: 'Usuarios',
+          value: 'usuarios',
+          href: 'usuarios',
+          icon: 'mdi-account-multiple'
+        },
+      ]
+      }
+    }
   }
 </script>
