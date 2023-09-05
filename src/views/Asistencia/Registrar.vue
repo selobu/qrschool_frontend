@@ -2,7 +2,7 @@
     <v-container fluid class="px-0 py-0">
         <v-row>
             <v-col cols="12" lg="6">
-                <v-card v-if="!escanear" height="500" elevation="3" class="px-0">
+                <v-card v-if="!escanear" :height="escanear ? '500px': '150px'" elevation="3" class="px-0">
                     <v-card-title class="py-0 bg-info"> Registrar códigos </v-card-title>
                     <br/>
                     <v-card-actions>
