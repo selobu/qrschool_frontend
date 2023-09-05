@@ -19,7 +19,7 @@ const routes = [
     {
         path: "/register",
         name: "register",
-        component: () => import("../views/Register.vue"),
+        component: () => import("../views/Auth/Register.vue"),
     },
     {
         path: "/logout",
@@ -29,22 +29,17 @@ const routes = [
     {
         path: "/register",
         name: "register",
-        component: () => import("../views/Register.vue"),
+        component: () => import("../views/Auth/Register.vue"),
     },
     {
         path: "/recover",
         name: "recover",
-        component: () => import("../views/Recover.vue"),
+        component: () => import("../views/Auth/Recover.vue"),
     },
     {
         path: "/about",
         name: "about",
         component: () => import("../views/About.vue"),
-    },
-    {
-        path: "/config",
-        name: "config",
-        component: () => import("../views/Config.vue"),
     },
     {
         path: "/modulos",
@@ -82,17 +77,17 @@ const routes = [
             {
                 path: "/modulos/qr",
                 name: "qr",
-                component: () => import("../views/Qr.vue"),
+                component: () => import("../views/Qr/Qr.vue"),
                 children:[
                     {
                         path: "/modulos/qr/mostrarmiqr",
                         name: "mostrarmiqr",
-                        component: () => import("../views/MostrarMiQr.vue"),
+                        component: () => import("../views/Qr/MostrarMiQr.vue"),
                     },
                     {
                         path: "/modulos/qr/leerqrs",
                         name: "leerqrs",
-                        component: () => import("../views/LeerQrs.vue"),
+                        component: () => import("../views/Qr/LeerQrs.vue"),
                     },
                 ]
             },
@@ -112,7 +107,7 @@ const routes = [
     {
         path: "/ausencia/registro/:grado",
         name: "ausenciaregistro",
-        component: () => import("../views/AusenciaRegistro.vue"),
+        component: () => import("../views/Asistencia/AusenciaRegistro.vue"),
     },
     {
         path: "/soporte",
