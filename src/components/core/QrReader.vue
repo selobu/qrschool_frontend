@@ -22,7 +22,7 @@
             <br/>
             <v-container fluid class="px-0">
                 <v-row justify="center">
-                    <qrcode-stream
+                    <qrcode-stream max-height="400px"
                         @detect="onDetect" id="qrcodestream"
                         :track="selected.value">
                     </qrcode-stream>
