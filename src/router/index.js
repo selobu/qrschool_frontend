@@ -54,7 +54,7 @@ const routes = [
                     {
                         path: "/modulos/asistencia/registrar/",
                         name: "registrarasistencia",
-                        component: () => import("../views/Asistencia/RegistrarAsistencia.vue"),
+                        component: () => import("../views/Asistencia/Registrar.vue"),
                     },
                     {
                         path: "/modulos/asistencia/ausencia/",

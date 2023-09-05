@@ -69,7 +69,7 @@
         return [{
           title: 'Asistencia',
           value: 'asistencia',
-          href: 'asistencia',
+          href: 'registrarasistencia',
           icon: 'mdi-check'
         },
         {

@@ -2,7 +2,7 @@
     <v-container fluid class="px-0 py-0">
         <v-row>
             <v-col cols="12">
-                <v-card elevation="4" height="600">
+                <v-card elevation="4">
                     <v-tabs v-model="tab" 
                         :bg-color="$vuetify.theme.name === 'dark' ? 'bg-grey' :  'primary'"
                         >
@@ -30,7 +30,7 @@
 <script>
 export default {
     data:()=>({
-        tab:'three'
+        tab:'one'
     })
 }
 </script>

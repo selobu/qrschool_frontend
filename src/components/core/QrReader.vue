@@ -1,7 +1,6 @@
 <template>
     <v-card  elevation="4">
         <v-card-title class="bg-blue">QrCode Readers</v-card-title>
-        <v-card-subtitle>Lee múltiples códigos QR</v-card-subtitle>
         <v-card-text>
             <v-container fluid class="px-0 py-2">
             Track function:
@@ -18,16 +17,25 @@
                     </option>
                 </select>
             </v-btn>
+            </v-container >
+            <v-divider></v-divider>
+            <br/>
+            <v-container fluid class="px-0">
+                <v-row justify="center">
+                    <qrcode-stream
+                        @detect="onDetect" id="qrcodestream"
+                        :track="selected.value">
+                    </qrcode-stream>
+                </v-row>
             </v-container>
-            <qrcode-stream 
-            @detect="onDetect" id="qrcodestream"
-            :track="selected.value">
-            </qrcode-stream>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
-            <v-btn variant="outlined" color="red">Cancelar</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn variant="outlined" color="green">Aceptar</v-btn>
+            <slot name="actions">
+                <v-btn variant="outlined" color="red">Cancelar</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn variant="outlined" color="green">Aceptar</v-btn>
+            </slot>
         </v-card-actions>
     </v-card>
 </template>
@@ -111,7 +119,7 @@ export default {
 </script>
 <style scoped>
 #qrcodestream {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 350px;
+    max-height: 350px;
 }
 </style>
