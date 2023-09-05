@@ -18,7 +18,7 @@
                         </v-btn>
                         <v-spacer></v-spacer>
                         <v-btn variant="outlined" color="success">
-                            Aceptar
+                            Registrar
                         </v-btn>
                     </template>
                 </qr-reader>
