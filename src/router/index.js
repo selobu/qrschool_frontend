@@ -14,7 +14,7 @@ const routes = [
     {
         path: "/login",
         name: "login",
-        component: () => import("../views/Login.vue"),
+        component: () => import("../views/Auth/Login.vue"),
     },
     {
         path: "/register",
@@ -24,7 +24,7 @@ const routes = [
     {
         path: "/logout",
         name: "logout",
-        component: () => import("../views/Logout.vue"),
+        component: () => import("../views/Auth/Logout.vue"),
     },
     {
         path: "/register",
@@ -54,17 +54,17 @@ const routes = [
             {
                 path: "/modulos/asistencia/",
                 name: "asistencia",
-                component: () => import("../views/Asistencia.vue"),
+                component: () => import("../views/Asistencia/Asistencia.vue"),
                 children:[
                     {
                         path: "/modulos/asistencia/registrar/",
                         name: "registrarasistencia",
-                        component: () => import("../views/RegistrarAsistencia.vue"),
+                        component: () => import("../views/Asistencia/RegistrarAsistencia.vue"),
                     },
                     {
                         path: "/modulos/asistencia/ausencia/",
                         name: "registrarausencia",
-                        component: () => import("../views/Ausencia.vue"),
+                        component: () => import("../views/Asistencia/Ausencia.vue"),
                     },
                 ]
             },

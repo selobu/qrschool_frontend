@@ -14,7 +14,7 @@
                         <template v-if="tab === 'three'">
                             <v-window v-model="tab">
                                 <v-window-item value="three">
-                                    Here the resume data
+                                    Here is the resume data
                                 </v-window-item>
                             </v-window>
                         </template>
