@@ -4,7 +4,7 @@
             <v-col cols="12">
                 <v-card elevation="4">
                     <v-tabs v-model="tab" 
-                        :bg-color="$vuetify.theme.name === 'dark' ? 'bg-grey' :  'primary'"
+                        color="deep-purple-accent-4"
                         >
                         <v-tab value="one" @click="$router.push({name:'registrarasistencia'})">Asistencia</v-tab>
                         <v-tab value="two" @click="$router.push({name:'registrarausencia'})">Ausentismo</v-tab>
