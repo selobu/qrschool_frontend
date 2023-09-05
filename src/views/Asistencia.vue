@@ -2,7 +2,7 @@
     <v-container fluid class="px-0 py-0">
         <v-row>
             <v-col cols="12">
-                <v-tabs v-model="tab"
+                <v-tabs v-model="tab" 
                     :bg-color="$vuetify.theme.name === 'dark' ? 'bg-grey' :  'primary'"
                     >
                     <v-tab value="one" @click="$router.push({name:'registrarasistencia'})">Asistencia</v-tab>
