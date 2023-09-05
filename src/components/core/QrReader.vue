@@ -1,16 +1,10 @@
 <template>
     <v-card  elevation="4">
         <v-card-title class="bg-blue">QrCode Readers</v-card-title>
-        <v-card-actions>
-            <slot name="actions">
-                <v-btn variant="outlined" color="red">Cancelar</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn variant="outlined" color="green">Aceptar</v-btn>
-            </slot>
-        </v-card-actions>
+        
         <v-card-text>
-            <v-container fluid class="px-0 py-0">
-            Track function:
+            <p>
+            Modo:
             <!-- check if is possible to transform this
              <v-select v-model="selected" :items="options"
                  item-title="text"
@@ -24,7 +18,7 @@
                     </option>
                 </select>
             </v-btn>
-            </v-container >
+            </p>
             <v-divider></v-divider>
             <v-container fluid class="px-0">
                 <v-row justify="center">
@@ -35,8 +29,15 @@
                 </v-row>
             </v-container>
         </v-card-text>
-        <v-divider></v-divider>
-        
+        <v-card-text>
+            <v-card-actions>
+                <slot name="actions">
+                    <v-btn variant="outlined" color="red">Cancelar</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn variant="outlined" color="green">Aceptar</v-btn>
+                </slot>
+            </v-card-actions>
+        </v-card-text>
     </v-card>
 </template>
 <script>
@@ -120,6 +121,6 @@ export default {
 <style scoped>
 #qrcodestream {
     max-width: 350px;
-    max-height: 350px;
+    max-height: 300px;
 }
 </style>
