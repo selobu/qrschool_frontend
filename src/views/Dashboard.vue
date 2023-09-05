@@ -52,8 +52,8 @@
                             item-value="grado"
                             class="elevation-2"
                         >
-                        <template v-slot:item.calories="{ item }">
-                            <v-chip :color="getColor(item.columns.asistencia)">
+                        <template v-slot:item.asistencia="{ item }">
+                            <v-chip :color="getColor(item.columns.asistencia)"> 
                                 {{ item.columns.asistencia }}
                             </v-chip>
                         </template>
@@ -79,11 +79,11 @@ export default {
           { title: 'asistencia', align: 'end', key: 'asistencia', sortable: true, }
         ],
         asistencia:[
-            {grado:8, asistencia: 80},
+            {grado:8, asistencia: 70},
             {grado:9, asistencia: 85},
             {grado:10, asistencia: 95},
             {grado:7, asistencia: 100},
-            {grado:5, asistencia: 100},
+            {grado:5, asistencia: 40},
             {grado:4, asistencia: 80},
             {grado:11, asistencia: 85},
             ],
@@ -104,8 +104,10 @@ export default {
         VDataTable
     },
     methods:{
-        getColor(value){
-            
+        getColor(asistencia){
+            if (asistencia <= 70) return 'red'
+            else if (asistencia <= 85) return 'orange'
+            else return 'green'            
         }
     }
 }
