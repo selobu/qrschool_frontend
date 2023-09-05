@@ -102,7 +102,7 @@ const routes = [
     {
         path: "/dashboard/",
         name: "dashboard",
-        component: () => import("../views/Help/Dashboard.vue"),
+        component: () => import("../views/Dashboard.vue"),
     },
     {
         path: "/ausencia/registro/:grado",
