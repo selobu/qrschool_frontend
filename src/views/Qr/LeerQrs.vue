@@ -4,5 +4,5 @@
     </v-container>
 </template>
 <script setup>
-import QrReader from '../components/core/QrReader.vue';
+import QrReader from '../../components/core/QrReader.vue';
 </script>
