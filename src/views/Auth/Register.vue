@@ -88,8 +88,6 @@
               required
               ></v-text-field>
             </v-col>
-            <v-col xs="12" md="6">
-            </v-col>
         </v-row>
         </template>
         <template v-slot:actions>
@@ -105,7 +103,7 @@
     </v-container>
 </template>
 <script >
-  import LoginRegister from '../components/core/LoginRegister.vue'
+  import LoginRegister from '../../components/core/LoginRegister.vue'
   export default {
     data: () => ({
       valid: false,

@@ -49,9 +49,9 @@
   </v-container>
 </template>
 <script >
-  import LoginRegister from '../components/core/LoginRegister.vue'
+  import LoginRegister from '../../components/core/LoginRegister.vue'
   // pinnia working
-  import { authStore } from '../stores/authStore'
+  import { authStore } from '../../stores/authStore'
   // import { storeToRefs } from 'pinia'
   // const authstore= authStore()
   // const { auth, user, modules } = storeToRefs(authstore)
