@@ -73,12 +73,6 @@
           icon: 'mdi-check'
         },
         {
-          title: 'Ausentismo',
-          value: 'ausentismo',
-          href: 'ausentismi',
-          icon: 'mdi-account-minus'
-        },
-        {
           title: 'Gestion Qr',
           value: 'gestionqr',
           href: 'gestionqr',
