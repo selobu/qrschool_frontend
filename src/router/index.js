@@ -39,7 +39,7 @@ const routes = [
     {
         path: "/about",
         name: "about",
-        component: () => import("../views/About.vue"),
+        component: () => import("../views/Help/About.vue"),
     },
     {
         path: "/modulos",
@@ -102,7 +102,7 @@ const routes = [
     {
         path: "/dashboard/",
         name: "dashboard",
-        component: () => import("../views/Dashboard.vue"),
+        component: () => import("../views/Help/Dashboard.vue"),
     },
     {
         path: "/ausencia/registro/:grado",
@@ -112,7 +112,7 @@ const routes = [
     {
         path: "/soporte",
         name: "soporte",
-        component: () => import("../views/Soporte.vue"),
+        component: () => import("../views/Help/Soporte.vue"),
     },
     
 ];
