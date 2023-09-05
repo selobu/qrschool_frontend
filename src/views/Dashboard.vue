@@ -75,8 +75,8 @@ export default {
           { title: 'grado', align: 'center', key: 'grado', sortable: true, }
         ],
         headers: [
-          { title: 'grado', align: 'end', key: 'grado', sortable: true, },
-          { title: 'asistencia', align: 'end', key: 'asistencia', sortable: true, }
+          { title: 'Grado', align: 'end', key: 'grado', sortable: true, },
+          { title: '% Asistencia', align: 'end', key: 'asistencia', sortable: true, }
         ],
         asistencia:[
             {grado:8, asistencia: 70},
