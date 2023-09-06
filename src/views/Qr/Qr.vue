@@ -7,7 +7,6 @@
                         color="deep-purple-accent-4"
                         >
                         <v-tab value="one" @click="$router.push({name:'nuevoqr'})">Nuevo</v-tab>
-                        <v-tab value="two" @click="$router.push({name:'mostrarmiqr'})">Mi QR</v-tab>
                         <v-tab value="three" @click="$router.push({name:''})">Resumen</v-tab>
                     </v-tabs>
                     <v-card-text>

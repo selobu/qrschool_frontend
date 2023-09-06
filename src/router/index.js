@@ -69,15 +69,15 @@ const routes = [
                 component: () => import("../views/Grado.vue"),
             },
             {
+                path: "/modulos/qr/mostrarmiqr",
+                name: "mostrarmiqr",
+                component: () => import("../views/Qr/MostrarMiQr.vue"),
+            },
+            {
                 path: "/modulos/qr",
                 name: "qr",
                 component: () => import("../views/Qr/Qr.vue"),
                 children:[
-                    {
-                        path: "/modulos/qr/mostrarmiqr",
-                        name: "mostrarmiqr",
-                        component: () => import("../views/Qr/MostrarMiQr.vue"),
-                    },
                     {
                         path: "/modulos/qr/nuevoqr",
                         name: "nuevoqr",
