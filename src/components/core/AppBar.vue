@@ -12,12 +12,14 @@
           <v-btn  @click="$router.push({ name: 'index'})" class="px-0"> QRSchool</v-btn>
         </v-app-bar-title>
         <template v-if="authstore.auth.authenticated" v-slot:append >
-          <v-btn icon href="https://gestionhseq.com" target="_blank">
-            <v-icon icon="mdi-help-circle-outline" ></v-icon>
+          <v-btn icon @click="$router.push({name:'mostrarmiqr'})">
+            <v-icon icon="mdi-qrcode" ></v-icon>
           </v-btn>
+          <!--
           <v-btn icon @click.stop="drawerConfig = !drawerConfig">
             <v-icon icon="mdi-cog-outline" ></v-icon>
           </v-btn>
+          -->
           <v-btn icon @click.stop="drawerRight = !drawerRight">
             <v-avatar
               color="grey-lighten-2"

@@ -45,29 +45,17 @@
 <script>
 import QrReader from '../../components/core/QrReader.vue'
 import { VDataTable } from "vuetify/labs/VDataTable";
+import {datatable} from '../../tools/fake.js'
+
 export default {
     data:() => ({
         userslist:[],
         escanear: false,
-        itemsPerPage:15,
-        headersausentes: [{ title: 'Nombre', align: 'center', key: 'name', sortable: true, },
-          { title: 'grado', align: 'center', key: 'grado', sortable: true, }
-        ],
-        headers: [
-          { title: 'grado', align: 'end', key: 'grado', sortable: true, },
-          { title: 'asistencia', align: 'end', key: 'asistencia', sortable: true, }
-        ],
-        estudiantes:[
-            {name:'Sebastian', grado:9},
-            {name:'Maria', grado:9},
-            {name:'Pedro', grado:11},
-            {name:'Pablo', grado:10},
-            {name:'Pepito', grado:6},
-            {name:'Lucas', grado:7},
-            {name:'Eduardo', grado:8},
-            {name:'Cristian', grado:9},
-            {name:'Andrea', grado:9},
-        ]
+        itemsPerPage: datatable.itemsPerPage,
+        headers: datatable.headers,
+        asistencia: datatable.asistencia,
+        headersausentes:datatable.headersausentes,
+        estudiantes:datatable.estudiantes,
     }),
     components:{
         QrReader,

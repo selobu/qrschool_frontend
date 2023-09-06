@@ -27,11 +27,6 @@ const routes = [
         component: () => import("../views/Auth/Logout.vue"),
     },
     {
-        path: "/register",
-        name: "register",
-        component: () => import("../views/Auth/Register.vue"),
-    },
-    {
         path: "/recover",
         name: "recover",
         component: () => import("../views/Auth/Recover.vue"),
@@ -63,7 +58,6 @@ const routes = [
                     },
                 ]
             },
-            
             {
                 path: "/modulos/matricula/",
                 name: "matricula",
@@ -83,6 +77,11 @@ const routes = [
                         path: "/modulos/qr/mostrarmiqr",
                         name: "mostrarmiqr",
                         component: () => import("../views/Qr/MostrarMiQr.vue"),
+                    },
+                    {
+                        path: "/modulos/qr/nuevoqr",
+                        name: "nuevoqr",
+                        component: () => import("../views/Qr/NuevoQrs.vue"),
                     },
                     {
                         path: "/modulos/qr/leerqrs",

@@ -29,6 +29,11 @@
           :value="item.value"
           color="primary"
           ></v-list-item>
+          <v-divider></v-divider>
+          <v-list-subheader>Configuración</v-list-subheader>
+          <v-list-item>
+            <v-switch label="Darkmode" inset v-model="darkmode"></v-switch>
+          </v-list-item>
         </v-list>
       <template v-slot:append v-if="authstore.auth.authenticated" >
         <div class="pa-2">
@@ -44,6 +49,7 @@
 <script> 
   import { authStore } from '../../stores/authStore'
   import {getGravatar} from '../../tools'
+  import { configStore } from '../../stores/configStore'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -58,15 +64,11 @@
         }
     },
     data: () => ({
+      darkmode: false,
       logoUrl: 'selobu@gmail.com',
       authstore: authStore(),
+      configstore: configStore(),
       useritems:[
-        {
-          title: 'MiQR',
-          value: 'qr',
-          href: 'mostrarmiqr',
-          icon: 'mdi-qrcode'
-        },
         {
           title: 'Soporte',
           value: 'soporte',
@@ -85,6 +87,9 @@
       group () {
         this.drawer = false
       },
+      darkmode(newvalue){
+        this.configstore.switchDarkTheme(newvalue)
+      }
     },
     methods:{
       getGravatar
