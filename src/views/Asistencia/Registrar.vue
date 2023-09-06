@@ -76,8 +76,11 @@
         </v-dialog>
         <v-row>
             <v-toolbar density="compact">
-                <v-btn icon @click="dialog=true" >
+                <v-btn icon @click="dialog=true" title="Agregar">
                     <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <v-btn icon title="Exportar">
+                    <v-icon>mdi-file-delimited-outline</v-icon>
                 </v-btn>
             </v-toolbar>
             <v-col cols="12">
