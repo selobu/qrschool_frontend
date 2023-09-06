@@ -29,6 +29,7 @@
                 :src="getGravatar(authstore.user.email)"
                 alt="QRSchool"
             ></v-img>
+            <MenuRight></MenuRight>
             </v-avatar>
           </v-btn>
         </template>
@@ -38,14 +39,10 @@
         </template>
     </v-toolbar>
     <NavDrawerLeft v-model="drawer"></NavDrawerLeft>
-    <NavDrawerRight v-model="drawerRight"></NavDrawerRight>
-    <ConfigDrawer v-model="drawerConfig"></ConfigDrawer>
-
 </template>
 <script> 
   import NavDrawerLeft from './NavDrawerLeft.vue'
-  import NavDrawerRight from './NavDrawerRight.vue'
-  import ConfigDrawer from './ConfigDrawer.vue'
+  import MenuRight from './NavDrawerRight.vue'
   import { authStore } from '../../stores/authStore'
   import {getGravatar} from '../../tools'
   export default {
@@ -59,8 +56,7 @@
     components: {
       'navigation-drawer':()=> import('./NavDrawerLeft.vue'),
       NavDrawerLeft,
-      NavDrawerRight,
-      ConfigDrawer
+      MenuRight
     },
     watch: {
       group () {
