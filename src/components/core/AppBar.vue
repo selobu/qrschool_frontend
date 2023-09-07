@@ -15,11 +15,6 @@
           <v-btn icon @click="$router.push({name:'mostrarmiqr'})">
             <v-icon icon="mdi-qrcode" ></v-icon>
           </v-btn>
-          <!--
-          <v-btn icon @click.stop="drawerConfig = !drawerConfig">
-            <v-icon icon="mdi-cog-outline" ></v-icon>
-          </v-btn>
-          -->
           <v-btn icon @click.stop="drawerRight = !drawerRight">
             <v-avatar
               color="grey-lighten-2"

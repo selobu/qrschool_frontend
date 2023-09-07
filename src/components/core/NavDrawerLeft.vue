@@ -75,7 +75,7 @@
         {
           title: 'Gestion Qr',
           value: 'gestionqr',
-          href: 'nuevoqr',
+          href: 'listadoqr',
           icon: 'mdi-qrcode'
         },
         {

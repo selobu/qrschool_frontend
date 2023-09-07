@@ -59,9 +59,21 @@ const routes = [
                 ]
             },
             {
-                path: "/modulos/matricula/",
-                name: "matricula",
-                component: () => import("../views/Matricula.vue"),
+                path: "/modulos/matricula",
+                name: "matriculaindex",
+                component: () => import("../views/Matricula/Index.vue"),
+                children:[
+                    {
+                        path:"/modulos/matricula/",
+                        name:"matricula",
+                        component: () => import("../views/Matricula/Matricula.vue")
+                    },
+                    {
+                        path:"/modulos/matricula/grados/",
+                        name:"matriculagrados",
+                        component: () => import("../views/Matricula/Grados.vue")
+                    },
+                ]
             },
             {
                 path: "/modulos/grado/",
@@ -78,6 +90,11 @@ const routes = [
                 name: "qr",
                 component: () => import("../views/Qr/Qr.vue"),
                 children:[
+                    {
+                        path:'/modulos/qr/',
+                        name:'listadoqr',
+                        component: () => import("../views/Qr/List.vue"),
+                    },
                     {
                         path: "/modulos/qr/nuevoqr",
                         name: "nuevoqr",
