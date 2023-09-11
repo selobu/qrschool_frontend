@@ -1,5 +1,5 @@
 <template>
-    <div :id="element"></div>
+    <div :id="element" style="height: 300px;"></div>
 </template>
 <script>
 import "frappe-datatable/dist/frappe-datatable.min.css";
@@ -32,6 +32,9 @@ export default {
                 inlineFilters: true,
                 layout: "fluid"
                 });
+        },
+        getcsv(){
+
         }
     }
 
