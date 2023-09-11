@@ -97,13 +97,17 @@ export default {
         valid:false,
         loading: false,
         grado: null,
-        anio: null
+        anio: null,
+        required: true
     }),
     components:{
         VDataTable
     },
     methods:{
-        getColor: datatable.getColor
+        getColor: datatable.getColor,
+        onSubmit(){
+            
+        }
     }
 }
 </script>

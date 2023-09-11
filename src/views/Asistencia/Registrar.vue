@@ -73,11 +73,12 @@
                     <v-btn icon @click="dialog=true" title="Agregar">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <v-btn icon title="Exportar">
+                    <v-btn icon title="Exportar"
+                        @click="generarcsv">
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <easy-data-table></easy-data-table>
+                <easy-data-table v-model="table"></easy-data-table>
             </v-col>
         </v-row>
     </v-container>
@@ -89,6 +90,7 @@ import {datatable} from '../../tools/fake.js'
 
 export default {
     data:() => ({
+        table:null,
         dialog: false,
         userslist: [],
         escanear: false,
@@ -101,6 +103,11 @@ export default {
     components:{
         QrReader,
         EasyDataTable
+        },
+    methods:{
+        generarcsv(){
+            'Generar csvdata'
         }
+    }
 }
 </script>

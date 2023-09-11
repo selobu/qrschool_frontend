@@ -105,13 +105,17 @@ export default {
         loading: false,
         nombre: null,
         matricula: null,
-        cupomaximo: null
+        cupomaximo: null,
+        required: true
     }),
     components:{
         VDataTable
     },
     methods:{
-        getColor: datatable.getColor
+        getColor: datatable.getColor,
+        onSubmit(){
+            
+        }
     }
 }
 </script>

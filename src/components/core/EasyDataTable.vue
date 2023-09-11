@@ -1,5 +1,5 @@
 <template>
-    <EasyDataTable 
+    <EasyDataTable
         :headers="headers"
         :items="items"
         style="height: 300px;">
@@ -10,7 +10,10 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 
 export default {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
     data:()=>({
+        table:null,
         headers: [
             { text: "PLAYER", value: "player" },
             { text: "TEAM", value: "team"},
@@ -30,6 +33,9 @@ export default {
     }),
     components:{
         EasyDataTable: Vue3EasyDataTable
+    },
+    mounted(){
+        this.$emit('update:modelValue', this.table)
     }
 }
 </script>
