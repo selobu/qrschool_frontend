@@ -36,14 +36,7 @@
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
                                     <p><br/><strong>Total registrados: 8</strong></p>
-                                    <v-data-table
-                                        height="360px"
-                                        v-model:items-per-page="itemsPerPage"
-                                        :headers="headersausentes"
-                                        :items="estudiantes"
-                                        item-value="grado"
-                                        class="elevation-2"
-                                    ></v-data-table>
+                                    <frappe-table></frappe-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -84,7 +77,7 @@
     </v-container>
 </template>
 <script>
-import { VDataTable } from "vuetify/labs/VDataTable";
+import FrappeTable from "../../components/core/Frappetable.vue"
 import VTabulator from '../../components/core/Tabulator.vue'
 
 export default {
@@ -98,8 +91,8 @@ export default {
         tabulator: null, //variable to hold your table
     }),
     components:{
-        VDataTable,
-        VTabulator
+        VTabulator,
+        FrappeTable
     },
     methods:{
         exportcsv(){

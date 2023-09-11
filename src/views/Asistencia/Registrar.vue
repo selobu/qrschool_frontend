@@ -58,14 +58,7 @@
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
                                     <p><br/><strong>Total registrados: 8</strong></p>
-                                    <v-data-table
-                                        height="360px"
-                                        v-model:items-per-page="itemsPerPage"
-                                        :headers="headersausentes"
-                                        :items="estudiantes"
-                                        item-value="grado"
-                                        class="elevation-2"
-                                    ></v-data-table>
+                                    <frappe-table></frappe-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -84,21 +77,14 @@
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <v-data-table
-                    height="360px"
-                    v-model:items-per-page="itemsPerPage"
-                    :headers="headersausentes"
-                    :items="estudiantes"
-                    item-value="grado"
-                    class="elevation-2">
-                </v-data-table>
+                <frappe-table></frappe-table>
             </v-col>
         </v-row>
     </v-container>
 </template>
 <script>
 import QrReader from '../../components/core/QrReader.vue'
-import { VDataTable } from "vuetify/labs/VDataTable";
+import FrappeTable from "../../components/core/Frappetable.vue"
 import {datatable} from '../../tools/fake.js'
 
 export default {
@@ -114,7 +100,7 @@ export default {
     }),
     components:{
         QrReader,
-        VDataTable
+        FrappeTable
     }
 }
 </script>
