@@ -77,7 +77,6 @@ export const authStore = defineStore('auth', {
         } else {
           // se consulta el primer registro
           const response = await db['user'].toCollection().first()
-          console.log('Reading data from database')
           this.auth= {
             authenticated: response.isauth,
             isAdmin: false,
