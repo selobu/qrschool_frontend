@@ -13,7 +13,6 @@
     "axios": "^1.4.0",
     "chart.js": "^4.4.0",
     "dexie": "^3.2.4",
-    "frappe-datatable": "^1.17.3",
     "gridjs": "^6.0.6",
     "md5": "^2.3.0",
     "pinia": "^2.1.6",
@@ -24,6 +23,7 @@
     "vue-chartjs": "^5.2.0",
     "vue-qrcode-reader": "^5.3.3",
     "vue-router": "^4.2.4",
+    "vue3-easy-data-table": "^1.5.47",
     "vuetify": "^3.3.14"
   },
   "devDependencies": {

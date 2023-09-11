@@ -9,22 +9,22 @@ import getSampleData from "./data.js";
 import { v4 as uuidv4 } from 'uuid';
 
 export default {
-    data:()=>({
-        elementid: uuidv4().slice(-12,-1),
-        el: null,
-        columns:[],
-        data:[],
-        table:  null
-    }),
-    mounted(){
+    data:()=>{
         const { columns, data } = getSampleData();
-        this.columns = columns
-        this.data = data
+        return {
+            elementid: uuidv4(),
+            el: null,
+            columns,
+            data,
+            table:  null}
+    },
+    mounted(){
         this.createTable()
     },
     methods:{
         createTable(){
             this.el = document.getElementById(this.elementid)
+            console.log('Creating table')
             this.table = new DataTable(this.el, {
                 columns: this.columns,
                 data: this.data,

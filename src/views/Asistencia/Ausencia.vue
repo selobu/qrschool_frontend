@@ -36,7 +36,7 @@
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
                                     <p><br/><strong>Total registrados: 8</strong></p>
-                                    <frappe-table></frappe-table>
+                                    <easy-data-table></easy-data-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -71,13 +71,13 @@
                     >
                 </v-autocomplete>
             </v-toolbar>
-                <v-tabulator height="400px" v-model="tabulator"></v-tabulator>
+                <easy-data-table></easy-data-table>
             </v-col>
         </v-row>
     </v-container>
 </template>
 <script>
-import FrappeTable from "../../components/core/Frappetable.vue"
+import EasyDataTable from "../../components/core/EasyDataTable.vue"
 import VTabulator from '../../components/core/Tabulator.vue'
 
 export default {
@@ -92,7 +92,7 @@ export default {
     }),
     components:{
         VTabulator,
-        FrappeTable
+        EasyDataTable
     },
     methods:{
         exportcsv(){

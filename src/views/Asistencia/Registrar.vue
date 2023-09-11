@@ -58,7 +58,7 @@
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
                                     <p><br/><strong>Total registrados: 8</strong></p>
-                                    <frappe-table></frappe-table>
+                                    <easy-data-table></easy-data-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -77,14 +77,14 @@
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <frappe-table></frappe-table>
+                <easy-data-table></easy-data-table>
             </v-col>
         </v-row>
     </v-container>
 </template>
 <script>
 import QrReader from '../../components/core/QrReader.vue'
-import FrappeTable from "../../components/core/Frappetable.vue"
+import EasyDataTable from "../../components/core/EasyDataTable.vue"
 import {datatable} from '../../tools/fake.js'
 
 export default {
@@ -100,7 +100,7 @@ export default {
     }),
     components:{
         QrReader,
-        FrappeTable
-    }
+        EasyDataTable
+        }
 }
 </script>
