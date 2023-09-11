@@ -18,7 +18,7 @@
                 >
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
-                <v-toolbar-title>Registrar</v-toolbar-title>
+                <v-toolbar-title><v-icon>mdi-account-group</v-icon> Asistencia</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-toolbar-items>
                     <v-btn
@@ -75,15 +75,15 @@
             
         </v-dialog>
         <v-row>
-            <v-toolbar density="compact">
-                <v-btn icon @click="dialog=true" title="Agregar">
-                    <v-icon>mdi-plus</v-icon>
-                </v-btn>
-                <v-btn icon title="Exportar">
-                    <v-icon>mdi-file-delimited-outline</v-icon>
-                </v-btn>
-            </v-toolbar>
             <v-col cols="12">
+                <v-toolbar density="compact" class="toolbarmenu">
+                    <v-btn icon @click="dialog=true" title="Agregar">
+                        <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-btn icon title="Exportar">
+                        <v-icon>mdi-file-delimited-outline</v-icon>
+                    </v-btn>
+                </v-toolbar>
                 <v-data-table
                     height="360px"
                     v-model:items-per-page="itemsPerPage"

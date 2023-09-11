@@ -6,8 +6,13 @@
                     <v-tabs v-model="tab" 
                         color="deep-purple-accent-4"
                         >
-                        <v-tab value="one" @click="$router.push({name:'matricula'})">Matricula</v-tab>
-                        <v-tab value="two" @click="$router.push({name:'matriculagrados'})">Grados</v-tab>
+                        <v-tab value="one" @click="$router.push({name:'matricula'})">
+                            <v-icon color="green"> mdi-human-male-girl</v-icon>Matricula
+                        </v-tab>
+                        <v-tab value="two" @click="$router.push({name:'matriculagrados'})">
+                            <v-icon color="orange">mdi-human-male-height</v-icon>
+                            Grados
+                        </v-tab>
                         <v-tab value="three" @click="$router.push({name:''})">Resumen</v-tab>
                     </v-tabs>
                     <v-card-text>

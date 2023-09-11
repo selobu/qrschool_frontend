@@ -18,7 +18,7 @@
                 >
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
-                <v-toolbar-title>Registrar</v-toolbar-title>
+                <v-toolbar-title><v-icon>mdi-account-minus-outline</v-icon>Ausentismo</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-toolbar-items>
                     <v-btn
@@ -53,7 +53,8 @@
             
         </v-dialog>
         <v-row>
-            <v-toolbar density="compact">
+            <v-col cols="12">
+                <v-toolbar density="compact" >
                 <v-btn icon @click="dialog=true" title="Agregar">
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -77,7 +78,6 @@
                     >
                 </v-autocomplete>
             </v-toolbar>
-            <v-col cols="12">
                 <v-tabulator height="400px" v-model="tabulator"></v-tabulator>
             </v-col>
         </v-row>

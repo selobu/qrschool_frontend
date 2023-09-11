@@ -6,8 +6,13 @@
                     <v-tabs v-model="tab" 
                         color="deep-purple-accent-4"
                         >
-                        <v-tab value="one" @click="$router.push({name:'registrarasistencia'})">Asistencia</v-tab>
-                        <v-tab value="two" @click="$router.push({name:'registrarausencia'})">Ausentismo</v-tab>
+                        <v-tab value="one" @click="$router.push({name:'registrarasistencia'})">
+                            <v-icon color="green">mdi-account-group</v-icon>
+                            Asistencia
+                        </v-tab>
+                        <v-tab value="two" @click="$router.push({name:'registrarausencia'})">
+                            <v-icon color="orange">mdi-account-minus-outline</v-icon>Ausentismo
+                        </v-tab>
                         <v-tab value="three" @click="$router.push({name:''})">Resumen</v-tab>
                     </v-tabs>
                     <v-card-text>
