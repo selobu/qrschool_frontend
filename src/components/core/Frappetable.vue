@@ -1,5 +1,5 @@
 <template>
-    <div :id="element" style="height: 300px;"></div>
+    <div :id="elementid" style="height: 300px;"></div>
 </template>
 <script>
 import "frappe-datatable/dist/frappe-datatable.min.css";
@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default {
     data:()=>({
-        element: uuidv4(),
+        elementid: uuidv4().slice(-12,-1),
         el: null,
         columns:[],
         data:[],
@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         createTable(){
-            this.el = document.getElementById(this.element)
+            this.el = document.getElementById(this.elementid)
             this.table = new DataTable(this.el, {
                 columns: this.columns,
                 data: this.data,
