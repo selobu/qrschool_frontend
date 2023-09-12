@@ -55,19 +55,20 @@
                     <v-icon>mdi-file-delimited-outline</v-icon>
                 </v-btn>
                 <v-divider :vertical="true" class="border-opacity-75"></v-divider>
-                <p class="mx-2">Filtros:</p>
                 <v-autocomplete
                     label="Rol"
                     :items="['All', 'Estudiante', 'Docente', 'Acudiente']"
-                    style="max-width: 200px;"
+                    style="max-width: 170px;"
                     class="mx-1"
+                    variant="underlined"
                     >
                 </v-autocomplete>
                 <v-autocomplete
                     label="Grupo"
                     :items="['8','7','6']"
-                    style="max-width: 200px;"
+                    style="max-width: 170px;"
                     class="mx-1"
+                    variant="underlined"
                     >
                 </v-autocomplete>
             </v-toolbar>
