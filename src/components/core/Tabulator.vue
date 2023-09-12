@@ -80,7 +80,6 @@ export default {
             nuevo.updateSelected(state);
         })
         this.tabulator = this.grid
-        console.log(this.grid)
     },
     methods:{
         exportcsv(){
@@ -90,9 +89,7 @@ export default {
             if ( state.rowSelection === undefined){
                 return
             }
-            console.log(state)
             this.selectedItems = state.rowSelection.rowIds
-            console.log(this.selectedItems)
             this.selected = this.selectedItems
         }
     }

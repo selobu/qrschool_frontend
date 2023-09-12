@@ -45,7 +45,7 @@
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
                                     <p><br/><strong>Total registrados: {{ rows.length }}</strong></p>
-                                    <easy-data-table :rows="rows" :headers="headers"></easy-data-table>
+                                    <easy-data-table :rows="rows" :headers="headers" :maskcolumns="['qr']"></easy-data-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -102,7 +102,7 @@ export default {
     methods:{
         generarcsv(){
             'Generar csvdata'
-        }
+        },
     }
 }
 </script>

@@ -24,7 +24,6 @@ export default {
     methods:{
         createTable(){
             this.el = document.getElementById(this.elementid)
-            console.log('Creating table')
             this.table = new DataTable(this.el, {
                 columns: this.columns,
                 data: this.data,

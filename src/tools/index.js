@@ -58,3 +58,7 @@ export function getGravatar(email, size = 80) {
   } 
   return `https://www.gravatar.com/avatar/${md5(email)}?s=${size}`;
 }
+
+export function mask(cc, num = 6, mask = '*'){
+  return `${cc}`.slice(0,-num).padEnd(`${cc}`.length, mask);
+}

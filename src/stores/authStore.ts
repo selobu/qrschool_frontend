@@ -43,7 +43,6 @@ export const authStore = defineStore('auth', {
       this.user ={name:null, email:null, avatar:''}
       this.modules = []
       this.updating = false
-      console.log('loggin out')
       return true
     },
     async savetoIndexDb(){

@@ -4,7 +4,7 @@
         show-index
         :rows-per-page="rowsPerPage"
         :headers="headers"
-        :items="rows"
+        :items="newrows"
         :table-height="height"
         :table-class-name="$vuetify.theme.name === 'dark' ? 'default table-darkmode':'default' "
         >
@@ -14,14 +14,16 @@
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import {datatable} from '../../tools/fake' 
+import {mask} from '../../tools' 
 
 export default {
     props: {
         'modelValue':{type:Object, required:false},
         'headers': {default: datatable.headers_easy, type:Array },
         'rows': {default: datatable.items_easy, type:Array },
-        'height': {default: '500px', type:String},
+        'height': {default: 400, type:String},
         'rowsPerPage': {default:10, required:false},
+        'maskcolumns': {default:[], required: false, type:Array}
     },
     emits: ['update:modelValue'],
     data:()=>({
@@ -32,6 +34,20 @@ export default {
     },
     mounted(){
         this.$emit('update:modelValue', this.table)
+    },
+    computed:{
+        newrows(){
+            if (this.maskcolumns.length === 0){
+                return this.rows
+            }
+            var result = this.rows
+            for (const key of this.maskcolumns){
+                result.forEach((value,index,array)=>{
+                    array[index][key] = mask(value[key])
+                })
+            }
+            return result
+        }
     }
 }
 </script>
