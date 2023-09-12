@@ -32,40 +32,26 @@
                 <v-card-text>
                     <v-row>
                         <v-col cols="12" lg="6">
-                            <v-card v-if="!escanear" :max-height="escanear ? '500px': '150px'" elevation="3" class="px-0">
-                                <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-info'"> Registrar códigos </v-card-title>
-                                <br/>
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                        <v-btn variant="outlined" color="primary" @click="escanear=true">Escanear</v-btn>
-                                    <v-spacer></v-spacer>
-                                </v-card-actions>
-                            </v-card>
-                            <qr-reader v-else :multiple="true" v-model="userslist" max-height="500px">
+                            <qr-reader 
+                                :multiple="true" 
+                                v-model="userslist"
+                                max-height="400px">
                                 <template v-slot:actions>
-                                    <v-btn variant="outlined" color="error" @click="escanear=false">
-                                        Cancelar
-                                    </v-btn>
-                                    <v-spacer></v-spacer>
-                                    <v-btn variant="outlined" color="success">
-                                        Registrar
-                                    </v-btn>
                                 </template>
                             </qr-reader>
                         </v-col>
                         <v-col cols="12" lg="6">
-                            <v-card max-height="500px" elevation="3">
+                            <v-card elevation="3">
                                 <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
                                 <v-card-text>
-                                    <p><br/><strong>Total registrados: 8</strong></p>
-                                    <easy-data-table></easy-data-table>
+                                    <p><br/><strong>Total registrados: {{ rows.length }}</strong></p>
+                                    <easy-data-table :rows="rows" :headers="headers"></easy-data-table>
                                 </v-card-text>
                             </v-card>
                         </v-col>
                     </v-row>
                 </v-card-text>
             </v-card>
-            
         </v-dialog>
         <v-row>
             <v-col cols="12">
@@ -94,12 +80,21 @@ export default {
         dialog: false,
         userslist: [],
         escanear: false,
+        headers: [{ text: "Código QR", value: "qr" }],
         itemsPerPage: datatable.itemsPerPage,
-        headers: datatable.headers,
         asistencia: datatable.asistencia,
         headersausentes: datatable.headersausentes,
         estudiantes: datatable.estudiantes,
     }),
+    computed:{
+        rows(){
+            var result= []
+            for (const element of this.userslist){
+                result.push({qr: element})
+            }
+            return result
+        }
+    },
     components:{
         QrReader,
         EasyDataTable

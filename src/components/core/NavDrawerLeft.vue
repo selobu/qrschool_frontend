@@ -19,17 +19,17 @@
         <p class="font-weight-bold">QRSchool
         </p>
       </v-sheet>
-    <v-divider></v-divider>
-    <v-list v-if="authstore.auth.authenticated" class="text-left"> 
-        <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
-        :key="item.title"
-        :prepend-icon="item.icon"
-        :title="item.title"
-        :value="item.title"
-        color="primary"
-        >
-      </v-list-item>
-    </v-list>
+      <v-divider></v-divider>
+      <v-list v-if="authstore.auth.authenticated" class="text-left"> 
+          <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
+          :key="item.title"
+          :prepend-icon="item.icon"
+          :title="item.title"
+          :value="item.title"
+          color="primary"
+          >
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
 </template>
 <script>
