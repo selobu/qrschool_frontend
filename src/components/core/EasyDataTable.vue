@@ -5,7 +5,7 @@
         :rows-per-page="rowsPerPage"
         :headers="headers"
         :items="rows"
-        :style="`height: ${height};`">
+        table-height='500px'>
     </EasyDataTable>
 </template>
 <script>
