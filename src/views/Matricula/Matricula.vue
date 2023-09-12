@@ -7,7 +7,7 @@
             <v-card>
                 <v-toolbar
                 dark
-                color="primary"
+                :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3': 'primary'"
                 >
                     <v-btn
                     icon
@@ -16,7 +16,7 @@
                     >
                     <v-icon>mdi-close</v-icon>
                     </v-btn>
-                    <v-toolbar-title>Proceso de matrícula</v-toolbar-title>
+                    <v-toolbar-title>Matrícula</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text class="text-center">

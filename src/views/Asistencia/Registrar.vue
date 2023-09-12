@@ -9,7 +9,7 @@
             <v-card>
                 <v-toolbar
                 dark
-                color="primary"
+                :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3': 'primary'"
                 >
                 <v-btn
                     icon
