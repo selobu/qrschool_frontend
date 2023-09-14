@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import {getGravatar} from '../tools'
-import { db } from '../plugins/dexie';
 
 interface State {
   auth: Auth,
@@ -24,17 +23,15 @@ export const authStore = defineStore('auth', {
     }
   },
   actions:{
-    async logout(){
-      await db['user'].where('id')
-        .equals(1)
-        .modify({username: '',
-        qrcode: '',
-        email: '',
-        profile: '',
-        modules: [],
-        bearerRefresh:'',
-        bearerkey: '',
-        isauth: false})
+    logout(){
+      localStorage.setItem('user', JSON.stringify({username: '',
+          qrcode: '',
+          email: '',
+          profile: '',
+          modules: [],
+          bearerRefresh:'',
+          bearerkey: '',
+          isauth: false}))
       this.auth = {
           authenticated: false,
           isAdmin: false,
@@ -45,28 +42,23 @@ export const authStore = defineStore('auth', {
       this.updating = false
       return true
     },
-    async savetoIndexDb(){
-      
-    },
     async initRead(){
       if (this.updating){
         return
       }
       try{
         this.updating = true
-        const cuenta = await db['user'].count();
-        if ( cuenta === 0){
+        const cuenta = localStorage.getItem('user');
+        if ( cuenta === null ){
           // se registra un valor nuevo
-          const id = await db['user'].add({
-            username: '',
+          localStorage.setItem('user', JSON.stringify({username: '',
             qrcode: '',
             email: '',
             profile: '',
             modules: [],
             bearerRefresh:'',
             bearerkey: '',
-            isauth: true
-          });
+            isauth: false}))
           this.auth= {authenticated: false,
             isAdmin: false,
             bearerKey: '',
@@ -75,7 +67,7 @@ export const authStore = defineStore('auth', {
           this.modules= []
         } else {
           // se consulta el primer registro
-          const response = await db['user'].toCollection().first()
+          const response = JSON.parse(cuenta)
           this.auth= {
             authenticated: response.isauth,
             isAdmin: false,
@@ -87,40 +79,31 @@ export const authStore = defineStore('auth', {
             avatar: ''}
           this.modules= response.modules
         }
-      } catch {
+      } catch (error) {
+        console.log(`authStore error onInit: ${error}`)
         this.updating = false
       }
       this.updating = false
     },
     async login(email: String, password: String) {
-      try {
-        const api = {post: async (data)=>({})}
-        this.userData = await api.post({ email, password }) // TODO
+      const api = {post: async (data)=>({})}
+      this.userData = await api.post({ email, password }) // TODO
 
-        this.user = {name: 'Sebastian', email,
-                  avatar: getGravatar(email) }
-        this.auth = {authenticated: true,
-          isAdmin: true,
-          bearerKey: '',
-          bearerRefresh: ''}
-
-        await db['user'].where('id')
-          .equals(1)
-          .modify({username: 'Sebastian',
-          qrcode: '',
-          email: email,
-          profile: '',
-          modules: [],
-          bearerRefresh:'',
-          bearerkey: '',
-          isauth: true})
-        return true
-        //showTooltip(`Welcome back ${this.userData.name}!`)
-      } catch (error) {
-        //showTooltip(error)
-        // let the form component display the error
-        return error
-      }
+      this.user = {name: 'Sebastian', email,
+                avatar: getGravatar(email) }
+      this.auth = {authenticated: true,
+        isAdmin: true,
+        bearerKey: '',
+        bearerRefresh: ''}
+      localStorage.setItem('user', JSON.stringify({username: 'Sebastian',
+        qrcode: '',
+        email: email,
+        profile: '',
+        modules: [],
+        bearerRefresh:'',
+        bearerkey: '',
+        isauth: true}))
+      return true
     },
   }
 })
