@@ -13,3 +13,8 @@ db.version(2).stores({
   user: '++id, isauth, username, qrcode, email, profile, modules, bearerRefresh, bearerKey',
   config: '++id, theme, languaje',
 });
+
+db.version(3).stores({
+  Get: 'url, time, response',
+  Post: '++id, baseurl, url, jsondata,tries, maxtries, lasttimetryed, includeheaders',
+});
