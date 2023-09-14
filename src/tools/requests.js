@@ -47,7 +47,7 @@ export async function get(url, dt = 3600, includeheaders = true) {
 export async function post(url, data, includeheaders = true) {
   const newurl = _fixurl(url)
   const baseurl = newurl.split('/').splice(-1).join('/')
-  const add_dexie = () => db.Post.add({
+  const add_dexie = () => db['Post'].add({
         baseurl,
         url: newurl,
         jsondata: JSON.stringify({...data, timestamp:now()}),
@@ -108,7 +108,7 @@ export async function get_unsaved_requests() {
 async function get_and_updatedexie(url, includeheaders) {
   try {
     const response = await _get(url, includeheaders)
-    db.Get.put({
+    db['Get'].put({
       url: url,
       time: Date.now(),
       response: JSON.stringify(response)
