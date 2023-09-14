@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "chart.js": "^4.4.0",
     "dexie": "^3.2.4",
     "gridjs": "^6.0.6",
