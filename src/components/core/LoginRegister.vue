@@ -21,18 +21,20 @@
             :subtitle="subtitle"
         ></v-list-item>
         </v-img>
-
-        <v-card-text>
-            <v-form v-model="valid"
-            lazy-validation>
-            <slot name="form">
-            </slot>
-            </v-form>
-        </v-card-text>
-        <v-card-actions>
-            <slot name="actions">
-            </slot>
-        </v-card-actions>
+        <v-form v-model="valid"
+            validate-on="submit lazy" 
+            @submit.prevent="submit">
+          <v-card-text>
+              
+              <slot name="form">
+              </slot>
+              
+          </v-card-text>
+          <v-card-actions>
+              <slot name="actions">
+              </slot>
+          </v-card-actions>
+        </v-form>
     </v-card>
 </template>
 <script>
@@ -57,7 +59,8 @@
       title:{required:false, type:String, default:'Login'},
       subtitle: {required:false, type:String, default:''},
       maxwidth: {required:false, type:String, default:'384px'},
-      width: {required:false, type:String, default:'330px'}
+      width: {required:false, type:String, default:'330px'},
+      submit: {required:true}
     }
   }
 </script>

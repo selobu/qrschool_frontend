@@ -15,7 +15,8 @@ export const authStore = defineStore('auth', {
       auth: {authenticated: false,
           isAdmin: false,
           bearerKey: '',
-          bearerRefresh: '',} ,
+          bearerRefresh: '',
+          qr:''} ,
       user: {name: null, email: null, profile: null, avatar: ''},
       modules: [] ,
       hasChanged: false,
@@ -25,7 +26,7 @@ export const authStore = defineStore('auth', {
   actions:{
     logout(){
       localStorage.setItem('user', JSON.stringify({username: '',
-          qrcode: '',
+          qr: '',
           email: '',
           profile: '',
           modules: [],
@@ -35,8 +36,10 @@ export const authStore = defineStore('auth', {
       this.auth = {
           authenticated: false,
           isAdmin: false,
-          bearerKey: null,
-          bearerRefresh: null}
+          bearerKey: '',
+          bearerRefresh: '',
+          qr:'',
+        }
       this.user ={name:null, email:null, avatar:''}
       this.modules = []
       this.updating = false
@@ -51,8 +54,9 @@ export const authStore = defineStore('auth', {
         const cuenta = localStorage.getItem('user');
         if ( cuenta === null ){
           // se registra un valor nuevo
-          localStorage.setItem('user', JSON.stringify({username: '',
-            qrcode: '',
+          localStorage.setItem('user', JSON.stringify({
+            username: '',
+            qr: '',
             email: '',
             profile: '',
             modules: [],
@@ -62,7 +66,9 @@ export const authStore = defineStore('auth', {
           this.auth= {authenticated: false,
             isAdmin: false,
             bearerKey: '',
-            bearerRefresh: ''}
+            bearerRefresh: '',
+            qr:''
+          }
           this.user= {name: null, email: null, avatar: ''}
           this.modules= []
         } else {
@@ -72,7 +78,9 @@ export const authStore = defineStore('auth', {
             authenticated: response.isauth,
             isAdmin: false,
             bearerKey: response.bearerkey,
-            bearerRefresh: response.bearerRefresh}
+            bearerRefresh: response.bearerRefresh,
+            qr: response.qr
+          }
           this.user= {
             name: response.username,
             email: response.email,
@@ -85,24 +93,26 @@ export const authStore = defineStore('auth', {
       }
       this.updating = false
     },
-    async login(email: String, password: String) {
-      const api = {post: async (data)=>({})}
-      this.userData = await api.post({ email, password }) // TODO
+    async login(bearerkey: String, isauth: Boolean,
+      email: String, bearerRefresh: String, username: String, qr:String) {
 
       this.user = {name: 'Sebastian', email,
                 avatar: getGravatar(email) }
       this.auth = {authenticated: true,
         isAdmin: true,
-        bearerKey: '',
-        bearerRefresh: ''}
-      localStorage.setItem('user', JSON.stringify({username: 'Sebastian',
-        qrcode: '',
-        email: email,
+        bearerkey,
+        bearerRefresh,
+        qr
+      }
+      localStorage.setItem('user', JSON.stringify({
+        username,
+        qr,
+        email,
         profile: '',
         modules: [],
-        bearerRefresh:'',
-        bearerkey: '',
-        isauth: true}))
+        bearerRefresh,
+        bearerkey,
+        isauth}))
       return true
     },
   }
@@ -120,5 +130,6 @@ interface Auth {
   isAdmin: Boolean,
   bearerKey: String,
   bearerRefresh: String,
+  qr:String
 }
 

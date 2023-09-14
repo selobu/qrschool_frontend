@@ -6,7 +6,9 @@
               <LoginRegister 
               width="290px"
               title="Ingresar"
-              subtitle="Ingrese sus credenciales">
+              subtitle="Ingrese sus credenciales"
+              :submit="submit"
+              >
               <template v-slot:form>
                 <v-text-field
                     v-model="email"
@@ -25,9 +27,10 @@
               <template v-slot:actions>
                 <v-btn block  height="48" color="indigo"
                   class="text-none text-white"
-                  @click="authuser"
+                  type="submit"
                   rounded="0"
                   variant="flat"
+                  :enable="btnenable"
                   >
                   Continuar
                 </v-btn>
@@ -50,6 +53,7 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
+  import {post} from '../../tools/requests'
   // pinnia working
   import { authStore } from '../../stores/authStore'
   // import { storeToRefs } from 'pinia'
@@ -59,6 +63,7 @@
   export default {
     data: () => ({
       // auth, user, modules,
+      btnenable: true,
       authstore: authStore(),
       valid: false,
       firstname: '',
@@ -78,10 +83,27 @@
       LoginRegister
     },
     methods:{
-      async authuser(){
-        this.authstore.login(this.email, '****').then(
+      async authuser(access_token, auth, email, fresh_access_token, username, qr){
+        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
+      },
+      async submit (event) {
+        this.btnenable = false
+        try {
+          const results = await event
+          if (!results.valid) return
+          const response = await post('login/', {email:this.email, password:this.password}, false)
+          console.log(response)
+          if (response.status !== 200){
+            return
+          }
+          const {access_token, auth, email, fresh_access_token, username, qr} = response.data
+          await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
+        } finally {
+          this.btnenable = true
+        }
+        
       }
     }
   }

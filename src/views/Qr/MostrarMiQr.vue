@@ -16,18 +16,20 @@
   </v-container>
 </template>
 <script>
-  import QrcodeVue from 'qrcode.vue'
-  import { authStore } from '../../stores/authStore'
-  export default {
+import QrcodeVue from 'qrcode.vue'
+import { authStore } from '../../stores/authStore'
+export default {
   data() {
+    const authstore = authStore()
+    console.log(authstore.auth.qr)
     return {
-      value: 'https://gestionhseq.com',
+      value: authstore.auth.qr,
       size: this.screenwidth > 350 ? 350 : this.screenwidth,
       window: {
           width: 0,
           height: 0
       },
-      authstore: authStore()
+      authstore
     }
   },
   components: {
