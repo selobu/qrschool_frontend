@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {authStore} from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
@@ -74,10 +75,7 @@ export async function updateToken() {
     )
     return response.data.access_token
   } catch (error) {
-    if (error.response.data.auth === false) {
-      // TODO
-      // logout()
-    }
+    if (error.response.data.auth === false) authStore().logout()
     return null
   }
 }
