@@ -22,7 +22,7 @@
         ></v-list-item>
         </v-img>
         <v-form v-model="valid"
-            validate-on="submit lazy" 
+            validate-on="input lazy" 
             @submit.prevent="submit">
           <v-card-text>
               

@@ -14,7 +14,6 @@
                 v-model="nombres"
                 label="Nombres"
                 :rules="namerules"
-                required
               ></v-text-field>
             </v-col>
             <v-col cols="12" xs="12" md="6">
@@ -34,16 +33,17 @@
                 prepend-inner-icon="mdi-card-account-details"
                 type="number"
                 :rules="idrules"
-                required
               ></v-text-field>
             </v-col>
             <v-col cols="12" xs="12" md="6">
               <v-text-field
               v-model="fechaNacimiento"
               label="Fecha de nacimiento"
+              placeholder="DD-MM-AAAA"
               prepend-inner-icon="mdi-calendar-account-outline"
-              required
-            ></v-text-field>
+              :rules="daterules"
+            >
+            </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -130,8 +130,11 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
+  import {datevalidation} from '../../tools'
+
   export default {
     data: () => ({
+      bindedObject: null,
       valid: false,
       marker:true,
       numeroidentificacion:null,
@@ -167,6 +170,11 @@
       rhrules:[
         v => !!v || 'Requerido',
         v => ['O+','A+','B+','AB+','O-','A-','B-','AB-'].includes(v) || 'tipo de sange no existente'
+      ],
+      daterules:[
+        v => !!v || 'Requerido',
+        v => datevalidation(v, "D-M-YYYY", true).isValid() || 'Fecha incorrecta',
+
       ]
     }),
     components:{

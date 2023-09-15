@@ -40,3 +40,11 @@ export const getGravatar = (email, size=80) => `https://www.gravatar.com/avatar/
 export function mask(cc, num = 6, mask = '*'){
   return `${cc}`.slice(0,-num).padEnd(`${cc}`.length, mask);
 }
+
+import dayjs from 'dayjs'
+import customParseFormat  from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
+
+export const datevalidation = dayjs
+
