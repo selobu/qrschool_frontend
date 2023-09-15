@@ -21,7 +21,6 @@ import { authStore } from '../../stores/authStore'
 export default {
   data() {
     const authstore = authStore()
-    console.log(authstore.auth.qr)
     return {
       value: authstore.auth.qr,
       size: this.screenwidth > 350 ? 350 : this.screenwidth,
