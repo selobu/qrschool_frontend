@@ -26,7 +26,9 @@
             <v-col cols="12" xs="12" md="6">
               <v-text-field
                 v-model="numeroidentificacion"
-                label="Número de identifiacion"
+                label="Número de identificación"
+                prepend-inner-icon="mdi-card-account-details"
+                type="numeric"
                 required
               ></v-text-field>
             </v-col>
@@ -34,6 +36,7 @@
               <v-text-field
               v-model="fechaNacimiento"
               label="Fecha de nacimiento"
+              prepend-inner-icon="mdi-calendar-account-outline"
               required
             ></v-text-field>
             </v-col>
@@ -42,7 +45,8 @@
             <v-col cols="12" xs="4" md="2">
               <v-text-field
               v-model="rh"
-              label="Factor RH"
+              label="RH"
+              hint="Factor RH como O+ AB+"
               required
             ></v-text-field>
             </v-col>
@@ -50,6 +54,8 @@
               <v-text-field
               v-model="telefonoContacto"
               label="Teléfono de contacto"
+              prepend-inner-icon="mdi-cellphone-message"
+              hint="Acudiente"
               required
               ></v-text-field>
             </v-col>
@@ -58,6 +64,7 @@
                 v-model="correo"
                 :rules="emailRules"
                 label="Correo"
+                prepend-inner-icon="mdi-email"
                 required
               ></v-text-field>
             </v-col>
@@ -67,6 +74,7 @@
               <v-text-field
                 v-model="direccion"
                 label="Direccion"
+                prepend-inner-icon="mdi-map-marker"
                 required
               ></v-text-field>
             </v-col>
@@ -74,6 +82,8 @@
               <v-text-field
                 v-model="telefono"
                 label="Teléfono"
+                hint="Tu número telefónico"
+                prepend-inner-icon="mdi-cellphone"
                 required
               ></v-text-field>
             </v-col>
@@ -85,6 +95,8 @@
               :counter="30"
               :rules="passwordRules"
               label="Contraseña"
+              hint="Incluya por lo menos una letra en Mayúscula, un número y un símbolo"
+              prepend-inner-icon="mdi-lock-check"
               required
               ></v-text-field>
             </v-col>
