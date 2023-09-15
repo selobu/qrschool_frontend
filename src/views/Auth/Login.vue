@@ -14,6 +14,8 @@
                     v-model="email"
                     :rules="emailRules"
                     label="Correo"
+                    hint="Correo electrónico como gmail"
+                    prepend-inner-icon="mdi-email"
                     required
                     ></v-text-field>
 
@@ -21,9 +23,15 @@
                     v-model="password"
                     :rules="passwordRules"
                     label="Contraseña"
+                    hint="Para acceder a este sitio"
+                    prepend-inner-icon="mdi-lock"
                     required
+                    :append-inner-icon="marker ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
+                    :type="marker? 'password':'text'"
+                    @click:append-inner="marker=!marker"
                     ></v-text-field>
               </template>
+              
               <template v-slot:actions>
                 <v-btn block  height="48" color="indigo"
                   class="text-none text-white"
@@ -54,15 +62,10 @@
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
   import {post} from '../../tools/requests'
-  // pinnia working
   import { authStore } from '../../stores/authStore'
-  // import { storeToRefs } from 'pinia'
-  // const authstore= authStore()
-  // const { auth, user, modules } = storeToRefs(authstore)
-  // --- pinnia
   export default {
     data: () => ({
-      // auth, user, modules,
+      marker: true,
       btnenable: true,
       authstore: authStore(),
       valid: false,
