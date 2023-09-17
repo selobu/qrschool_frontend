@@ -6,10 +6,10 @@
         <v-img
         :src="imgurl"
         alt="Login"
-        height="120px"
+        :height="showavatar ? '120px': '72px'"
         cover
         >
-        <v-avatar
+        <v-avatar v-if="showavatar"
             color="grey"
             size="48"
         >
@@ -60,7 +60,8 @@
       subtitle: {required:false, type:String, default:''},
       maxwidth: {required:false, type:String, default:'384px'},
       width: {required:false, type:String, default:'330px'},
-      submit: {required:true}
+      submit: {required:true},
+      showavatar: { default:true, type:Boolean}
     }
   }
 </script>

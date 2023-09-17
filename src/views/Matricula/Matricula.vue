@@ -28,6 +28,7 @@
                             maxwidth="700px"
                             width="400px"
                             :submit="submit"
+                            :showavatar="false"
                             >
                             <template v-slot:form>
                                 <v-text-field

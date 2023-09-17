@@ -15,6 +15,7 @@
           <v-btn icon @click="$router.push({name:'mostrarmiqr'})">
             <v-icon icon="mdi-qrcode" ></v-icon>
           </v-btn>
+          <switch-dark-theme id="theme-switch" ></switch-dark-theme>
           <v-btn icon @click.stop="drawerRight = !drawerRight">
             <v-avatar
               color="grey-lighten-2"
@@ -29,6 +30,7 @@
           </v-btn>
         </template>
         <template v-else v-slot:append>
+          <switch-dark-theme id="theme-switch" ></switch-dark-theme>
           <v-btn  class="px-1" @click="this.$router.push({name: 'register'})">Registro</v-btn>
           <v-btn  class="px-1" @click="this.$router.push({name: 'login'})">Ingreso</v-btn>
         </template>
@@ -40,6 +42,8 @@
   import MenuRight from './NavDrawerRight.vue'
   import { authStore } from '../../stores/authStore'
   import {getGravatar} from '../../tools'
+  import switchDarkTheme from '../../components/core/buttons/darkmodebtn.vue'
+
   export default {
     data: () => ({
       drawer: false,
@@ -51,7 +55,8 @@
     components: {
       'navigation-drawer':()=> import('./NavDrawerLeft.vue'),
       NavDrawerLeft,
-      MenuRight
+      MenuRight,
+      switchDarkTheme
     },
     watch: {
       group () {
@@ -61,7 +66,7 @@
       },
     },
     methods:{
-      getGravatar
+      getGravatar,
     }
   }
 </script>

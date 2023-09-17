@@ -24,11 +24,6 @@
       :value="item.value"
       color="primary"
       ></v-list-item>
-      <v-divider></v-divider>
-      <v-list-subheader>Configuración</v-list-subheader>
-      <v-list-item>
-        <v-switch label="Darkmode" inset v-model="darkmode"></v-switch>
-      </v-list-item>
     </v-list>
     <v-btn block 
         @click="authstore.logout() ? this.$router.push({ name: 'index' }) : 'No se pudo salir'"
