@@ -96,7 +96,7 @@ export const authStore = defineStore('auth', {
     async login(bearerkey: String, isauth: Boolean,
       email: String, bearerRefresh: String, username: String, qr:String) {
 
-      this.user = {name: 'Sebastian', email,
+      this.user = {name: username, email,
                 avatar: getGravatar(email) }
       this.auth = {authenticated: true,
         isAdmin: true,
