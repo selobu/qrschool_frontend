@@ -31,7 +31,7 @@
                     @click:append-inner="marker=!marker"
                     ></v-text-field>
               </template>
-              
+
               <template v-slot:actions>
                 <v-btn block  height="48" color="indigo"
                   class="text-none text-white"
@@ -106,7 +106,6 @@
         } finally {
           this.btnenable = true
         }
-        
       }
     }
   }

@@ -22,7 +22,14 @@
                 <v-card-text class="text-center">
                     <v-container class="d-flex justify-center">
                         <v-col cols="12" md="6" lg="4">
-                            <v-form v-model="valid" @submit.prevent="onSubmit" width="300px">
+                            <LoginRegister 
+                            title="Apertura Grado"
+                            subtitle="Nuevo grado para el proceso de matrícula"
+                            maxwidth="700px"
+                            width="400px"
+                            :submit="submit"
+                            >
+                            <template v-slot:form>
                                 <v-text-field
                                 v-model="nombre"
                                 :readonly="loading"
@@ -30,7 +37,7 @@
                                 class="mb-2"
                                 clearable
                                 placeholder="Ingrese el nombre"
-                                label="nombre"
+                                label="Nombre del grado"
                                 ></v-text-field>
                                 <v-text-field
                                 v-model="cupomaximo"
@@ -48,9 +55,9 @@
                                 label="Identificador de matrícula"
                                 placeholder="Ingrese el identificador de matrícula"
                                 ></v-text-field>
-                                <br/>
+                            </template>
+                            <template v-slot:actions>
                                 <v-btn
-                                :disabled="!valid"
                                 :loading="loading"
                                 block
                                 color="success"
@@ -60,7 +67,8 @@
                                 >
                                 Grabar
                                 </v-btn>
-                            </v-form>
+                            </template>
+                            </LoginRegister>
                         </v-col>
                     </v-container>
                 </v-card-text>
@@ -94,6 +102,8 @@
 <script>
 import { VDataTable } from 'vuetify/lib/labs/components.mjs';
 import {datatable} from '../../tools/fake.js'
+import LoginRegister from '../../components/core/LoginRegister.vue'
+
 
 export default {
     data:()=>({
@@ -106,10 +116,11 @@ export default {
         nombre: null,
         matricula: null,
         cupomaximo: null,
-        required: true
+        required: v=> !!v || 'Requerido'
     }),
     components:{
-        VDataTable
+        VDataTable,
+        LoginRegister
     },
     methods:{
         getColor: datatable.getColor,

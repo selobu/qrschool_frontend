@@ -39,7 +39,7 @@
               <v-text-field
               v-model="fechaNacimiento"
               label="Fecha de nacimiento"
-              placeholder="DD-MM-AAAA"
+              placeholder="AAAA-M-D"
               prepend-inner-icon="mdi-calendar-account-outline"
               :rules="daterules"
             >
@@ -117,6 +117,7 @@
 
         <template v-slot:actions>
           <v-btn block  height="48" color="indigo"
+            :enable="btnenable"
             class="text-none text-white"
             type="submit"
             rounded="0"
@@ -131,10 +132,11 @@
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
   import {datevalidation} from '../../tools'
+  import {post} from '../../tools/requests'
 
   export default {
     data: () => ({
-      bindedObject: null,
+      btnenable: true,
       valid: false,
       marker:true,
       numeroidentificacion:null,
@@ -173,7 +175,7 @@
       ],
       daterules:[
         v => !!v || 'Requerido',
-        v => datevalidation(v, "D-M-YYYY", true).isValid() || 'Fecha incorrecta',
+        v => datevalidation(v, "YYYY-M-D", true).isValid() || 'Fecha incorrecta',
 
       ]
     }),
@@ -181,7 +183,38 @@
       LoginRegister
     },
     methods:{
-      submit(){
+      async authuser(access_token, auth, email, fresh_access_token, username, qr){
+        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr).then(
+         this.$router.push({name: 'mostrarmiqr'})
+        )
+      },
+      async submit(event){
+        this.btnenable = false
+        
+        try {
+          const results = await event
+          if (!results.valid) return
+          var response = await post('usuario/', [{
+            nombres: this.nombres,
+            apellidos: this.apellidos,
+            numeroidentificacion: this.numeroidentificacion,
+            fechaNacimiento: this.fechaNacimiento,
+            rh: this.rh,
+            telefonoContacto: this.telefonoContacto,
+            correo: this.correo,
+            direccion: this.direccion,
+            telefono: this.telefono,
+            password: this.password
+            }], false)
+          console.log(response)
+          if (response.status !== 200) return
+          response = await post('login/', {email:this.correo, password:this.password}, false)
+          if (response.status !== 200) return
+          const {access_token, auth, email, fresh_access_token, username, qr} = response.data
+          await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
+        } finally {
+          this.btnenable = true
+        }
 
       }
     }
