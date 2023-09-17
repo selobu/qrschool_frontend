@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="px-0 py-0">
+  <v-container fluid>
     <v-row>
       <v-parallax class="hight-at-least"
         :src="background[0]"
