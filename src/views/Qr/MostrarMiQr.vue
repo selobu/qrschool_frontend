@@ -11,6 +11,10 @@
                   <qrcode-vue :value="value" :size="getmaxwidth() > 300? 300:getmaxwidth() " level="H" 
                     alt="QR Code"/>
               </v-img>
+              <template v-if="!this.authstore.auth.active">
+              <br/>
+              <p>Actualmente no se encuentra activo en el sistema</p>
+              </template>
           </v-card-text>        
       </v-card>
   </v-container>
