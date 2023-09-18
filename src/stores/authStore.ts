@@ -32,13 +32,16 @@ export const authStore = defineStore('auth', {
           modules: [],
           bearerRefresh:'',
           bearerkey: '',
-          isauth: false}))
+          isauth: false,
+          active: false,
+        }))
       this.auth = {
           authenticated: false,
           isAdmin: false,
           bearerKey: '',
           bearerRefresh: '',
           qr:'',
+          active: false,
         }
       this.user ={name:null, email:null, avatar:''}
       this.modules = []
@@ -94,7 +97,8 @@ export const authStore = defineStore('auth', {
       this.updating = false
     },
     async login(bearerkey: String, isauth: Boolean,
-      email: String, bearerRefresh: String, username: String, qr:String) {
+      email: String, bearerRefresh: String, username: String, qr:String,
+      active: Boolean) {
 
       this.user = {name: username, email,
                 avatar: getGravatar(email) }
@@ -102,7 +106,8 @@ export const authStore = defineStore('auth', {
         isAdmin: true,
         bearerkey,
         bearerRefresh,
-        qr
+        qr,
+        active
       }
       localStorage.setItem('user', JSON.stringify({
         username,
@@ -112,7 +117,9 @@ export const authStore = defineStore('auth', {
         modules: [],
         bearerRefresh,
         bearerkey,
-        isauth}))
+        isauth,
+        active
+      }))
       return true
     },
   }

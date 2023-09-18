@@ -2,8 +2,8 @@
   <v-container fluid full-height class="d-flex justify-center">
       <v-card>
           <v-card-title 
-            :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3': 'bg-light-blue'">
-            {{  authstore.user.name }}
+            :class="getcolor()">
+            {{  authstore.user.name }} 
           </v-card-title>
           <v-card-text :class="$vuetify.theme.name == 'dark' ? 'bg-white': 'white'">
               <br/>
@@ -49,6 +49,13 @@ export default {
       getmaxwidth(){
           const computed = this.window.width-10 < this.window.height-120 ? this.window.width-10:this.window.height-120;
           return computed
+      },
+      getcolor(){
+        var color = this.$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3': 'bg-light-blue'
+        if ( !this.authstore.auth.active ){
+          color= 'bg-red'
+        }
+        return color
       }
   }
 }

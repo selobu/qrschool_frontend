@@ -20,7 +20,7 @@
         </p>
       </v-sheet>
       <v-divider></v-divider>
-      <v-list v-if="authstore.auth.authenticated" class="text-left"> 
+      <v-list v-if="authstore.auth.active" class="text-left"> 
           <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
           :key="item.title"
           :prepend-icon="item.icon"

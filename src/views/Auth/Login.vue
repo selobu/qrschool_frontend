@@ -86,8 +86,8 @@
       LoginRegister
     },
     methods:{
-      async authuser(access_token, auth, email, fresh_access_token, username, qr){
-        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr).then(
+      async authuser(access_token, auth, email, fresh_access_token, username, qr, active){
+        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr, active).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
       },
@@ -97,12 +97,11 @@
           const results = await event
           if (!results.valid) return
           const response = await post('login/', {email:this.email, password:this.password}, false)
-          console.log(response)
           if (response.status !== 200){
             return
           }
-          const {access_token, auth, email, fresh_access_token, username, qr} = response.data
-          await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
+          const {access_token, auth, email, fresh_access_token, username, qr, active} = response.data
+          await this.authuser(access_token, auth, email, fresh_access_token, username, qr, active)
         } finally {
           this.btnenable = true
         }
