@@ -21,7 +21,7 @@
       </v-sheet>
       <v-divider></v-divider>
       <v-list v-if="authstore.auth.active" class="text-left"> 
-          <v-list-item v-for="item in items" @click="this.$router.push({ name: item.href })"
+          <v-list-item v-for="item in authstore.modules" @click="this.$router.push({ name: item.href })"
           :key="item.title"
           :prepend-icon="item.icon"
           :title="item.title"
@@ -52,46 +52,6 @@
       logoUrl,
       authstore: authStore(),
       items: [],
-    }),
-    beforeMount(){
-      this.items = [
-        {
-          title: 'Dashboard',
-          value: 'dashboard',
-          href: 'dashboard',
-          icon: 'mdi-elevation-rise'
-          },
-          ...this.readmodules()
-      ]
-    },
-    methods:{
-      readmodules(){
-        return [{
-          title: 'Asistencia',
-          value: 'asistencia',
-          href: 'registrarasistencia',
-          icon: 'mdi-check'
-        },
-        {
-          title: 'Gestion Qr',
-          value: 'gestionqr',
-          href: 'listadoqr',
-          icon: 'mdi-qrcode'
-        },
-        {
-          title: 'Matricula',
-          value: 'matricula',
-          href: 'matricula',
-          icon: 'mdi-format-list-bulleted'
-        },
-        {
-          title: 'Usuarios',
-          value: 'usuarios',
-          href: 'usuarios',
-          icon: 'mdi-account-multiple'
-        },
-      ]
-      }
-    }
+    })
   }
 </script>

@@ -9,6 +9,13 @@ interface State {
   updating: Boolean,
 }
 
+type MenuType = {
+  title: String,
+  value: String,
+  href: String,
+  icon: String
+}
+
 export const authStore = defineStore('auth', {
   state: (): State => {
     return {
@@ -96,12 +103,54 @@ export const authStore = defineStore('auth', {
       }
       this.updating = false
     },
+    updatemodules(modules){
+      const available ={Ausentismo:{
+        title: 'Asistencia',
+        value: 'asistencia',
+        href: 'registrarasistencia',
+        icon: 'mdi-check'
+      }, 
+      Qr: {
+        title: 'Gestion Qr',
+        value: 'gestionqr',
+        href: 'listadoqr',
+        icon: 'mdi-qrcode'
+      },
+      Matriculas: {
+        title: 'Matricula',
+        value: 'matricula',
+        href: 'matricula',
+        icon: 'mdi-format-list-bulleted'
+      },
+      User: {
+        title: 'Usuarios',
+        value: 'usuarios',
+        href: 'usuarios',
+        icon: 'mdi-account-multiple'
+      },}
+
+      var response: MenuType[] = []
+      for(let module of modules){
+        if ( module in available) response.push(available[module])
+      }
+      return [
+      {
+        title: 'Dashboard',
+        value: 'dashboard',
+        href: 'dashboard',
+        icon: 'mdi-elevation-rise'
+        },
+        ...response
+      ]
+    },
     async login(bearerkey: String, isauth: Boolean,
       email: String, bearerRefresh: String, username: String, qr:String,
-      active: Boolean) {
+      active: Boolean, modules) {
 
       this.user = {name: username, email,
-                avatar: getGravatar(email) }
+                avatar: getGravatar(email),
+                 }
+      this.modules = this.updatemodules(modules)
       this.auth = {authenticated: true,
         isAdmin: true,
         bearerkey,
@@ -114,11 +163,11 @@ export const authStore = defineStore('auth', {
         qr,
         email,
         profile: '',
-        modules: [],
+        modules,
         bearerRefresh,
         bearerkey,
         isauth,
-        active
+        active,
       }))
       return true
     },
