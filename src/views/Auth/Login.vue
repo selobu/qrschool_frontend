@@ -38,7 +38,7 @@
                   type="submit"
                   rounded="0"
                   variant="flat"
-                  :enable="btnenable"
+                  :loading="!btnenable"
                   >
                   Continuar
                 </v-btn>

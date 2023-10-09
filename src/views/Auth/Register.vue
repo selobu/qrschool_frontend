@@ -117,7 +117,7 @@
 
         <template v-slot:actions>
           <v-btn block  height="48" color="indigo"
-            :enable="btnenable"
+            :loading="!btnenable"
             class="text-none text-white"
             type="submit"
             rounded="0"
