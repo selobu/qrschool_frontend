@@ -11,14 +11,14 @@ const _fixurl = (endpoint, url=bApiUrl) =>
 function decorator(fnc){
   return async function(searchurl, includeheaders, data=null){
     const endurl = _fixurl(searchurl)
-    const headers =  includeheaders ? await get_headers() : {}
+    const headers =  includeheaders === true ? await get_headers() : {}
     if (data === null) return await fnc(endurl, headers)
     if (data !== null) return await fnc(endurl, data, headers)
   }
 }
 
 const _get = decorator(async (endurl, headers)=> await axios.get(endurl, headers))
-const _post = decorator(async (endurl, headers)=> await axios.post(endurl, headers))
+const _post = decorator(async (endurl, headers, data)=> await axios.post(endurl, headers, data))
 export const put = decorator(async (endurl, headers, data)=> await axios.put(endurl, data, headers))
 export const patch = decorator(async (endurl, headers, data)=> await axios.patch(endurl, data, headers))
 export const del = decorator(async (endurl, headers, data)=> await axios.delete(endurl, { ...headers, data: data || {} }))
@@ -82,16 +82,17 @@ export async function updateToken() {
 
 export async function get_headers() {
   if (!navigator.onLine) return {}
-  if (localStorage.getItem('userFreshToken') === null)  return { headers: {} }
+  const storage = JSON.parse(localStorage.getItem('user'))
+  if (storage['bearerRefresh'] === null)  return { headers: {} }
 
-  const usertoken =  localStorage.getItem('userTkn')
+  const usertoken =storage['bearerkey']
   if (usertoken === null) {
     let token = await updateToken()
     if (token === null) return {}
     return { headers: { Authorization: token } }
   } 
 
-  let {token, time} = JSON.parse(usertoken)
+  let {token, time} = usertoken
   const delta = (Date.now() - new Date(time).getTime()) / 1000 || 300
   if (delta > 296 ) token = await updateToken()
 

@@ -165,7 +165,7 @@ export const authStore = defineStore('auth', {
         profile: '',
         modules,
         bearerRefresh,
-        bearerkey,
+        bearerkey: {token:bearerkey, time: Date.now()},
         isauth,
         active,
       }))

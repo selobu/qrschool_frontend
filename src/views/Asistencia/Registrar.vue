@@ -1,52 +1,42 @@
 <template>
     <v-container fluid class="px-0 py-0">
-        <v-dialog
-            v-model="dialog"
-            fullscreen
-            :scrim="false"
-            transition="dialog-bottom-transition"
-            >
+        <v-dialog v-model="dialog" fullscreen :scrim="false" transition="dialog-bottom-transition">
             <v-card>
-                <v-toolbar
-                dark
-                :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3': 'primary'"
-                >
-                <v-btn
-                    icon
-                    dark
-                    @click="dialog = false"
-                >
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-                <v-toolbar-title><v-icon>mdi-account-group</v-icon> Asistencia</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-toolbar-items>
-                    <v-btn
-                    variant="text"
-                    @click="dialog = false"
-                    >
-                    Grabar
+                <v-toolbar dark :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3' : 'primary'">
+                    <v-btn icon dark @click="dialog = false">
+                        <v-icon>mdi-close</v-icon>
                     </v-btn>
-                </v-toolbar-items>
+                    <v-toolbar-title><v-icon>mdi-account-group</v-icon> Asistencia</v-toolbar-title>
+                    <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
                     <v-row>
-                        <v-col cols="12" lg="6">
-                            <qr-reader 
-                                :multiple="true" 
-                                v-model="userslist"
-                                max-height="400px">
+                        <v-col cols="12" md="6" lg="6">
+                            <qr-reader :multiple="true" v-model="qrlist" max-height="400px">
                                 <template v-slot:actions>
                                 </template>
                             </qr-reader>
                         </v-col>
-                        <v-col cols="12" lg="6">
+                        <v-col cols="12" md="6" lg="6">
                             <v-card elevation="3">
-                                <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Listado</v-card-title>
+                                <v-card-title
+                                    :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Qrs
+                                    identificados</v-card-title>
                                 <v-card-text>
-                                    <p><br/><strong>Total registrados: {{ rows.length }}</strong></p>
-                                    <easy-data-table :rows="rows" :headers="headers" :maskcolumns="['qr']"></easy-data-table>
+                                    <p><br /><strong>Total registrados: {{ rows.length }}</strong></p>
+                                    <easy-data-table :rows="rows" :headers="headers"
+                                        :maskcolumns="['qr']"></easy-data-table>
                                 </v-card-text>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="6" lg="6">
+                            <v-card elevation="3">
+                                <v-card-actions>
+                                    <v-btn block @click="save()" :loading="loadingSaveBtn" color="success" size="large"
+                                        variant="elevated" title="Grabar">Grabar</v-btn>
+                                </v-card-actions>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -56,11 +46,10 @@
         <v-row>
             <v-col cols="12">
                 <v-toolbar density="compact" class="toolbarmenu">
-                    <v-btn icon @click="dialog=true" title="Agregar">
+                    <v-btn icon @click="dialog = true" title="Agregar">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <v-btn icon title="Exportar"
-                        @click="generarcsv">
+                    <v-btn icon title="Exportar" @click="generarcsv">
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
@@ -72,13 +61,15 @@
 <script>
 import QrReader from '../../components/core/QrReader.vue'
 import EasyDataTable from "../../components/core/EasyDataTable.vue"
-import {datatable} from '../../tools/fake.js'
+import { datatable } from '../../tools/fake.js'
+import { post } from '../../tools/requests'
 
 export default {
-    data:() => ({
-        table:null,
+    data: () => ({
+        table: null,
         dialog: false,
-        userslist: [],
+        loadingSaveBtn: false,
+        qrlist: [],
         escanear: false,
         headers: [{ text: "Código QR", value: "qr" }],
         itemsPerPage: datatable.itemsPerPage,
@@ -86,23 +77,36 @@ export default {
         headersausentes: datatable.headersausentes,
         estudiantes: datatable.estudiantes,
     }),
-    computed:{
-        rows(){
-            var result= []
-            for (const element of this.userslist){
-                result.push({qr: element})
+    computed: {
+        rows() {
+            var result = []
+            for (const element of this.qrlist) {
+                result.push({ qr: element })
             }
             return result
         }
     },
-    components:{
+    components: {
         QrReader,
         EasyDataTable
-        },
-    methods:{
-        generarcsv(){
+    },
+    methods: {
+        generarcsv() {
             'Generar csvdata'
         },
+        async save() {
+            if (this.qrlist.length === 0) return
+            const data = {qrs: this.qrlist}
+            this.loadingSaveBtn = true
+            const nuevo = this
+            return post('/asistencia/', data).then((response) => {
+                // TODO process response
+            }).catch((error) => {
+                console.log(error);
+                alert(error)
+            }).finally(() => {
+                nuevo.loadingSaveBtn = false})
+        }
     }
 }
 </script>
