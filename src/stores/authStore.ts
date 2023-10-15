@@ -56,10 +56,8 @@ export const authStore = defineStore('auth', {
       return true
     },
     async initRead(){
-      if (this.updating){
-        return
-      }
-      try{
+      if (this.updating) return
+      try {
         this.updating = true
         const cuenta = localStorage.getItem('user');
         if ( cuenta === null ){
@@ -89,13 +87,14 @@ export const authStore = defineStore('auth', {
             isAdmin: false,
             bearerKey: response.bearerkey,
             bearerRefresh: response.bearerRefresh,
-            qr: response.qr
+            qr: response.qr,
+            active: response.active
           }
           this.user= {
             name: response.username,
             email: response.email,
             avatar: ''}
-          this.modules= response.modules
+          this.modules= this.updatemodules(response.modules)
         }
       } catch (error) {
         console.log(`authStore error onInit: ${error}`)

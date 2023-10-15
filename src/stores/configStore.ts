@@ -28,9 +28,7 @@ export const configStore = defineStore('config', {
         }
       },
       async readFromIndexDb(){
-        if (this.updating){
-          return this.theme.global.name
-        }
+        if (this.updating) return this.theme.global.name
         try{
           this.updating = true
           const cuenta = await db['config'].count();
