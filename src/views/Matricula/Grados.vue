@@ -20,13 +20,13 @@
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text class="text-center">
-                    <v-container class="d-flex justify-center">
+                    <v-container class="d-flex justify-center flex-column align-center">
+                        <v-row>
                         <v-col cols="12" md="6" lg="4">
                             <LoginRegister 
                             title="Apertura Grado"
                             subtitle="Nuevo grado para el proceso de matrícula"
-                            maxwidth="700px"
-                            width="400px"
+                            maxwidth="600px"
                             :submit="submit"
                             >
                             <template v-slot:form>
@@ -70,6 +70,7 @@
                             </template>
                             </LoginRegister>
                         </v-col>
+                    </v-row>
                     </v-container>
                 </v-card-text>
             </v-card>
