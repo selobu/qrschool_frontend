@@ -30,9 +30,9 @@
           </v-btn>
         </template>
         <template v-else v-slot:append>
-          <switch-dark-theme id="theme-switch" ></switch-dark-theme>
-          <v-btn  class="px-1" @click="this.$router.push({name: 'register'})">Registro</v-btn>
-          <v-btn  class="px-1" @click="this.$router.push({name: 'login'})">Ingreso</v-btn>
+          <switch-dark-theme id="theme-switch"></switch-dark-theme>
+          <v-btn  rounded variant="outlined" class="px-2" @click="this.$router.push({name: 'register'})">Registro</v-btn>
+          <v-btn  rounded variant="outlined" class="px-2" @click="this.$router.push({name: 'login'})">Ingreso</v-btn>
         </template>
     </v-toolbar>
     <NavDrawerLeft v-model="drawer"></NavDrawerLeft>
