@@ -1,6 +1,6 @@
 <template>
     <v-card  elevation="4">
-        <v-card-title :class="getcolor()">items:{{ detected.length }}</v-card-title>
+        <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">items:{{ detected.length }}</v-card-title>
         
         <v-card-text>
             <p>

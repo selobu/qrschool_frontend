@@ -14,11 +14,12 @@
                         <v-col cols="12" md="6" lg="6">
                             <qr-reader :multiple="true" v-model="qrlist" max-height="400px">
                                 <template v-slot:actions>
+                                    <div></div>
                                 </template>
                             </qr-reader>
                         </v-col>
                         <v-col cols="12" md="6" lg="6">
-                            <v-card elevation="3">
+                            <v-card elevation="3" max-height="400px">
                                 <v-card-title
                                     :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Qrs
                                     identificados</v-card-title>
@@ -30,8 +31,8 @@
                             </v-card>
                         </v-col>
                     </v-row>
-                    <v-row>
-                        <v-col cols="12" md="6" lg="6">
+                    <v-row class="justify-end">
+                        <v-col cols="12" md="6" lg="6" >
                             <v-card elevation="3">
                                 <v-card-actions>
                                     <v-btn block @click="save()" :loading="loadingSaveBtn" color="success" size="large"
