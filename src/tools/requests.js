@@ -63,13 +63,21 @@ export async function post(url, data, includeheaders = true) {
   return await _post(newurl, includeheaders, data).catch(()=>add_dexie())
 }
 
+function getStoredRefresKey(){
+  return JSON.parse(localStorage.getItem('user'))['bearerRefresh']
+
+}
+function hasRefreshKey(){
+  return getStoredRefresKey() !== null
+ }
+
 export async function updateToken() {
-  if (localStorage.getItem('userFreshToken') === null) return null
+  if (!hasRefreshKey()) return null
 
   try {
-    // You cannot use _get function because it requires userFreshToken instead
-    var response = await axios.get(_fixurl('Login/'),
-            { headers: { Authorization: localStorage.getItem('userFreshToken') } })
+    // You cannot use _get function because it requires bearerRefresh instead
+    var response = await axios.get(_fixurl('login/'),
+            { headers: { Authorization: getStoredRefresKey() } })
     
     localStorage.setItem('userTkn', JSON.stringify({ time: Date.now(), token: response.data.access_token })
     )
