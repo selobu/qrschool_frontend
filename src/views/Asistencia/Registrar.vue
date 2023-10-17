@@ -1,5 +1,24 @@
 <template>
     <v-container fluid class="px-0 py-0">
+        <v-dialog  v-model="exitoso"
+            transition="dialog-bottom-transition"
+            width="auto">
+            <v-card>
+                <v-toolbar
+                :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3' : 'success'"
+                title="Opening from the bottom"
+                ></v-toolbar>
+                <v-card-text>
+                    <div class="text-h2 pa-12">Registro exitoso!</div>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                <v-btn
+                    variant="text"
+                    @click="exitoso = false"
+                >Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
         <v-dialog v-model="dialog" fullscreen :scrim="false" transition="dialog-bottom-transition">
             <v-card>
                 <v-toolbar dark :color="$vuetify.theme.name === 'dark' ? 'grey-darken-3' : 'primary'">
@@ -10,6 +29,7 @@
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
+                    
                     <v-row>
                         <v-col cols="12" md="6" lg="6">
                             <qr-reader :multiple="true" v-model="qrlist" max-height="400px">
@@ -67,6 +87,7 @@ import { post } from '../../tools/requests'
 
 export default {
     data: () => ({
+        exitoso: false,
         table: null,
         dialog: false,
         loadingSaveBtn: false,
@@ -102,6 +123,8 @@ export default {
             const nuevo = this
             return post('/asistencia/', data).then((response) => {
                 // TODO process response
+                nuevo.qrlist = [];
+                nuevo.exitoso = true;
             }).catch((error) => {
                 console.log(error);
                 alert(error)
