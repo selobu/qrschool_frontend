@@ -3,7 +3,7 @@ import {authStore} from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
-const _fixurl = (endpoint, url=bApiUrl) =>
+export const _fixurl = (endpoint, url=bApiUrl) =>
   endpoint.startsWith('http') ? endpoint : 
   endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
   `${url}${endpoint}`

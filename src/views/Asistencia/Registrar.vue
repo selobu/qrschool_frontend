@@ -74,16 +74,16 @@
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <easy-data-table v-model="table"></easy-data-table>
+                <table-by-url v-model="qrlist" :url="url"></table-by-url>
             </v-col>
         </v-row>
     </v-container>
 </template>
 <script>
 import QrReader from '../../components/core/QrReader.vue'
-import EasyDataTable from "../../components/core/EasyDataTable.vue"
+import TableByUrl from '../../components/core/TableByUrl.vue'
 import { datatable } from '../../tools/fake.js'
-import { post } from '../../tools/requests'
+import { post, _fixurl } from '../../tools/requests'
 
 export default {
     data: () => ({
@@ -92,6 +92,7 @@ export default {
         dialog: false,
         loadingSaveBtn: false,
         qrlist: [],
+        url: _fixurl('asistencia/'),
         escanear: false,
         headers: [{ text: "Código QR", value: "qr" }],
         itemsPerPage: datatable.itemsPerPage,
@@ -110,7 +111,7 @@ export default {
     },
     components: {
         QrReader,
-        EasyDataTable
+        TableByUrl
     },
     methods: {
         generarcsv() {
