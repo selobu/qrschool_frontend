@@ -24,7 +24,7 @@ export default {
     methods:{ 
         async loaddata(page=1, per_page=20){
             const url = this.url+`?page=${page}&per_page=${per_page}`
-            let response = await get(url, 360) // six minutes
+            let response = await get(url, 10) // six minutes
             this.rows = response.data
             this.headers = [
                 {text: 'Fecha', value: 'timestamp'},
