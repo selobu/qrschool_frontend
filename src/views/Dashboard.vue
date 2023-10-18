@@ -26,7 +26,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" lg="6" >
-                <v-card height="400">
+                <v-card height="400px">
                     <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 text-left py-0':'py-0 text-left bg-warning'">Estudiantes ausentes</v-card-title>
                     <v-card-text>
                         <v-data-table
@@ -41,7 +41,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" lg="6">
-                <v-card height="400">
+                <v-card height="400px">
                     <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'py-0 bg-info'"> Asistencia por grado</v-card-title>
                     <v-card-text>
                         <v-data-table

@@ -9,7 +9,7 @@
                 title="Opening from the bottom"
                 ></v-toolbar>
                 <v-card-text>
-                    <div class="text-h2 pa-12">Registro exitoso!</div>
+                    <div class="text-h4 pa-12">Registro exitoso!</div>
                 </v-card-text>
                 <v-card-actions class="justify-end">
                 <v-btn
@@ -41,8 +41,8 @@
                         <v-col cols="12" md="6" lg="6">
                             <v-card elevation="3" max-height="400px">
                                 <v-card-title
-                                    :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Qrs
-                                    identificados</v-card-title>
+                                    :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Qrs identificados
+                                </v-card-title>
                                 <v-card-text>
                                     <p><br /><strong>Total registrados: {{ rows.length }}</strong></p>
                                     <easy-data-table :rows="rows" :headers="headers"
@@ -84,6 +84,7 @@ import QrReader from '../../components/core/QrReader.vue'
 import TableByUrl from '../../components/core/TableByUrl.vue'
 import { datatable } from '../../tools/fake.js'
 import { post, _fixurl } from '../../tools/requests'
+import EasyDataTable from '../../components/core/EasyDataTable.vue'
 
 export default {
     data: () => ({
@@ -106,12 +107,14 @@ export default {
             for (const element of this.qrlist) {
                 result.push({ qr: element })
             }
+            alert(result)
             return result
         }
     },
     components: {
         QrReader,
-        TableByUrl
+        TableByUrl,
+        EasyDataTable
     },
     methods: {
         generarcsv() {
