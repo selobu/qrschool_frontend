@@ -107,7 +107,6 @@ export default {
             for (const element of this.qrlist) {
                 result.push({ qr: element })
             }
-            alert(result)
             return result
         }
     },
