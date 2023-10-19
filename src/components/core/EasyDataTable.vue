@@ -7,6 +7,7 @@
         :items="newrows"
         :table-height="height"
         :table-class-name="$vuetify.theme.name === 'dark' ? 'default table-darkmode':'default' "
+        @click-row="$emit('clickRow',$event)"
         >
     </EasyDataTable>
 </template>
@@ -23,9 +24,9 @@ export default {
         'rows': {default: datatable.items_easy, type:Array },
         'height': {default: 400, type:String},
         'rowsPerPage': {default:10, required:false},
-        'maskcolumns': {default:[], required: false, type:Array}
+        'maskcolumns': {default:[], required: false, type:Array},
     },
-    emits: ['update:modelValue'],
+    emits: ['update:modelValue','clickRow'],
     data:()=>({
         table:null,
     }),

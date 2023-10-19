@@ -14,6 +14,11 @@ export default {
         headers:[]
     }),
     props:{ url:{type: String, required: true}},
+    watch:{
+        url(){
+            this.loaddata(1, 20)
+        }
+    },
     emits: ['update:modelValue'],
     components:{
         EasyDataTable
@@ -24,16 +29,15 @@ export default {
     methods:{ 
         async loaddata(page=1, per_page=20){
             const url = this.url+`?page=${page}&per_page=${per_page}`
-            console.log('URL get request')
-            console.log(url)
             let response = await get(url, 10) // six minutes
-            console.log(response)
             this.rows = response.data
-            this.headers = [
-                {text: 'Fecha', value: 'timestamp'},
-                {text: 'Total', value: 'total'},
-                {text: 'Id', value:'asistenciaid'}
-                ]
+            var res = []
+            for (let row of Object.keys(this.rows[0])){
+                console.log(row)
+                res.push({text: row, value: row},)
+            }
+            this.headers = res
+            
         }
     }
 }

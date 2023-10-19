@@ -74,7 +74,15 @@
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <table-by-url v-model="qrlist" :url="url"></table-by-url>
+                <table-by-url v-model="qrlist" :url="url" @click-row="clickedRow"></table-by-url>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12">
+                <v-toolbar density="compact" class="toolbarmenu">
+                    <v-toolbar-title> Asistentes</v-toolbar-title>
+                </v-toolbar>
+                <table-by-url v-model="asistentes" :url="urlasistentes"></table-by-url>
             </v-col>
         </v-row>
     </v-container>
@@ -92,7 +100,10 @@ export default {
         table: null,
         dialog: false,
         loadingSaveBtn: false,
+        asistenciaid: null, 
         qrlist: [],
+        asistentes: [],
+        urlasistentes: '',
         url: _fixurl('asistencia/'),
         escanear: false,
         headers: [{ text: "Código QR", value: "qr" }],
@@ -133,6 +144,17 @@ export default {
                 alert(error)
             }).finally(() => {
                 nuevo.loadingSaveBtn = false})
+        },
+        clickedRow(event){
+            this.asistencia_id = event.asistenciaid
+            if (this.asistencia_id === undefined) {
+                this.urlasistentes = ''
+                return
+            }
+            const url = _fixurl(`asistencia/${this.asistencia_id}`)
+            console.log('=> asistencia')
+            console.log(url)
+            this.urlasistentes = url
         }
     }
 }
