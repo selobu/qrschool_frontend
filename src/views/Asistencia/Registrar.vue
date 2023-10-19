@@ -151,7 +151,7 @@ export default {
                 this.urlasistentes = ''
                 return
             }
-            const url = _fixurl(`asistencia/${this.asistencia_id}`)
+            const url = _fixurl(`asistencia/${this.asistencia_id}/`)
             console.log('=> asistencia')
             console.log(url)
             this.urlasistentes = url
