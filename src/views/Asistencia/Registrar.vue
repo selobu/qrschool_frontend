@@ -80,9 +80,9 @@
         <v-row>
             <v-col cols="12">
                 <v-toolbar density="compact" class="toolbarmenu">
-                    <v-toolbar-title> Asistentes</v-toolbar-title>
+                    <v-toolbar-title> Asistentes {{ currdate }}</v-toolbar-title>
                 </v-toolbar>
-                <table-by-url v-model="asistentes" :url="urlasistentes"></table-by-url>
+                <table-by-url v-model="asistentes" :url="urlasistentes" :memorize="false"></table-by-url>
             </v-col>
         </v-row>
     </v-container>
@@ -91,7 +91,7 @@
 import QrReader from '../../components/core/QrReader.vue'
 import TableByUrl from '../../components/core/TableByUrl.vue'
 import { datatable } from '../../tools/fake.js'
-import { post, _fixurl } from '../../tools/requests'
+import { post } from '../../tools/requests'
 import EasyDataTable from '../../components/core/EasyDataTable.vue'
 
 export default {
@@ -104,13 +104,14 @@ export default {
         qrlist: [],
         asistentes: [],
         urlasistentes: '',
-        url: _fixurl('asistencia/'),
+        url: 'asistencia/',
         escanear: false,
         headers: [{ text: "Código QR", value: "qr" }],
         itemsPerPage: datatable.itemsPerPage,
         asistencia: datatable.asistencia,
         headersausentes: datatable.headersausentes,
         estudiantes: datatable.estudiantes,
+        currdate: ''
     }),
     computed: {
         rows() {
@@ -146,14 +147,13 @@ export default {
                 nuevo.loadingSaveBtn = false})
         },
         clickedRow(event){
+            this.currdate=event.timestamp
             this.asistencia_id = event.asistenciaid
             if (this.asistencia_id === undefined) {
                 this.urlasistentes = ''
                 return
             }
-            const url = _fixurl(`asistencia/${this.asistencia_id}/`)
-            console.log('=> asistencia')
-            console.log(url)
+            const url = `asistencia/${this.asistencia_id}/`
             this.urlasistentes = url
         }
     }
