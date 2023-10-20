@@ -22,7 +22,7 @@ export default {
         'modelValue':{type:Object, required:false},
         'headers': {default: datatable.headers_easy, type:Array },
         'rows': {default: datatable.items_easy, type:Array },
-        'height': {default: 400, type:String},
+        'height': {default: 400, type:Number},
         'rowsPerPage': {default:10, required:false},
         'maskcolumns': {default:[], required: false, type:Array},
     },
