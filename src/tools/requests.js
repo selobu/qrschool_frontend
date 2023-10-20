@@ -3,7 +3,7 @@ import {authStore} from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
-export const _fixurl = (endpoint, url=bApiUrl) =>
+const _fixurl = (endpoint, url=bApiUrl) =>
   endpoint.startsWith('http') ? endpoint : 
   endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
   `${url}${endpoint}`
@@ -11,7 +11,12 @@ export const _fixurl = (endpoint, url=bApiUrl) =>
 function decorator(fnc){
   return async function(searchurl, includeheaders, data=null){
     const endurl = _fixurl(searchurl)
-    const headers =  includeheaders === true ? await get_headers() : {}
+    var headers
+    if (includeheaders.constructor == Object) { // if it's a dictionary
+      headers = includeheaders
+    } else {
+      headers =  includeheaders === true ? await get_headers() : {}
+    }
     if (data === null) return await fnc(endurl, headers)
     if (data !== null) return await fnc(endurl, data, headers)
   }
@@ -24,8 +29,12 @@ export const patch = decorator(async (endurl, headers, data)=> await axios.patch
 export const del = decorator(async (endurl, headers, data)=> await axios.delete(endurl, { ...headers, data: data || {} }))
 
 
-export async function get(url, dt = 3600, includeheaders = true) {
-  var response = await db['Get'].get({ url: _fixurl(url) })
+export async function get(url='', dt = 3600, includeheaders = true, memorize=true) {
+  let _url = _fixurl(url)
+  
+  if (!memorize) return await _get(_url, includeheaders)
+
+  var response = await db['Get'].get({ url: _url })
   if (!navigator.onLine) {
     if ([null, undefined].includes(response)) return {}
     return JSON.parse(response?.response || '{}')
@@ -35,9 +44,9 @@ export async function get(url, dt = 3600, includeheaders = true) {
   
   response = dt === 0 ? null : response // forcing to refresh the content
   if (deltatime >= dt && response === null) {
-      response = await get_and_updatedexie(url, includeheaders)
+      response = await get_and_updatedexie(_url, includeheaders)
   } else if (deltatime >= dt) {
-    get_and_updatedexie(url, includeheaders)
+    get_and_updatedexie(_url, includeheaders)
   }
   
   if (response === null) return {}
@@ -45,22 +54,25 @@ export async function get(url, dt = 3600, includeheaders = true) {
   return JSON.parse(response?.response || '{}')
 }
 
+const add_dexie = (baseurl,newurl,data, includeheaders) => db['Post'].add({
+  baseurl,
+  url: newurl,
+  jsondata: JSON.stringify({...data, timestamp:now()}),
+  tries: 0,
+  maxtries: 5,
+  lasttimetryed: null,
+  includeheaders
+})
+
 export async function post(url, data, includeheaders = true) {
   const newurl = _fixurl(url)
   const baseurl = newurl.split('/').splice(-1).join('/')
-  const add_dexie = () => db['Post'].add({
-        baseurl,
-        url: newurl,
-        jsondata: JSON.stringify({...data, timestamp:now()}),
-        tries: 0,
-        maxtries: 10,
-        lasttimetryed: null,
-        includeheaders
-      })
+  
+  if (!navigator.onLine) return add_dexie(baseurl, newurl, data, includeheaders)
 
-  if (!navigator.onLine) return add_dexie()
-
-  return await _post(newurl, includeheaders, data).catch(()=>add_dexie())
+  return await _post(newurl, includeheaders, data).catch(()=>
+    add_dexie(baseurl,newurl,data, includeheaders)
+  )
 }
 
 function getStoredRefresKey(){
@@ -75,12 +87,12 @@ export async function updateToken() {
   if (!hasRefreshKey()) return null
 
   try {
-    // You cannot use _get function because it requires bearerRefresh instead
-    var response = await axios.get(_fixurl('login/'),
+    // You cannot use _get function because it requires userRefresh instead
+    var response = await _get(_fixurl('login/'),
             { headers: { Authorization: getStoredRefresKey() } })
-    
-    localStorage.setItem('userTkn', JSON.stringify({ time: Date.now(), token: response.data.access_token })
-    )
+    const newiten = {...JSON.parse(localStorage.getItem('user')),
+        'bearerkey': { time: Date.now(), token: response.data.access_token }}
+    localStorage.setItem('user', JSON.stringify(newiten))
     return response.data.access_token
   } catch (error) {
     if (error.response.data.auth === false) authStore().logout()
@@ -90,19 +102,19 @@ export async function updateToken() {
 
 export async function get_headers() {
   if (!navigator.onLine) return {}
-  const storage = JSON.parse(localStorage.getItem('user'))
-  if (storage['bearerRefresh'] === null)  return { headers: {} }
-
-  const usertoken =storage['bearerkey']
+  
+  if (!hasRefreshKey())  return { headers: {} }
+  
+  const usertoken = JSON.parse(localStorage.getItem('user'))['bearerkey']
   if (usertoken === null) {
     let token = await updateToken()
     if (token === null) return {}
     return { headers: { Authorization: token } }
   } 
 
-  let {token, time} = usertoken
-  const delta = (Date.now() - new Date(time).getTime()) / 1000 || 300
-  if (delta > 296 ) token = await updateToken()
+  let {time, token} = usertoken
+  const delta = (Date.now() - time) / 1000 || 300
+  if (delta > 20 ) token = await updateToken()
 
   return { headers: { Authorization: token } }
 }
