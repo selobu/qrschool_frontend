@@ -13,7 +13,9 @@ export default {
         rows: [],
         headers:[]
     }),
-    props:{ url:{type: String, required: true}},
+    props:{ url:{type: String, required: true},
+            memorize: {type: Boolean, required:false, default:true}
+        },
     watch:{
         url(){
             this.loaddata(1, 20)
@@ -28,16 +30,15 @@ export default {
     }, 
     methods:{ 
         async loaddata(page=1, per_page=20){
-            const url = this.url+`?page=${page}&per_page=${per_page}`
-            let response = await get(url, 10) // six minutes
+            if (this.url === '') return
+            const _url = this.url+`?page=${page}&per_page=${per_page}`
+            let response = await get(_url, 10, true, this.memorize)
             this.rows = response.data
             var res = []
             for (let row of Object.keys(this.rows[0])){
-                console.log(row)
                 res.push({text: row, value: row},)
             }
             this.headers = res
-            
         }
     }
 }
