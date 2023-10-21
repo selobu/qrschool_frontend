@@ -3,9 +3,9 @@
         <v-row>
             <v-col cols="12" lg="4">
                 <v-card>
-                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'bg-primary py-0'">Estudiantes</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0': 'bg-primary py-0'">Asistencia</v-card-title>
                     <v-card-text class="py-0">
-                        <BarChart />
+                        <BarChart :labels="asistencialabels" :datasets="asistenciadatasets"/>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -68,6 +68,7 @@
 import BarChart from '../components/charts/barchart.vue'
 import { VDataTable } from "vuetify/labs/VDataTable";
 import {datatable} from '../tools/fake.js'
+import { get } from '../tools/requests';
 
 export default {
     data:()=>({
@@ -75,7 +76,9 @@ export default {
         headers: datatable.headers,
         asistencia: datatable.asistencia,
         headersausentes:datatable.headersausentes,
-        estudiantes:datatable.estudiantes
+        estudiantes:datatable.estudiantes,
+        chartOptions:[],
+        asistenciadatasets:[]
     }),
     components:{
         BarChart,
@@ -83,6 +86,21 @@ export default {
     },
     methods:{
         getColor: datatable.getColor
+    },
+    async mounted(){
+        let response = await get('asistencia/last7/', 5)
+        var fechas = []
+        var cantidades = []
+        for (const key in response.data){
+            var {fecha, cantidad} = response.data[key]
+            fechas.push(fecha.split('T')[0])
+            cantidades.push(cantidad)
+        }
+        this.asistencialabels = fechas
+        this.asistenciadatasets = [{ data: cantidades,
+            label:'Asistencia',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'}]
     }
 }
 </script>
