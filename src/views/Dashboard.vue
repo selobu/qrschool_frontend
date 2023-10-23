@@ -88,7 +88,7 @@ export default {
         getColor: datatable.getColor
     },
     async mounted(){
-        let response = await get('asistencia/last7/', 5)
+        let response = await get('asistencia/last7/', 20)
         var fechas = []
         var cantidades = []
         for (const key in response.data){

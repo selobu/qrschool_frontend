@@ -61,7 +61,7 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
-  import {post} from '../../tools/requests'
+  import { post } from '../../tools/requests'
   import { authStore } from '../../stores/authStore'
   export default {
     data: () => ({

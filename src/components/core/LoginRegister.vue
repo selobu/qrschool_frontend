@@ -58,8 +58,8 @@
     props:{
       title:{required:false, type:String, default:'Login'},
       subtitle: {required:false, type:String, default:''},
-      maxwidth: {required:false, type:String, default:'384px'},
-      width: {required:false, type:String, default:'330px'},
+      maxwidth: {required:false, type:String, default: undefined},
+      width: {required:false, type:String, default:  undefined},
       submit: {required:true},
       showavatar: { default:true, type:Boolean}
     }
