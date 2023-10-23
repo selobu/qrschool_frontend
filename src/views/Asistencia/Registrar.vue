@@ -116,6 +116,7 @@ export default {
     computed: {
         rows() {
             var result = []
+            if (this.qrlist === null ) return result
             for (const element of this.qrlist) {
                 result.push({ qr: element })
             }
