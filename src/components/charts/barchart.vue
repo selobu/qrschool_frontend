@@ -25,7 +25,7 @@ export default {
     chartData(){
       return {
         labels: this.labels || [ 'January', 'February', 'March' ],
-        datasets: this.datasets || [ { data: [40, 20, 12] } ]
+        datasets: this.datasets || [ { data: [40, 20, 12], label:'default' } ]
       }
     }
   }

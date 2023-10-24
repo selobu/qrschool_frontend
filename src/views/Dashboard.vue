@@ -11,9 +11,9 @@
             </v-col>
             <v-col cols="12" lg="4">
                 <v-card>
-                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0' : 'bg-info  py-0'">Asentismo</v-card-title>
+                    <v-card-title :class="$vuetify.theme.name == 'dark' ? 'bg-grey-darken-3 py-0' : 'bg-info  py-0'">Ausentismo</v-card-title>
                     <v-card-text class="py-0">
-                        <BarChart />
+                        <BarChart :labels="ausencialabels" :datasets="ausenciadatasets" />
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -75,32 +75,57 @@ export default {
         itemsPerPage: datatable.itemsPerPage,
         headers: datatable.headers,
         asistencia: datatable.asistencia,
-        headersausentes:datatable.headersausentes,
-        estudiantes:datatable.estudiantes,
-        chartOptions:[],
-        asistenciadatasets:[]
+        headersausentes: datatable.headersausentes,
+        estudiantes: datatable.estudiantes,
+        chartOptions: [],
+        asistenciadatasets: [],
+        asistencialabels: [],
+        ausencialabels: [],
+        ausenciadatasets: [],
     }),
     components:{
         BarChart,
         VDataTable
     },
     methods:{
-        getColor: datatable.getColor
+        getColor: datatable.getColor,
+        async readAsistencia(){
+            let response = await get('asistencia/last7/', 20)
+            var fechas = []
+            var cantidades = []
+            for (const key in response.data){
+                var {fecha, cantidad} = response.data[key]
+                fechas.push(fecha.split('T')[0])
+                cantidades.push(cantidad)
+            }
+            this.asistencialabels = fechas
+            this.asistenciadatasets = [{ data: cantidades,
+                label:'Asistencia',
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.7)'}]
+
+        },
+        async readAusentismo(){
+            let response = await get('ausencia/last7/', 10)
+            var fechas = []
+            var cantidades = []
+            for (const key in response.data){
+                var {fecha, cantidad} = response.data[key]
+                fechas.push(fecha.split('T')[0])
+                cantidades.push(cantidad)
+            }
+            this.ausencialabels = fechas
+            this.ausenciadatasets = [{ data: cantidades,
+                label:'Ausencia',
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.7)'}]
+        },
+
+
     },
     async mounted(){
-        let response = await get('asistencia/last7/', 20)
-        var fechas = []
-        var cantidades = []
-        for (const key in response.data){
-            var {fecha, cantidad} = response.data[key]
-            fechas.push(fecha.split('T')[0])
-            cantidades.push(cantidad)
-        }
-        this.asistencialabels = fechas
-        this.asistenciadatasets = [{ data: cantidades,
-            label:'Asistencia',
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.7)'}]
+        this.readAsistencia()
+        this.readAusentismo()
     }
 }
 </script>
