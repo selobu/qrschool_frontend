@@ -13,7 +13,6 @@
                         <v-tab value="two" @click="$router.push({name:'registrarausencia'})">
                             <v-icon color="orange">mdi-account-minus-outline</v-icon>Ausentismo
                         </v-tab>
-                        <v-tab value="three" @click="$router.push({name:''})">Resumen</v-tab>
                     </v-tabs>
                     <v-card-text>
                         <template v-if="tab === 'three'">

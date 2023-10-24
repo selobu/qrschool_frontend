@@ -17,7 +17,7 @@
                     <v-card>
                         <v-card-title
                         :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-secondary'"
-                        >
+                        ><user-avatar :email="userdata?.correo || ''" :size="60"></user-avatar>
                             Seleccionado
                         </v-card-title>
                         <v-table>
@@ -41,8 +41,16 @@
                             </tr>
                             </tbody>
                         </v-table>
-                        <v-textarea placeholder="Comentario ausencia">
-                            hello
+                        <v-row class="px-2 py-4">
+                            <v-col class="d-flex align-center ">
+                            <div class="px-2"> Fecha Reporte</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field type="date" v-model="fecha"/>
+                            </v-col>
+                        </v-row>
+                        
+                        <v-textarea placeholder="Comentario ausencia" v-model="comentario">
                         </v-textarea>
                         <v-card-actions v-if="Object.keys(userdata).length > 0">
                             <v-btn :loading="loading" block color="success" size="large" type="submit"
@@ -85,17 +93,20 @@
                     >
                 </v-autocomplete>
             </v-toolbar>
-                <easy-data-table></easy-data-table>
+                <table-by-url url="ausencia/"></table-by-url>
             </v-col>
-        </v-row>
+            </v-row>
     </v-container>
 </template>
 <script>
-import EasyDataTable from "../../components/core/EasyDataTable.vue"
+import TableByUrl from "../../components/core/TableByUrl.vue"
 import VTabulator from '../../components/core/Tabulator.vue'
 import LoginRegister from '../../components/core/LoginRegister.vue'
 import FormDialog from '../../components/core/formDialog.vue'
 import UserSelect from "../../components/core/UserSelect.vue"
+import UserAvatar from '../../components/core/UserAvatar.vue'
+import {post} from '../../tools/requests.js'
+import {today} from '../../tools'
 
 
 export default {
@@ -109,24 +120,36 @@ export default {
         tabulator: null, //variable to hold your table
         userdata:{},
         valid: false,
-        loading: false
+        loading: false,
+        comentario:'',
+        fecha: today()
     }),
     components:{
         VTabulator,
-        EasyDataTable,
+        TableByUrl,
         FormDialog,
         LoginRegister,
-        UserSelect
+        UserSelect,
+        UserAvatar
     },
     methods:{
         exportcsv(){
             this.tabulator.download("csv", "data.csv")
         },
-        onsubmit(){
+        async onsubmit(){
             this.loading= true
             const id = this.userdata['id']
-            alert(`user id:${id}`)
-            this.loading = false
+            var data = {ids:[id], comentario:this.comentario, fecha: this.fecha}
+            try{
+                let response = await post('ausencia/', data)
+                if (response.status === 200){
+                    alert('exitoso')
+                    this.userdata={}
+                }
+            }
+            finally{
+                this.loading = false
+            }
         }
     }
 }

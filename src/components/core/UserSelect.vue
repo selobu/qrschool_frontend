@@ -33,7 +33,7 @@
                     <v-icon>mdi-eraser</v-icon>
                 </v-btn>
         </v-toolbar>
-        <table-by-url 
+        <table-by-url
         :url="url" 
         :hidefields="hidefields"
         :responsefield="responsefield"
@@ -47,7 +47,7 @@ import TableByUrl from '../core/TableByUrl.vue'
 export default {
     data: () => ({
         hidefields: ['timestamp', 'fechaNacimiento', 'rh',
-            'telefonocontacto', 'correo', 'perfil_nombre',
+            'telefonocontacto', 'perfil_nombre',
             'grado_id', 'grupoetnico_id', 'direccion', 'is_active',
             'telefono', 'telefonoContacto'],
         responsefield: 'usrs',
@@ -61,9 +61,10 @@ export default {
     methods:{
         userSelected(event){
             // filter event based hidden fields
+            const newhidden = [...this.hidefields, 'indexInCurrentPage']
             var response = {}
             for (const [key, value] of Object.entries(event)){
-                if (this.hidefields.includes(key)) continue
+                if (newhidden.includes(key)) continue
                 response[key] = value
             }
             this.$emit('update:modelValue', response)
