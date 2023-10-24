@@ -68,32 +68,60 @@
         </form-dialog>
         <v-row>
             <v-col cols="12">
-                <v-toolbar density="compact" >
-                <v-btn icon @click="dialog=true" title="Agregar">
-                    <v-icon>mdi-plus</v-icon>
-                </v-btn>
-                <v-btn icon title="Exportar" @click="exportcsv">
-                    <v-icon>mdi-file-delimited-outline</v-icon>
-                </v-btn>
-                <v-divider :vertical="true" class="border-opacity-75"></v-divider>
-                <v-autocomplete
-                    label="Rol"
-                    :items="['All', 'Estudiante', 'Docente', 'Acudiente']"
-                    style="max-width: 170px;"
-                    class="mx-1"
-                    variant="underlined"
-                    >
-                </v-autocomplete>
-                <v-autocomplete
-                    label="Grupo"
-                    :items="['8','7','6']"
-                    style="max-width: 170px;"
-                    class="mx-1"
-                    variant="underlined"
-                    >
-                </v-autocomplete>
-            </v-toolbar>
-                <table-by-url url="ausencia/"></table-by-url>
+                <v-toolbar density="compact" border>
+                    <v-btn icon @click="dialog=true" title="Agregar">
+                        <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-btn icon title="Exportar" @click="exportcsv">
+                        <v-icon>mdi-file-delimited-outline</v-icon>
+                    </v-btn>
+                    <v-divider :vertical="true" class="border-opacity-75"></v-divider>
+                    <v-autocomplete
+                        label="Grupo"
+                        :items="['8','7','6']"
+                        style="max-width: 170px;"
+                        class="mx-1"
+                        variant="underlined"
+                        >
+                    </v-autocomplete>
+                </v-toolbar>
+                <v-toolbar border density="compact">
+                    <v-icon aria-disabled="true" title="filtros">mdi-filter</v-icon>
+                    <v-text-field
+                        width="150px"
+                        type="date"
+                        hide-details
+                        single-line
+                        v-model="fechaTablaAusentismo"
+                    ></v-text-field>
+                    <v-text-field
+                        hide-details
+                        single-line
+                        width="300px"
+                        placeholder="Nombres"
+                        v-model="nombres"
+                        class="px-1"
+                    ></v-text-field>
+                    <v-text-field
+                        hide-details
+                        single-line
+                        width="300px"
+                        placeholder="Apellidos"
+                        v-model="apellidos"
+                    ></v-text-field>
+                    <v-text-field
+                        hide-details
+                        single-line
+                        width="300px"
+                        placeholder="Numero identificacion"
+                        v-model="numeroidentificacion"
+                        class="px-1"
+                    ></v-text-field>
+                    <v-btn icon small @click="clearTablaAusentismo" title="Limpiar">
+                        <v-icon>mdi-eraser</v-icon>
+                    </v-btn>
+                </v-toolbar>
+                <table-by-url :url="urlausencia" :memorize="false"></table-by-url>
             </v-col>
             </v-row>
     </v-container>
@@ -122,7 +150,12 @@ export default {
         valid: false,
         loading: false,
         comentario:'',
-        fecha: today()
+        fecha: today(),
+        fechaTablaAusentismo: undefined,
+        nombres: '',
+        apellidos: '',
+        numeroidentificacion: '',
+        urlausencia:''
     }),
     components:{
         VTabulator,
@@ -150,6 +183,26 @@ export default {
             finally{
                 this.loading = false
             }
+        },
+        clearTablaAusentismo(){
+            this.fechaTablaAusentismo = undefined
+            this.nombres = ''
+            this.apellidos = ''
+            this.numeroidentificacion = ''
+        }
+    },
+    computed:{
+        urlausencia(){
+            var url= 'ausencia/'
+            var filters= []
+            if (this.nombres.length > 2) filters.push(`nombres=${this.nombres}`)
+            if (this.apellidos.length > 2) filters.push(`apellidos=${this.apellidos}`)
+            if (this.numeroidentificacion.length > 2) filters.push(`numeroidentificacion=${this.numeroidentificacion}`)
+            if (this.fechaTablaAusentismo !== undefined ) filters.push(`fecha=${this.fechaTablaAusentismo.replaceAll('-','')}`)
+            if (filters.length > 0){
+                url += '?'+filters.join('&')
+            }
+            return url
         }
     }
 }

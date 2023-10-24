@@ -3,10 +3,16 @@ import {authStore} from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
-const _fixurl = (endpoint, url=bApiUrl) =>
-  endpoint.startsWith('http') ? endpoint : 
-  endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
-  `${url}${endpoint}`
+const _fixurl = (endpoint, url=bApiUrl) =>{
+  var newurl = endpoint.startsWith('http') ? endpoint : 
+    endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
+    `${url}${endpoint}`
+  if (newurl.includes('?')){
+    newurl = newurl.split('?') 
+    newurl = `${newurl[0]}?${newurl[1]}` // 
+  }
+  return newurl
+  }
 
 function decorator(fnc){
   return async function(searchurl, includeheaders, data=null){

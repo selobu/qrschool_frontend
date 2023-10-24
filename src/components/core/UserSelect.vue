@@ -3,36 +3,36 @@
         <v-card-title :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-primary'">
             Seleccione un usuario
         </v-card-title>
-        <v-toolbar>
-                <v-icon aria-disabled="true" title="filtros">mdi-filter</v-icon>
-                <v-text-field
-                    hide-details
-                    single-line
-                    width="300px"
-                    placeholder="Nombres"
-                    v-model="nombres"
-                    class="px-1"
-                ></v-text-field>
-                <v-text-field
-                    hide-details
-                    single-line
-                    width="300px"
-                    placeholder="Apellidos"
-                    v-model="apellidos"
-                    class="px-1"
-                ></v-text-field>
-                <v-text-field
-                    hide-details
-                    single-line
-                    width="300px"
-                    placeholder="Numero identificacion"
-                    v-model="numeroidentificacion"
-                    class="px-1"
-                ></v-text-field>
-                <v-btn icon small @click="clear" title="Limpiar">
-                    <v-icon>mdi-eraser</v-icon>
-                </v-btn>
-        </v-toolbar>
+        <v-toolbar border density="compact">
+            <v-icon aria-disabled="true" title="filtros">mdi-filter</v-icon>
+            <v-text-field
+                hide-details
+                single-line
+                width="300px"
+                placeholder="Nombres"
+                v-model="nombres"
+                class="px-1"
+            ></v-text-field>
+            <v-text-field
+                hide-details
+                single-line
+                width="300px"
+                placeholder="Apellidos"
+                v-model="apellidos"
+                class="px-1"
+            ></v-text-field>
+            <v-text-field
+                hide-details
+                single-line
+                width="300px"
+                placeholder="Numero identificacion"
+                v-model="numeroidentificacion"
+                class="px-1"
+            ></v-text-field>
+            <v-btn icon small @click="clear" title="Limpiar">
+                <v-icon>mdi-eraser</v-icon>
+            </v-btn>
+    </v-toolbar>
         <table-by-url
         :url="url" 
         :hidefields="hidefields"
