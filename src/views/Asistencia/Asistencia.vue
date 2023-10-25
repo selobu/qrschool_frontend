@@ -131,22 +131,22 @@ export default {
     computed: {
         rows() {
             var result = []
-            if (this.qrlist === null ) return result
+            const len = this.qrlist?.length
+            if (len === undefined) return result
+            if (this.qrlist.length  === 0 ) return result
             for (const element of this.qrlist) {
                 result.push({ qr: element })
             }
             return result
+        },
+        isonline(){
+            return navigator.onLine
         }
     },
     components: {
         QrReader,
         TableByUrl,
         EasyDataTable
-    },
-    computed:{
-        isonline(){
-            return navigator.onLine
-        }
     },
     methods: {
         generarcsv() {
