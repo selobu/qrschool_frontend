@@ -109,24 +109,25 @@ export const authStore = defineStore('auth', {
         href: 'registrarasistencia',
         icon: 'mdi-check'
       }, 
-      Qr: {
-        title: 'Gestion Qr',
-        value: 'gestionqr',
-        href: 'listadoqr',
-        icon: 'mdi-qrcode'
-      },
-      Matriculas: {
-        title: 'Matricula',
-        value: 'matricula',
-        href: 'matricula',
-        icon: 'mdi-format-list-bulleted'
-      },
-      User: {
-        title: 'Usuarios',
-        value: 'usuarios',
-        href: 'usuarios',
-        icon: 'mdi-account-multiple'
-      },}
+      // Qr: {
+      //   title: 'Gestion Qr',
+      //   value: 'gestionqr',
+      //   href: 'listadoqr',
+      //   icon: 'mdi-qrcode'
+      // },
+      // Matriculas: {
+      //   title: 'Matricula',
+      //   value: 'matricula',
+      //   href: 'matricula',
+      //   icon: 'mdi-format-list-bulleted'
+      // },
+      // User: {
+      //   title: 'Usuarios',
+      //   value: 'usuarios',
+      //   href: 'usuarios',
+      //   icon: 'mdi-account-multiple'
+      // },
+    }
 
       var response: MenuType[] = []
       for(let module of modules){
