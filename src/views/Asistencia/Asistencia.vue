@@ -43,6 +43,12 @@
                                 <v-card-title
                                     :class="$vuetify.theme.name === 'dark' ? 'bg-grey-darken-3 py-0' : 'py-0 bg-warning'">Qrs identificados
                                 </v-card-title>
+                                <v-toolbar density="compact"  v-if="qrlist?.length || 0 > 0">
+                                    <v-spacer></v-spacer>
+                                    <v-btn icon small @click="clear" title="Limpiar">
+                                        <v-icon>mdi-eraser</v-icon>
+                                    </v-btn>
+                                </v-toolbar>
                                 <v-card-text>
                                     <p><br /><strong>Total registrados: {{ rows.length }}</strong></p>
                                     <easy-data-table :rows="rows" :headers="headers"
@@ -51,7 +57,7 @@
                             </v-card>
                         </v-col>
                     </v-row>
-                    <v-row class="justify-end">
+                    <v-row class="justify-end" v-if="qrlist?.length || 0 > 0">
                         <v-col cols="12" md="6" lg="6" >
                             <v-card elevation="3">
                                 <v-card-actions>
@@ -202,6 +208,11 @@ export default {
                     }
                 )
             }
+        },
+        clear(){
+            this.qrlist = [];
+            // closing scan dialog
+            this.dialog = false
         }
     },
     beforeUpdate(){

@@ -61,6 +61,15 @@ export default {
 
         return { selected, options, detected }
     },
+    beforeMount(){
+        this.detected = this.modelValue || []
+    },
+    watch:{
+        modelValue(){
+            if (JSON.stringify(this.detected) === JSON.stringify(this.modelValue)) return
+            this.detected = this.modelValue
+        }
+    },
     methods: {
         getcolor(){
             return this.detected.length%3 === 0 ? 'bg-blue':
@@ -68,6 +77,7 @@ export default {
                    'bg-red'
         },
         onDetect (detectedCodes) {
+            console.log('detecting code')
             var newitem = false
             for(const code of detectedCodes){
                 if (!this.detected.includes(code.rawValue)){
