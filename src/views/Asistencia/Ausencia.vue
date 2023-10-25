@@ -155,7 +155,6 @@ export default {
         nombres: '',
         apellidos: '',
         numeroidentificacion: '',
-        urlausencia:'',
         pendientesenvio:0
     }),
     components:{
