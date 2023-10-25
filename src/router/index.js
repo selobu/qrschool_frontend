@@ -44,12 +44,12 @@ const routes = [
             {
                 path: "/modulos/asistencia/",
                 name: "asistencia",
-                component: () => import("../views/Asistencia/Asistencia.vue"),
+                component: () => import("../views/Asistencia/index.vue"),
                 children:[
                     {
                         path: "/modulos/asistencia/registrar/",
                         name: "registrarasistencia",
-                        component: () => import("../views/Asistencia/Registrar.vue"),
+                        component: () => import("../views/Asistencia/Asistencia.vue"),
                     },
                     {
                         path: "/modulos/asistencia/ausencia/",
@@ -119,11 +119,6 @@ const routes = [
         path: "/dashboard/",
         name: "dashboard",
         component: () => import("../views/Dashboard.vue"),
-    },
-    {
-        path: "/ausencia/registro/:grado",
-        name: "ausenciaregistro",
-        component: () => import("../views/Asistencia/AusenciaRegistro.vue"),
     },
     {
         path: "/soporte",

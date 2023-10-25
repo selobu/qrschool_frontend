@@ -3,16 +3,11 @@ import {authStore} from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
-const _fixurl = (endpoint, url=bApiUrl) =>{
-  var newurl = endpoint.startsWith('http') ? endpoint : 
+export const _fixurl = (endpoint, url=bApiUrl) =>
+  endpoint.startsWith('http') ? endpoint : 
     endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
     `${url}${endpoint}`
-  if (newurl.includes('?')){
-    newurl = newurl.split('?') 
-    newurl = `${newurl[0]}?${newurl[1]}` // 
-  }
-  return newurl
-  }
+  
 
 function decorator(fnc){
   return async function(searchurl, includeheaders, data=null){
@@ -70,14 +65,18 @@ const add_dexie = (baseurl,newurl,data, includeheaders) => db['Post'].add({
   includeheaders
 })
 
-export async function post(url, data, includeheaders = true) {
+export async function post(url, data, includeheaders = true,  memorize=true) {
   const newurl = _fixurl(url)
   const baseurl = newurl.split('/').splice(-1).join('/')
   
-  if (!navigator.onLine) return add_dexie(baseurl, newurl, data, includeheaders)
+  if (!navigator.onLine){ 
+    if (memorize){ return add_dexie(baseurl, newurl, data, includeheaders)}
+    return
+  }
 
-  return await _post(newurl, includeheaders, data).catch(()=>
-    add_dexie(baseurl,newurl,data, includeheaders)
+  return await _post(newurl, includeheaders, data).catch(()=>{
+    if (memorize)  add_dexie(baseurl,newurl,data, includeheaders)
+  }
   )
 }
 
@@ -101,8 +100,12 @@ export async function updateToken() {
     localStorage.setItem('user', JSON.stringify(newiten))
     return response.data.access_token
   } catch (error) {
-    if (error.response.data.auth === false) authStore().logout()
-    return null
+    if (error?.response?.data?.auth === false) {
+      authStore().logout()
+      return null
+    }
+    // returning empty headers
+    return { headers: {} }
   }
 }
 

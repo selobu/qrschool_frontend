@@ -121,9 +121,9 @@
                         <v-icon>mdi-eraser</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <table-by-url :url="urlausencia" :memorize="false"></table-by-url>
+                <table-by-url :url="urlausencia" :memorize="true" :maxage="30"></table-by-url>
             </v-col>
-            </v-row>
+        </v-row>
     </v-container>
 </template>
 <script>
@@ -155,7 +155,8 @@ export default {
         nombres: '',
         apellidos: '',
         numeroidentificacion: '',
-        urlausencia:''
+        urlausencia:'',
+        pendientesenvio:0
     }),
     components:{
         VTabulator,

@@ -18,7 +18,8 @@ export default {
         url: { type: String, required: true },
         memorize: { type: Boolean, required: false, default: true },
         hidefields: { required: false, default: [], type: Array },
-        responsefield: { default: undefined, type:String}
+        responsefield: { default: undefined, type:String},
+        maxage:{required:false, type: Number, default:20}
     },
     watch: {
         url() {
@@ -37,7 +38,7 @@ export default {
             var joinchar = '?'
             if (this.url.includes('?')) joinchar = '&'
             const _url = this.url + `${joinchar}page=${page}&per_page=${per_page}`
-            let response = await get(_url, 20, true, this.memorize)
+            let response = await get(_url, this.maxage, true, this.memorize)
             this.rows = response.data
             if (this.responsefield !== undefined) this.rows= this.rows[this.responsefield]
             var res = []
