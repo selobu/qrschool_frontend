@@ -133,7 +133,7 @@ import LoginRegister from '../../components/core/LoginRegister.vue'
 import FormDialog from '../../components/core/formDialog.vue'
 import UserSelect from "../../components/core/UserSelect.vue"
 import UserAvatar from '../../components/core/UserAvatar.vue'
-import {post} from '../../tools/requests.js'
+import {post, download} from '../../tools/requests.js'
 import {today} from '../../tools'
 
 
@@ -167,7 +167,8 @@ export default {
     },
     methods:{
         exportcsv(){
-            this.tabulator.download("csv", "data.csv")
+            const filters = ['page=1','per_page=500', 'format=csv']
+            download(this._get_url_ausencia(filters), "data.csv", false)
         },
         async onsubmit(){
             this.loading= true
@@ -189,12 +190,9 @@ export default {
             this.nombres = ''
             this.apellidos = ''
             this.numeroidentificacion = ''
-        }
-    },
-    computed:{
-        urlausencia(){
+        },
+        _get_url_ausencia(filters=[]){
             var url= 'ausencia/'
-            var filters= []
             if (this.nombres.length > 2) filters.push(`nombres=${this.nombres}`)
             if (this.apellidos.length > 2) filters.push(`apellidos=${this.apellidos}`)
             if (this.numeroidentificacion.length > 2) filters.push(`numeroidentificacion=${this.numeroidentificacion}`)
@@ -203,6 +201,12 @@ export default {
                 url += '?'+filters.join('&')
             }
             return url
+        }
+    },
+    computed:{
+        urlausencia(){
+            const filters = ['page=1','per_page=50']
+            return this._get_url_ausencia(filters)
         }
     }
 }

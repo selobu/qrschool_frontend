@@ -88,7 +88,7 @@
                     <v-btn icon @click="dialog = true" title="Agregar">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <v-btn icon title="Exportar" @click="generarcsv">
+                    <v-btn icon title="Exportar" @click="generarcsv" :disabled="disablegeneratecsv">
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
@@ -109,9 +109,9 @@
 import QrReader from '../../components/core/QrReader.vue'
 import TableByUrl from '../../components/core/TableByUrl.vue'
 import { datatable } from '../../tools/fake.js'
-import { post, _fixurl } from '../../tools/requests'
+import { post, _fixurl, download } from '../../tools/requests'
 import EasyDataTable from '../../components/core/EasyDataTable.vue'
-import {db} from '../../plugins/dexie.js'
+import { db } from '../../plugins/dexie.js'
 
 export default {
     data: () => ({
@@ -132,7 +132,8 @@ export default {
         headersausentes: datatable.headersausentes,
         estudiantes: datatable.estudiantes,
         currdate: '',
-        pendientesenvio: 0
+        pendientesenvio: 0,
+        disablegeneratecsv: false,
     }),
     computed: {
         rows() {
@@ -155,8 +156,14 @@ export default {
         EasyDataTable
     },
     methods: {
-        generarcsv() {
-            'Generar csvdata'
+        async generarcsv() {
+            const args = ['page=1','per_page=200','format=csv']
+            this.disablegeneratecsv = true
+            try{
+                await download(_fixurl(`${this.url}?${args.join('&')}`), 'qrschool.csv')
+            } finally {
+                this.disablegeneratecsv = false
+            }
         },
         async save() {
             if (this.qrlist.length === 0) return
