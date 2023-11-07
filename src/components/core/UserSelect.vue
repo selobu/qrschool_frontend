@@ -38,7 +38,7 @@
         :hidefields="hidefields"
         :responsefield="responsefield"
         @click-row="userSelected"
-        :memorize="false">
+        :memorize="true">
         </table-by-url>
     </v-card>
 </template>

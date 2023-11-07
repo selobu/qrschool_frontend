@@ -92,7 +92,13 @@
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <table-by-url v-model="qrlist" :url="url" @click-row="clickedRow"></table-by-url>
+                <table-by-url v-model="qrlist" 
+                    :url="url" 
+                    @click-row="clickedRow" 
+                    :not2filter="not2filter" 
+                    :memorize="false"
+                    :showfilters="true">
+                </table-by-url>
             </v-col>
         </v-row>
         <v-row>
@@ -100,7 +106,10 @@
                 <v-toolbar density="compact" class="toolbarmenu">
                     <v-toolbar-title> Asistentes {{ currdate }}</v-toolbar-title>
                 </v-toolbar>
-                <table-by-url v-model="asistentes" :url="urlasistentes" :memorize="false"></table-by-url>
+                <table-by-url v-model="asistentes" 
+                :url="urlasistentes" 
+                :memorize="true" 
+                :maxage="30"></table-by-url>
             </v-col>
         </v-row>
     </v-container>
@@ -134,6 +143,7 @@ export default {
         currdate: '',
         pendientesenvio: 0,
         disablegeneratecsv: false,
+        not2filter:['total'],
     }),
     computed: {
         rows() {
@@ -182,7 +192,7 @@ export default {
         },
         clickedRow(event){
             this.currdate=event.timestamp
-            this.asistencia_id = event.asistenciaid
+            this.asistencia_id = event.id
             if (this.asistencia_id === undefined) {
                 this.urlasistentes = ''
                 return

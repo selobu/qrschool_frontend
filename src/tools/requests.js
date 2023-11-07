@@ -12,6 +12,7 @@ export const _fixurl = (endpoint, url = bApiUrl) =>
 function decorator(fnc) {
   return async function (searchurl, includeheaders, data = null) {
     const endurl = _fixurl(searchurl)
+    console.log(`endurl: ${endurl}`)
     var headers
     if (includeheaders.constructor == Object) { // if it's a dictionary
       headers = includeheaders

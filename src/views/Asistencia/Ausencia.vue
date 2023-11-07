@@ -75,17 +75,8 @@
                     <v-btn icon title="Exportar" @click="exportcsv">
                         <v-icon>mdi-file-delimited-outline</v-icon>
                     </v-btn>
-                    <v-divider :vertical="true" class="border-opacity-75"></v-divider>
-                    <v-autocomplete
-                        label="Grupo"
-                        :items="['8','7','6']"
-                        style="max-width: 170px;"
-                        class="mx-1"
-                        variant="underlined"
-                        >
-                    </v-autocomplete>
                 </v-toolbar>
-                <v-toolbar border density="compact">
+                <v-toolbar border density="compact" v-if="false">
                     <v-icon aria-disabled="true" title="filtros">mdi-filter</v-icon>
                     <v-text-field
                         width="150px"
@@ -121,7 +112,10 @@
                         <v-icon>mdi-eraser</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <table-by-url :url="urlausencia" :memorize="true" :maxage="30"></table-by-url>
+                <table-by-url 
+                :url="urlausencia" 
+                :memorize="false" 
+                :showfilters="true"></table-by-url>
             </v-col>
         </v-row>
     </v-container>
