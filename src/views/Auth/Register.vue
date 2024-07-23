@@ -8,6 +8,15 @@
         :submit="submit"
         >
         <template v-slot:form>
+          <v-row v-if="displayMessage">
+          <v-alert 
+            icon="$vuetify"
+            title="Regitro"
+            :text="message"
+            type="error"
+            variant="tonal" 
+          ></v-alert>
+          </v-row>
           <v-row>
             <v-col cols="12" xs="12" md="6">
               <v-text-field
@@ -138,6 +147,8 @@
 
   export default {
     data: () => ({
+      displayMessage: false,
+      message: 'Mensaje de prueba',
       btnenable: true,
       valid: false,
       marker:true,
@@ -192,6 +203,7 @@
       },
       async submit(event){
         this.btnenable = false
+        this.displayMessage = false
         
         try {
           const results = await event
@@ -209,11 +221,22 @@
             password: this.password
             }], false, false)
           console.log(response)
-          if (response?.status !== 200) return
-          response = await post('login/', {email:this.correo, password:this.password}, false, false)
-          if (response?.status !== 200) return
-          const {access_token, auth, email, fresh_access_token, username, qr} = response.data
-          await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
+          if (response?.status === 200){
+            response = await post('login/', {email:this.correo, password:this.password}, false)
+          } else if (response?.status === 400){ 
+            this.message = 'No de pudo registrar el usuario, intente nuevamente o verifique su correo electrónico.'
+            this.displayMessage = true
+            return
+           } else {
+            this.message = 'Error desconocido'
+            this.displayMessage = true
+            return}
+          if (response?.status == 200){
+            const {access_token, auth, email, fresh_access_token, username, qr} = response.data
+            await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
+          } else {
+            return
+          }
         } finally {
           this.btnenable = true
         }
