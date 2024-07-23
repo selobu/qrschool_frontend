@@ -87,7 +87,7 @@
     },
     methods:{
       async authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules){
-        this.data.authstore.login(access_token, auth, email, fresh_access_token, username, qr, active, modules).then(
+        authStore().login(access_token, auth, email, fresh_access_token, username, qr, active, modules).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
       },
@@ -97,7 +97,7 @@
           const results = await event
           if (!results.valid) return
           const response = await post('login/', {email:this.email, password:this.password}, false)
-          if (response.status !== 200){
+          if (response?.status !== 200){
             return
           }
           const {access_token, auth, email, fresh_access_token, username, qr, active, modules} = response.data
