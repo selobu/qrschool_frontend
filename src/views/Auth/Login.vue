@@ -87,7 +87,7 @@
     },
     methods:{
       async authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules){
-        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr, active, modules).then(
+        this.data.authstore.login(access_token, auth, email, fresh_access_token, username, qr, active, modules).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
       },

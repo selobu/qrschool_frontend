@@ -9,4 +9,7 @@ export default defineConfig({
     vue(), 
     vitePWA()
     ],
+    build: {
+      sourcemap: true,
+    },
 })

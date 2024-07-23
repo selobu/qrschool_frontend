@@ -133,6 +133,8 @@
   import LoginRegister from '../../components/core/LoginRegister.vue'
   import {datevalidation} from '../../tools'
   import {post} from '../../tools/requests'
+  import { authStore } from '../../stores/authStore'
+  
 
   export default {
     data: () => ({
@@ -184,7 +186,7 @@
     },
     methods:{
       async authuser(access_token, auth, email, fresh_access_token, username, qr){
-        this.authstore.login(access_token, auth, email, fresh_access_token, username, qr).then(
+        authStore().login(access_token, auth, email, fresh_access_token, username, qr).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
       },
@@ -205,11 +207,11 @@
             direccion: this.direccion,
             telefono: this.telefono,
             password: this.password
-            }], false)
+            }], false, false)
           console.log(response)
-          if (response.status !== 200) return
-          response = await post('login/', {email:this.correo, password:this.password}, false)
-          if (response.status !== 200) return
+          if (response?.status !== 200) return
+          response = await post('login/', {email:this.correo, password:this.password}, false, false)
+          if (response?.status !== 200) return
           const {access_token, auth, email, fresh_access_token, username, qr} = response.data
           await this.authuser(access_token, auth, email, fresh_access_token, username, qr)
         } finally {
