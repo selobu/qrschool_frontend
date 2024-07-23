@@ -75,8 +75,9 @@ export async function post(url, data, includeheaders = true, memorize = true) {
     return
   }
 
-  return await _post(newurl, includeheaders, data).catch(() => {
+  return await _post(newurl, includeheaders, data).catch((error) => {
     if (memorize) add_dexie(baseurl, newurl, data, includeheaders)
+    return error.response
   }
   )
 }
