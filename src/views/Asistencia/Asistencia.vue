@@ -202,7 +202,9 @@ export default {
         },
         readposts(){
             const tofind = _fixurl('asistencia/')
-            db['Post'].where("url").equalsIgnoreCase(tofind).count().then((result) => this.pendientesenvio = result);
+            db['Post'].where("url").equalsIgnoreCase(tofind).count().then((result) => 
+            this.pendientesenvio = result
+        );
         },
         async enviarPendientes(){
             this.loading = true

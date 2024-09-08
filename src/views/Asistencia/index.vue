@@ -54,8 +54,12 @@ export default {
     methods:{
         readposts(){
             const tofind = _fixurl('asistencia/')
-            db['Post'].where("url").equalsIgnoreCase(tofind).count().then((result) => this.pendientesenvio = result);
-        }
+            let screen = this
+            db['Post'].where("url").equalsIgnoreCase(tofind).count().then((result) => 
+            screen.pendientesenvio = result
+        );
+        },
+
     }
 }
 </script>

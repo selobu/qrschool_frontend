@@ -3,10 +3,12 @@ import { authStore } from '../stores/authStore'
 import { now, bApiUrl } from '../tools'
 import { db } from '../plugins/dexie';
 
-export const _fixurl = (endpoint, url = bApiUrl) =>
-  endpoint.startsWith('http') ? endpoint :
-    endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
+export const _fixurl = (endpoint, url = bApiUrl) => {
+  let response = endpoint.startsWith('http') ? endpoint :
+      endpoint.startsWith('/') ? `${url}${endpoint.slice(1)}` :
       `${url}${endpoint}`
+  return encodeURI(decodeURI(response))
+    }
 
 
 function decorator(fnc) {
