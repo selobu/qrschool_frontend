@@ -49,8 +49,8 @@
               <v-card flat color="primary">
                 <v-card-text>
                   <p>
-                    Hello world lorep ipsum<br/>
-                    Searching for alternatives
+                    QRSchool<br/>
+                    Ingresar credenciales
                   </p>
                 </v-card-text>
               </v-card>

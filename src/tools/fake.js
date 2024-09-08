@@ -1,11 +1,16 @@
 export const datatable = {
     itemsPerPage:15,
-    headersausentes: [{ title: 'Nombre', align: 'center', key: 'name', sortable: true, },
-        { title: 'grado', align: 'center', key: 'grado', sortable: true, }
+    headersausentes: [
+        { title: 'Fecha', align: 'center', key: 'date', sortable: true},
+        { title: 'Grado', align: 'center', key: 'grade', sortable: true},
+        { title: 'Nombre', align: 'center', key: 'name', sortable: true},
+        { title: 'Apellido', align: 'center', key: 'lastname', sortable: true}
     ],
     headers: [
-        { title: 'Grado', align: 'end', key: 'grado', sortable: true, },
-        { title: '% Asistencia', align: 'end', key: 'asistencia', sortable: true, }
+        { title: 'Fecha', align: 'center', key: 'Date', sortable: true},
+        { title: 'Grado_id', align: 'center', key: 'gradeid', sortable: true},
+        { title: 'Grado', align: 'center', key: 'grade', sortable: true},
+        { title: 'Asistencia', align: 'center', key: 'attendance', sortable: true},
     ],
     headers_easy: [
         { text: "PLAYER", value: "player" },
@@ -33,15 +38,15 @@ export const datatable = {
         {grado:11, asistencia: 85},
         ],
     estudiantes:[
-        {name:'Sebastian', grado:9},
-        {name:'Maria', grado:9},
-        {name:'Pedro', grado:11},
-        {name:'Pablo', grado:10},
-        {name:'Pepito', grado:6},
-        {name:'Lucas', grado:7},
-        {name:'Eduardo', grado:8},
-        {name:'Cristian', grado:9},
-        {name:'Andrea', grado:9},
+        {nombre:'Sebastian', grado:9},
+        {nombre:'Maria', grado:9},
+        {nombre:'Pedro', grado:11},
+        {nombre:'Pablo', grado:10},
+        {nombre:'Pepito', grado:6},
+        {nombre:'Lucas', grado:7},
+        {nombre:'Eduardo', grado:8},
+        {nombre:'Cristian', grado:9},
+        {nombre:'Andrea', grado:9},
     ],
     getColor: function(asistencia){
         if (asistencia <= 70) return 'red'
