@@ -230,7 +230,7 @@
         formData.append("file", myNewFile);
         let headers = await get_headers()
         let config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        let response = await axios.post('http://127.0.0.1:8081/uploadpicture', formData, config) // https://qrschool-selobu.pythonanywhere.com
+        let response = await axios.post(uploadUrl, formData, config) // https://qrschool-selobu.pythonanywhere.com
         let filepath = staticUrl +'/'+ response?.data?.file
         this.imageurl = filepath
       //   const compress = new Compress();
