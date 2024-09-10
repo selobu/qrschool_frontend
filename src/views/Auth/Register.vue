@@ -18,6 +18,22 @@
           ></v-alert>
           </v-row>
           <v-row>
+            <v-col cols="2">
+               <v-avatar :image="imageurl" size="68"></v-avatar>
+            </v-col>
+            <v-col cols="10">
+              <v-file-input
+              :rules="picturerules"
+              :show-size="1000"
+              accept="image/png, image/jpeg, image/bmp"
+              label="Foto"
+              placeholder="Carga tu foto"
+              prepend-icon="mdi-camera"
+              v-model="picture">
+              </v-file-input>
+            </v-col>
+          </v-row>
+          <v-row>
             <v-col cols="12" xs="12" md="6">
               <v-text-field
                 v-model="nombres"
@@ -140,11 +156,12 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
-  import {datevalidation} from '../../tools'
-  import {post} from '../../tools/requests'
+  import {datevalidation, staticUrl} from '../../tools'
+  import {post, get_headers} from '../../tools/requests'
   import { authStore } from '../../stores/authStore'
+  import { v4 }  from 'uuid';
+  import axios from 'axios'
   
-
   export default {
     data: () => ({
       displayMessage: false,
@@ -162,6 +179,14 @@
       direccion:'',
       telefono:'',
       password:'',
+      imageuuid: v4(),
+      picture: null,
+      imageurl: '',
+      picturerules:[
+        value => {
+          return !value || !value.length || value[0].size < 1000000 || 'Tamañode la foto debe ser menor de 1 MB!'
+        },
+      ],
       passwordRules: [
         v => !!v || 'Contraseña obligatoria',
         v => v.length >= 8 || 'La contraseña debe ser de 8 o mas caracteres',
@@ -195,6 +220,32 @@
     components:{
       LoginRegister
     },
+    watch: {
+      async picture(newValue, oldValue) {
+        let file = newValue[0]
+        let newname = this.imageuuid+'.'+file.name.split(".").pop()
+        let myNewFile = new File([file], newname, {type: file.type});
+
+        let formData = new FormData();
+        formData.append("file", myNewFile);
+        let headers = await get_headers()
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        let response = await axios.post('http://127.0.0.1:8081/uploadpicture', formData, config) // https://qrschool-selobu.pythonanywhere.com
+        let filepath = staticUrl +'/'+ response?.data?.file
+        this.imageurl = filepath
+      //   const compress = new Compress();
+      //   compress.compress(files, {
+      //     size: 4,
+      //     quality: 0.75,
+      //     maxWidth: 300,
+      //     maxHeight: 300,
+      //     resize: true
+      //   })
+      // .then((data) => {
+      //   console.log(data);
+      // });
+      }
+    },
     methods:{
       async authuser(access_token, auth, email, fresh_access_token, username, qr){
         authStore().login(access_token, auth, email, fresh_access_token, username, qr).then(
@@ -218,7 +269,8 @@
             correo: this.correo,
             direccion: this.direccion,
             telefono: this.telefono,
-            password: this.password
+            password: this.password,
+            photourl: this.imageurl
             }], false, false)
           console.log(response)
           if (response?.status === 200){
