@@ -156,7 +156,7 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
-  import {datevalidation, staticUrl} from '../../tools'
+  import {datevalidation, staticUrl, uploadUrl} from '../../tools'
   import {post, get_headers} from '../../tools/requests'
   import { authStore } from '../../stores/authStore'
   import { v4 }  from 'uuid';
