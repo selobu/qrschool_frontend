@@ -76,7 +76,7 @@ export default {
                 if (this.entries[value]['value'] != '')  aditionalfilter += `&${value}=${this.entries[value]['value']}`
             })
             console.log(_url+aditionalfilter)
-            let response = await get(_url+aditionalfilter, this.maxage, true, this.memorize)
+            let response = await get(_url+aditionalfilter, this.maxage, true, false)//this.memorize)
             this.rows = response.data
             if (this.responsefield !== undefined) this.rows = this.rows[this.responsefield]
             var res = []

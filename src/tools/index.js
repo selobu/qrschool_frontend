@@ -5,7 +5,6 @@ export var bApiUrl = import.meta.env.PROD ? import.meta.env.VITE_APP_apiBaseURL 
 export var staticUrl = import.meta.env.VITE_APP_HOST_STATIC
 export var uploadUrl = import.meta.env.VITE_APP_HOST +'/uploadpicture'
 
-
 console.log(url)
 url = url.slice(-1) === '/' ? url : `${url}/` 
 bApiUrl = bApiUrl.slice(-1) === '/' ? bApiUrl : `${bApiUrl}/`
