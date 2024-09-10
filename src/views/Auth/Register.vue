@@ -140,8 +140,13 @@
 </template>
 <script >
   import LoginRegister from '../../components/core/LoginRegister.vue'
+<<<<<<< Updated upstream
   import {datevalidation} from '../../tools'
   import {post} from '../../tools/requests'
+=======
+  import {datevalidation, staticUrl, uploadUrl} from '../../tools'
+  import {post, get_headers} from '../../tools/requests'
+>>>>>>> Stashed changes
   import { authStore } from '../../stores/authStore'
   
 
@@ -195,6 +200,35 @@
     components:{
       LoginRegister
     },
+<<<<<<< Updated upstream
+=======
+    watch: {
+      async picture(newValue, oldValue) {
+        let file = newValue[0]
+        let newname = this.imageuuid+'.'+file.name.split(".").pop()
+        let myNewFile = new File([file], newname, {type: file.type});
+
+        let formData = new FormData();
+        formData.append("file", myNewFile);
+        let headers = await get_headers()
+        let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        let response = await axios.post(uploadUrl, formData, config)
+        let filepath = staticUrl +'/'+ response?.data?.file
+        this.imageurl = filepath
+      //   const compress = new Compress();
+      //   compress.compress(files, {
+      //     size: 4,
+      //     quality: 0.75,
+      //     maxWidth: 300,
+      //     maxHeight: 300,
+      //     resize: true
+      //   })
+      // .then((data) => {
+      //   console.log(data);
+      // });
+      }
+    },
+>>>>>>> Stashed changes
     methods:{
       async authuser(access_token, auth, email, fresh_access_token, username, qr){
         authStore().login(access_token, auth, email, fresh_access_token, username, qr).then(

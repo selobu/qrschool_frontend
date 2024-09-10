@@ -2,6 +2,9 @@ import md5 from 'md5'
 
 export var url = import.meta.env.PROD ? import.meta.env.VITE_APP_apiURL : import.meta.env.VITE_APP_DEV_apiURL
 export var bApiUrl = import.meta.env.PROD ? import.meta.env.VITE_APP_apiBaseURL : import.meta.env.VITE_APP_DEV_apiBaseURL
+export var staticUrl = import.meta.env.VITE_APP_HOST_STATIC
+export var uploadUrl = import.meta.env.VITE_APP_HOST +'/uploadpicture'
+
 
 console.log(url)
 url = url.slice(-1) === '/' ? url : `${url}/` 
