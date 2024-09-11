@@ -9,9 +9,13 @@
           color="grey-lighten-2"
           size="64"
         >
-        <v-img
-          :src="getGravatar(authstore.user.email)"
-          :alt="authstore.user.email == 0 ? 'no autenticado' : authstore.user.email"
+        <v-img v-if="authstore.user.photourl !== ''"
+              :src="photobasepath + authstore.user.photourl"
+              :alt="authstore.user.email == 0 ? 'no autenticado' : authstore.user.email">
+            </v-img>
+        <v-img v-else
+            :src="getGravatar(authstore.user.email)"
+            :alt="authstore.user.email == 0 ? 'no autenticado' : authstore.user.email"
         ></v-img>
         </v-avatar>
         <p class="font-weight-bold">{{ authstore.user.email == '0' ? 'no autenticado': authstore.user.email}}</p>
@@ -34,7 +38,7 @@
 </template>
 <script> 
   import { authStore } from '../../stores/authStore'
-  import {getGravatar} from '../../tools'
+  import { getGravatar, staticUrl } from '../../tools'
   import { configStore } from '../../stores/configStore'
   export default {
     props: ['modelValue'],
@@ -54,6 +58,7 @@
       logoUrl: 'selobu@gmail.com',
       authstore: authStore(),
       configstore: configStore(),
+      photobasepath: staticUrl+'/photos/',
       useritems:[
         {
           title: 'Soporte',

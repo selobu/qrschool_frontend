@@ -16,6 +16,22 @@ type MenuType = {
   icon: String
 }
 
+interface UserInfo {
+  name: String | null,
+  email: String | null,
+  avatar: String,
+  profile: String | null,
+  photourl: String
+}
+
+interface Auth {
+  authenticated: Boolean,
+  isAdmin: Boolean,
+  bearerKey: String,
+  bearerRefresh: String,
+  qr:String
+}
+
 export const authStore = defineStore('auth', {
   state: (): State => {
     return {
@@ -24,14 +40,14 @@ export const authStore = defineStore('auth', {
           bearerKey: '',
           bearerRefresh: '',
           qr:''} ,
-      user: {name: null, email: null, profile: null, avatar: ''},
+      user: {name: null, email: null, profile: null, avatar: '', photourl:''},
       modules: [] ,
       hasChanged: false,
       updating: false,
     }
   },
   actions:{
-    logout(){
+    logout():boolean{
       localStorage.setItem('user', JSON.stringify({username: '',
           qr: '',
           email: '',
@@ -50,7 +66,7 @@ export const authStore = defineStore('auth', {
           qr:'',
           active: false,
         }
-      this.user ={name:null, email:null, avatar:''}
+      this.user ={name:null, email:null, avatar:'', photourl:''}
       this.modules = []
       this.updating = false
       return true
@@ -76,8 +92,8 @@ export const authStore = defineStore('auth', {
             bearerKey: '',
             bearerRefresh: '',
             qr:''
-          }
-          this.user= {name: null, email: null, avatar: ''}
+          },
+          this.user= {name: null, email: null, avatar: '', photourl:''}
           this.modules= []
         } else {
           // se consulta el primer registro
@@ -93,7 +109,8 @@ export const authStore = defineStore('auth', {
           this.user= {
             name: response.username,
             email: response.email,
-            avatar: ''}
+            avatar: '',
+            photourl:''}
           this.modules= this.updatemodules(response.modules)
         }
       } catch (error) {
@@ -145,10 +162,11 @@ export const authStore = defineStore('auth', {
     },
     async login(bearerkey: String, isauth: Boolean,
       email: String, bearerRefresh: String, username: String, qr:String,
-      active: Boolean, modules) {
+      active: Boolean, modules, photourl: String) {
 
       this.user = {name: username, email,
                 avatar: getGravatar(email),
+                photourl: photourl
                  }
       this.modules = this.updatemodules(modules)
       this.auth = {authenticated: true,
@@ -163,6 +181,7 @@ export const authStore = defineStore('auth', {
         qr,
         email,
         profile: '',
+        photourl,
         modules,
         bearerRefresh,
         bearerkey: {token:bearerkey, time: Date.now()},
@@ -174,18 +193,4 @@ export const authStore = defineStore('auth', {
   }
 })
 
-interface UserInfo {
-  name: String | null,
-  email: String | null,
-  avatar: String,
-  profile: String | null,
-}
-
-interface Auth {
-  authenticated: Boolean,
-  isAdmin: Boolean,
-  bearerKey: String,
-  bearerRefresh: String,
-  qr:String
-}
 
