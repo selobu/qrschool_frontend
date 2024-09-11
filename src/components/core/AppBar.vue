@@ -21,7 +21,11 @@
               color="grey-lighten-2"
               size="32"
             >
-            <v-img
+            <v-img v-if="authstore.user.photourl !== ''"
+              :src="photobasepath + authstore.user.photourl"
+              alt="QRSchool">
+            </v-img>
+            <v-img v-else
                 :src="getGravatar(authstore.user.email)"
                 alt="QRSchool"
             ></v-img>
@@ -41,7 +45,7 @@
   import NavDrawerLeft from './NavDrawerLeft.vue'
   import MenuRight from './NavDrawerRight.vue'
   import { authStore } from '../../stores/authStore'
-  import {getGravatar} from '../../tools'
+  import {getGravatar, staticUrl} from '../../tools'
   import switchDarkTheme from '../../components/core/buttons/darkmodebtn.vue'
 
   export default {
@@ -51,6 +55,7 @@
       drawerConfig: false,
       group: null,
       authstore: authStore(),
+      photobasepath: staticUrl+'/photos/'
     }),
     components: {
       'navigation-drawer':()=> import('./NavDrawerLeft.vue'),

@@ -86,8 +86,8 @@
       LoginRegister
     },
     methods:{
-      async authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules){
-        authStore().login(access_token, auth, email, fresh_access_token, username, qr, active, modules).then(
+      async authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules, photourl){
+        authStore().login(access_token, auth, email, fresh_access_token, username, qr, active, modules, photourl).then(
          this.$router.push({name: 'mostrarmiqr'})
         )
       },
@@ -100,9 +100,9 @@
           if (response?.status !== 200){
             return
           }
-          const {access_token, auth, email, fresh_access_token, username, qr, active, modules} = response.data
+          const {access_token, auth, email, fresh_access_token, username, qr, active, modules, photourl} = response.data
           console.log(`Modulos ${modules}`)
-          await this.authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules)
+          await this.authuser(access_token, auth, email, fresh_access_token, username, qr, active, modules, photourl)
         } finally {
           this.btnenable = true
         }
