@@ -270,7 +270,7 @@
             direccion: this.direccion,
             telefono: this.telefono,
             password: this.password,
-            photourl: this.imageurl
+            photourl: this.imageurl.split('/').pop()
             }], false, false)
           console.log(response)
           if (response?.status === 200){
